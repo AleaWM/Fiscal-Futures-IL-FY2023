@@ -32,7 +32,7 @@ library(janitor)
 
 library(tidyverse)
 
-knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, error = TRUE)
 
 
 ```
@@ -212,13 +212,13 @@ General steps:
 **New Agencies, Funds, and Organizations from Expenditure files:**
 
 
-```{r eval = FALSE}
+```{r}
 
 #### From Expenditure Data #####
 
 # agencies referenced in any year before 2020:
 agencies_past <- allexpfiles23 %>% 
-  filter(fy < 2022) %>% 
+  filter(fy < 2023) %>% 
   mutate(agency == as.character(agency)) %>% 
   group_by(agency, agency_name) %>% unique() %>% 
   summarize(expenditure = sum(expenditure, na.rm = TRUE)) %>% 
@@ -261,7 +261,7 @@ funds23 <- allexpfiles23  %>%
 
 # 26 funds were in FY23 data that were not in past data:
 anti_join(funds23, funds_past, 
-          by = c("fund"#, "fund_name"
+          by = c("fund", "fund_name"
                  )) %>% 
   arrange(fund)
 
@@ -288,6 +288,10 @@ anti_join(orgs23, orgs_past,
           by = c("appr_org", "org_name")) %>% 
   arrange(appr_org)
 ```
+
+
+
+26 funds identified from the expenditure file as having something changed compared to funds that existed in previous years. They are either new funds, reused funds, or have very minor typos or changes in their name. Some are also identified in the revenue section below:
 
 
 **New Revenue Funds, Sources, and New Agencies:**
@@ -405,16 +409,32 @@ rev_1998_2023 <- allrevfiles23 %>%
   mutate(fund =  ifelse(fy < 2021 & fund %in% c("0255", "0325", "0348", "0967", "0972"), str_replace(fund, "0","9"), fund) ) %>%
   
    #2022 changes
-  mutate(fund = ifelse(fy < 2022 & fund %in% c("0110","0165","0351", "0392", "0393", "0422", "0544", "0628", "0634",  "0656", "0672", "0683", "0723", "0742", "0743"), str_replace(fund, "0","9"), as.character(fund))) %>%  # replaces first 0 it finds with a 9
+  mutate(fund = ifelse(fy < 2022 & fund %in% c("0110","0165","0351", "0392", "0393", "0422", "0544", "0628", "0634",  "0656", "0672", "0683", "0723", "0734", "0742", "0743"), str_replace(fund, "0","9"), as.character(fund))) %>%  # replaces first 0 it finds with a 9
   mutate(fund = ifelse(fy < 2022 & fund == "0367", "10367", as.character(fund)) # fund reused for 3rd time
-)
-
+  ) %>%
+  
+  
+  # 2023 fund changes
+  mutate(fund = ifelse(fy < 2023 & fund %in% c("0099","0210","0246", "0250", "0264", "0268", "0300", "0311", "0403", "0448","0645", "0727", "0729", "0791"), str_replace(fund,"0", "9"), as.character(fund))) %>%
+  mutate(fund = ifelse(fy < 2023 & fund %in% c("0734", "0820"), "10734", as.character(fund)) # fund reused for 3rd time
+  )
 ```
 
 For 2022, new funds included The Essential Government Services fund, Electric Vehicle Rebate, Budget Stabilization fund, and more. New funds were added to the funds_ab_in.xlsx file and recoded funds were addressed in the code chunks below and updated in the same excel file. 
 
-For 2023, there were no reused funds and only a couple new funds. 
 
+For 2023: 
+
+- 5 New Funds: 0180, 0221, 0385, 0426, 0442 
+
+- Reused Funds: 0099, 0210, 0246, 0250, 0264, 0268, 0300, 0311, 0403, 0426, 0448, 0645, 0727, 0729,  0734, 0791, 0820      
+  - fund 0734 and fund 0820 were used for the 3rd time and is treated slightly different (coded to 10734 instead of 9734)  
+
+> Funds_ab_in_2023.xlsx still needs the `in_ff` variable and `fund_category` variables filled in!  
+
+- 0448 was state projects but now is Medicaid Tech Assistance Center, is that still a type of state project or give it a new fund number? Probably depends on the ioc fund description. Did recode it for now as of Nov 17 2023.   
+
+Minor Name Changes (so no change to funds_ab_in file):  0156, 0099, and fund 0083 is just a slight name change from our records in the funds_ab_in.xlsx file (Gang Crime Witness Protection vs Violent Crime Witness Protection. Changed in funds_ab_in on 11.17.2023)   
 
 Expenditure recoding: 
 
@@ -442,8 +462,13 @@ exp_1998_2023 <- allexpfiles23 %>%
   
   #2022 changes
   mutate(fund = ifelse(fy < 2022 & fund %in% c("0110","0165","0351", "0392", "0393", "0422", "0544", "0628", "0634",  "0656", "0672", "0683","0723", "0742", "0743"), str_replace(fund, "0","9"), as.character(fund))) %>%  # replaces first 0 it finds with a 9
-  mutate(fund = ifelse(fy < 2022 & fund == "0367", "10367", as.character(fund)) # fund reused for 3rd time 
+  mutate(fund = ifelse(fy < 2022 & fund == "0367", "10367", as.character(fund))  ) %>%  # fund reused for 3rd time 
+  
+ # 2023 fund changes
+  mutate(fund = ifelse(fy < 2023 & fund %in% c("0099","0210","0246", "0250", "0264", "0268", "0300", "0311", "0403", "0448","0645", "0727", "0729", "0791"), str_replace(fund,"0", "9"), as.character(fund))  ) %>%
+  mutate(fund = ifelse(fy < 2023 & fund %in% c("0734", "0820"), "10734", as.character(fund)) # fund reused for 3rd time
   )
+
 
 ```
 
@@ -481,7 +506,7 @@ exp_temp <- exp_1998_2023 %>%
   filter(expenditure != 0) %>%             # keeps everything that is not zero
 # join  funds_ab_in_2021  to exp_temp
  left_join(funds_ab_in_2023, by = "fund") %>% # matches most recent fund number 
-  select(-c(fund_ab, fund_ioc, fund_re,fund_name_ab, a_end, fund_category))
+  select(-c(fund_ab, fund_ioc, fund_re, fund_name_ab, a_end, fund_category))
 
 
 # Agency == 799 for Statutory transfers 
