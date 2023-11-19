@@ -416,7 +416,8 @@ rev_1998_2023 <- allrevfiles23 %>%
   
   # 2023 fund changes
   mutate(fund = ifelse(fy < 2023 & fund %in% c("0099","0210","0246", "0250", "0264", "0268", "0300", "0311", "0403", "0448","0645", "0727", "0729", "0791"), str_replace(fund,"0", "9"), as.character(fund))) %>%
-  mutate(fund = ifelse(fy < 2023 & fund %in% c("0734", "0820"), "10734", as.character(fund)) # fund reused for 3rd time
+  mutate(fund = ifelse(fy < 2023 & fund == "0734" , "10734", as.character(fund),
+                       fy<2023 & fund == "0820", "10820", as.character(fund) ) # fund reused for 3rd time
   )
 ```
 
@@ -466,7 +467,8 @@ exp_1998_2023 <- allexpfiles23 %>%
   
  # 2023 fund changes
   mutate(fund = ifelse(fy < 2023 & fund %in% c("0099","0210","0246", "0250", "0264", "0268", "0300", "0311", "0403", "0448","0645", "0727", "0729", "0791"), str_replace(fund,"0", "9"), as.character(fund))  ) %>%
-  mutate(fund = ifelse(fy < 2023 & fund %in% c("0734", "0820"), "10734", as.character(fund)) # fund reused for 3rd time
+  mutate(fund = ifelse(fy < 2023 & fund == "0734" , "10734", as.character(fund),
+                       fy<2023 & fund == "0820", "10820", as.character(fund) ) # fund reused for 3rd time
   )
 
 
