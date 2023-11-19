@@ -591,7 +591,7 @@ rev_temp <- rev_temp %>%
     TRUE ~ (as.character(agency)))) 
 ```
 
-# Overall Fiscal Health & Complex Fiscal Topics {.tabset .tabset-pills}
+# Overall Fiscal Health & Complex Fiscal Topics
 
 > Click the different tabs to see each topic, how it was coded, and exploratory graphs!
 
@@ -1013,7 +1013,7 @@ all_debt %>% ggplot() +   theme_classic()+
 Capital projects include the IL Civic Center and Build Illinois Bonds. Tollway principal and interest has been dropped from the State's Debt Service expenditure but is counted in the Illinois Tollway Expenditure cost.
 
 
-## State Employee Healthcare Discussion
+## State Employee Healthcare Discussion 
 
 State Employee Health Care = Sum of expenditures for "health care coverage as elected by members per state employees group insurance act." The payments are made from the Health Insurance Reserve Fund. Employee contributions are not considered a revenue source or an expenditure in our analysis.
 
@@ -1046,8 +1046,8 @@ Fund = 0739 is Group Workers Comp Pool Insol, in_ff = 1
 - eehc = 1 means it is a state employee healthcare cost and it is an employer contribution to health insurance
 
 
-```{r healthcare-employer-contributions, error=TRUE, fig.show='hold', out.width="50%"}
-health_ins_reserve <- exp_temp %>% filter(fund == "0907") %>%  group_by(fy) %>% 
+```{r healthcare-employer-contributions, fig.show='hold', out.width="50%"}
+health_ins_reserve <- exp_temp %>% filter(fund == "0907") %>% group_by(fy) %>% 
     summarize(fund_0907 = sum(expenditure)) 
 
 health_ins_reserve %>% 
@@ -1055,7 +1055,7 @@ health_ins_reserve %>%
 ```
 
 
-```{r healthcare-employer-contributions2, error=TRUE, fig.show='hold', out.width="50%"}
+```{r healthcare-employer-contributions2, fig.show='hold', out.width="50%"}
 # object 1180 is inconsistently coded over time form the IOC 
 # object 1180 should be employer contributions to healthcare group insurance
 employer_contributions <- exp_temp %>% filter(object == "1180") %>% group_by(fy) %>% summarize(object1180 = sum(expenditure)) 
@@ -1086,8 +1086,8 @@ group_ins2 <- exp_temp %>%
 ```
 
 
-```{r healthcare-employer-contributions3, error=TRUE}
-group_ins2 %>% ggplot(aes(x=fy, y=dropped_group_premiums)) + geom_line() theme_classic() + labs(title="Employer Healthcare Group Insurance Contributions", subtitle= " - Dropped from analysis to avoid double counting healthcare expenditures", caption = "Objects 1180 and 1900 from fund 0001. See code for additional coding details.")
+```{r healthcare-employer-contributions3}
+group_ins2 %>% ggplot(aes(x=fy, y=dropped_group_premiums)) + geom_line() + theme_classic() + labs(title="Employer Healthcare Group Insurance Contributions", subtitle= " - Dropped from analysis to avoid double counting healthcare expenditures", caption = "Objects 1180 and 1900 from fund 0001. See code for additional coding details.")
 
 
 ```
@@ -1095,7 +1095,7 @@ group_ins2 %>% ggplot(aes(x=fy, y=dropped_group_premiums)) + geom_line() theme_c
 
 If observation is a group insurance contribution, then the expenditure amount is set to $0 (essentially dropped from analysis).
 
-### Health Insurance Premiums - Revenue Side
+### Health Insurance Premiums - Revenue Side 
 
 Employee insurance premiums for healthcare are a revenue source for the state in the IOC data but are NOT included  in the Fiscal Futures analysis and fiscal gap calculations. 
 
@@ -1180,7 +1180,7 @@ table(exp_temp$eehc)
 
 ## Federal Medicaid Reimbursements and Medicaid Costs
 
-```{r error=TRUE}
+```{r}
 
 medicaid_cost <- exp_temp %>% filter(agency=="478" & (appr_org=="01" | appr_org == "65" | appr_org=="88") & (object=="4900" | object=="4400")) %>% group_by(fy) %>% summarize(sum=sum(expenditure))
   
@@ -1194,7 +1194,7 @@ ggplot()+
 ```
 
 
-# Expenditure & Revenue Categorization {.tabset .tabset-pills}
+# Expenditure & Revenue Categorization
 
 > Click the Expenditure or Revenue Tabs to see how categories were combined and coded to make the summary tables.
 
@@ -1209,10 +1209,10 @@ Aggregate expenditures: Save tax refunds as negative revenue. Code refunds to ma
 > ref_check has small value for government machines!
 
 ```{r tax-refunds}
-table(exp_temp$seq)
-class(exp_temp$seq)
-class(exp_temp$object)
-class(exp_temp$obj_seq_type)
+# table(exp_temp$sequence)
+# class(exp_temp$sequence)
+# class(exp_temp$object)
+# class(exp_temp$obj_seq_type)
 
 ## negative revenue becomes tax refunds
 
@@ -2127,7 +2127,7 @@ I chose to drop rev_76 for Transfers in and Out because I do not understand why 
 ```{r final-ffrev-table}
 ff_rev <- rev_temp %>% 
   group_by(rev_type_new, fy) %>% 
-  summarize(sum_receipts = sum(receipts, na.rm=TRUE)/1000000 ) %>%
+  summarize(sum_receipts = round(sum(receipts, na.rm=TRUE)/1000000 )) %>%
   pivot_wider(names_from = "rev_type_new", values_from = "sum_receipts", names_prefix = "rev_")
 
 ff_rev<- left_join(ff_rev, tax_refund)
@@ -2139,13 +2139,13 @@ ff_rev <- mutate_all(ff_rev, ~replace_na(.,0))
 
 
 ff_rev <- ff_rev %>%
-  mutate(rev_02 = rev_02 - ref_02,
-         rev_03 = rev_03 - ref_03,
-         rev_06 = rev_06 - ref_06,
-         rev_09 = rev_09 - ref_09,
-         rev_21 = rev_21 - ref_21,
-         rev_24 = rev_24 - ref_24,
-         rev_35 = rev_35 - ref_35
+  mutate(rev_02 = rev_02 - round(ref_02),
+         rev_03 = rev_03 - round(ref_03),
+         rev_06 = rev_06 - round(ref_06),
+         rev_09 = rev_09 - round(ref_09),
+         rev_21 = rev_21 - round(ref_21),
+         rev_24 = rev_24 - round(ref_24),
+         rev_35 = rev_35 - round(ref_35)
 
       #   rev_78new = rev_78 #+ pension_amt #+ eehc
          ) %>% 
@@ -2153,7 +2153,7 @@ ff_rev <- ff_rev %>%
           #  , eehc
             ))
 
-ff_rev
+ff_rev 
 
 
 ```
@@ -2215,7 +2215,7 @@ Create exp_970 for all local government transfers (exp_971 + exp_972  + exp_975 
 
 ff_exp <- exp_temp %>% 
   group_by(fy, group) %>% 
-  summarize(sum_expenditures = sum(expenditure, na.rm=TRUE)/1000000 ) %>%
+  summarize(sum_expenditures = round(sum(expenditure, na.rm=TRUE)/1000000 )) %>%
   pivot_wider(names_from = "group", values_from = "sum_expenditures", names_prefix = "exp_")%>%
   
     left_join(debt_keep_yearly) %>%
