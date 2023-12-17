@@ -217,15 +217,14 @@ agencies_past <- allrevfiles23  %>% filter(fy < 2023) %>%
   drop_na()
 
 
-# agencies22 # 80 agencies this year
-agencies22 <- allrevfiles23  %>% 
+agencies23 <- allrevfiles23  %>% 
   filter(fy == 2023) %>% 
   mutate(agency == as.character(agency)) %>% 
   group_by(agency, agency_name) %>% 
   summarize(Receipts = sum(receipts, na.rm = TRUE))
 
 # 0 new agencies in revenue data this year
-anti_join(agencies22, agencies_past, by = c("agency", "agency_name")) %>% 
+anti_join(agencies23, agencies_past, by = c("agency", "agency_name")) %>% 
   arrange(agency)
 
 
@@ -236,7 +235,7 @@ funds_past <- allrevfiles23  %>%
   summarize(count = n(), Receipts = sum(receipts, na.rm = TRUE))  %>% 
   drop_na()
 
-funds22 <- allrevfiles23  %>% 
+funds23 <- allrevfiles23  %>% 
   filter(fy == 2023) %>% 
   mutate(fund == as.character(fund)) %>% 
   group_by(fund, fund_name) %>%  
@@ -246,7 +245,7 @@ funds22 <- allrevfiles23  %>%
 
 # 19 revenue funds were in FY22 revenue data that were not in past data 
 # some could be small fund name changes
-anti_join(funds22, funds_past, by = c("fund", "fund_name")) %>% 
+anti_join(funds23, funds_past, by = c("fund", "fund_name")) %>% 
   arrange(fund)
 
 
@@ -258,7 +257,7 @@ sources_past <- allrevfiles23  %>%
   summarize(count = n(), Receipts = sum(receipts, na.rm = TRUE))  %>% 
   drop_na()
 
-sources22 <- allrevfiles23  %>% 
+sources23 <- allrevfiles23  %>% 
   filter(fy == 2023) %>% 
   mutate(source == as.character(source)) %>% 
   group_by(source, source_name) %>% 
@@ -268,7 +267,7 @@ sources22 <- allrevfiles23  %>%
 
 # 20 revenue sources were in FY22 data that were not in past data 
 # some could be small source name changes:
-anti_join(sources22, sources_past, by = c("source", "source_name")) %>% 
+anti_join(sources23, sources_past, by = c("source", "source_name")) %>% 
   arrange(source)
 
 ```
