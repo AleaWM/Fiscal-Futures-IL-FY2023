@@ -1,0 +1,94 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Methodology for the Fiscal Futures Annual Report"
+  subtitle: "Part of IGPA's Fiscal Futures Project"
+  author: "Alea Wilbur-Mujtaba"
+  date: last-modified
+ # - part: "Methodology"
+  chapters:
+    - index.qmd
+    - FundsIncluded.qmd
+    - code-cleaning.qmd
+    - FedMoneyReceived.qmd
+    - LocalTransfers.qmd
+    - Debt.qmd
+    - Pensions.qmd
+    - Healthcare.qmd
+    - FederalRevenue.qmd
+    - Medicaid.qmd
+    - Everything.qmd 
+#    - FiscalGap.qmd
+
+  navbar: 
+    right: 
+      - icon: github
+        href: https://github.com/AleaWM/Fiscal-Futures-IL-FY2023.git
+    left:
+      - text: "About"
+        file: index.qmd
+      - text: "Methodology"
+        menu:
+          - FundsIncluded.qmd
+          - code-cleaning.qmd
+          - FedMoneyReceived.qmd
+          - LocalTransfers.qmd
+          - Debt.qmd
+          - Pensions.qmd
+          - Healthcare.qmd
+          - FederalRevenue.qmd
+          - Medicaid.qmd
+          - Everything.qmd
+      - text: "Data"
+        href: https://github.com/AleaWM/https://github.com/AleaWM/Fiscal-Futures-IL-FY2023.git/tree/main/data
+#      - text: "Reports"
+#        file: FiscalGap.qmd
+ #     - text: "COVID-related Federal Revenue"
+ #       file: FedMoneyReceived.qmd
+
+
+          
+
+site-url: https://aleawm.github.io/https://github.com/AleaWM/Fiscal-Futures-IL-FY2023.git
+#  repo-actions: [edit]
+#  downloads: [pdf, epub]
+#  sharing: [twitter, facebook]
+   # sidebar:
+      #title: "On this page"
+
+
+#execute: 
+#  freeze: auto
+
+format:
+  html:
+    code-fold: true
+    code-tools: true
+    code-overflow: wrap
+    df-print: paged
+    theme: 
+      light: lightly
+      dark: darkly
+    fig-cap-location: top
+    tbl-cap-location: top
+    
+  # pdf:
+  #   documentclass: scrreport
+  #   include-in-header: 
+  #     text: |
+  #       \usepackage{makeidx}
+  #       \makeindex
+  #   include-after-body: 
+  #     text: |
+  #       \printindex
+  #   
+#bibliography: references.bib
+#reference-location: margin
+#citation-location: margin
+
+
+
+editor: visual
+
