@@ -64,7 +64,6 @@ site-url: https://aleawm.github.io/https://github.com/AleaWM/Fiscal-Futures-IL-F
 
 format:
   html:
-    theme: cosmo
     toc: true
     code-fold: true
     code-tools: true
@@ -76,8 +75,6 @@ format:
     theme: 
       light: lightly
       dark: darkly
-    fig-cap-location: top
-    tbl-cap-location: top
     grid: 
       sidebar-width: 200px
       body-width: 900px
