@@ -42,7 +42,7 @@ Normally, when your receive the new fiscal year files from the Comptrollers offi
 
 #Example code below: Read in excel file and rename columns so that it plays well with the other years' files.
 
-revenue_fy22 <- read_xlsx("Fis_Fut_Rev_2022_Final.xlsx") %>% 
+revenue_fy23 <- read_xlsx("Fis_Fut_Rev_2023_Final.xlsx") %>% 
   rename(fy = 'FY',
          fund = 'FUND',
          fund_name = 'FUND NAME',
@@ -53,7 +53,7 @@ revenue_fy22 <- read_xlsx("Fis_Fut_Rev_2022_Final.xlsx") %>%
          receipts = 'AMOUNT'
   ) 
 
-exp_fy22 <- read_xlsx("Fis_Fut_Exp_2022_Final.xlsx") %>% 
+exp_fy23 <- read_xlsx("Fis_Fut_Exp_2023_Final.xlsx") %>% 
   rename(fy = 'FY',
          fund = 'FUND',
          fund_name = 'FUND NAME',
@@ -89,7 +89,7 @@ For years after fy22: add line of code to bind csv files after binding the dta f
 
 <!--- Code chunk below not updated. Is in other .rmd files for fy2023--->
 
-```{r create-rev-csv-FY22, include=FALSE, eval=FALSE}
+```{r create-rev-csv-FY23, include=FALSE, eval=FALSE}
 # years after fy22: add line of code to bind csv files after binding the dta files.
 
 setwd("./data/revenue")
@@ -99,6 +99,8 @@ allrevfiles23 = list.files(path = "./data/revenue",  pattern = ".dta") %>%  lapp
 #Fy21: 62294 observations, 13 variables
 
 #FY22: 65094 obs, 13 vars
+ 
+#FY23: 
 
 write_csv(allrevfiles23, "allrevfiles23.csv")
 
@@ -109,6 +111,8 @@ allexpfiles23 = list.files(path = "./data/expenditures",  pattern = ".dta") %>% 
 #fy21 213372 observations, 20 variables
 
 # fy22 225587 obs, 21 vars.
+
+#FY23
 
 write_csv(allexpfiles23, "allexpfiles23.csv")
 ```
@@ -430,6 +434,13 @@ exp_temp <- exp_temp %>%
          trans_agency = ifelse(org_name == "TRANSFERS", str_sub(obj_seq_type,1,3), NA),
          trans_type = ifelse(org_name == "TRANSFERS", str_sub(obj_seq_type,4,9), NA)
 
+         ) %>%   
+  
+  # these come from ioc_source file after merging
+  mutate(
+         object = ifelse(transfer == 0, as.character(str_sub(obj_seq_type, 1, 4)), NA_character_),
+         sequence = ifelse(transfer == 0, as.character(str_sub(obj_seq_type, 5,6)), NA_character_),
+         type = ifelse(transfer == 0, str_sub(obj_seq_type, 7,8), NA_character_)
          )
 
 ```
