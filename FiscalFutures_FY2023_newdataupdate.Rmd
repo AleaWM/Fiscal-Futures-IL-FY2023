@@ -1208,7 +1208,11 @@ ggplot()+
 Aggregate expenditures: Save tax refunds as negative revenue. Code refunds to match the rev_type codes (02=income taxes, 03 = corporate income taxes, 06=sales tax, 09=motor fuel tax, 24=insurance taxes and fees, 35 = all other tax refunds).
 
 
-> ref_check has small value for government machines!
+> ref_check has small value! So Check it by looking into the items included in tax_refund_long!
+
+- Cannabis Excise tax is should be added to sales tax refunds,
+- aviation fuel refund should be added to motor fuel refund?? (expenditure = $0 so not an immediate concern)
+
 
 ```{r tax-refunds}
 # table(exp_temp$sequence)
@@ -1230,7 +1234,7 @@ tax_refund_long <- exp_temp %>%           # fund != "0401" # removes State Trust
                     object=="9923" ~ "09",                # motor fuel tax refunds
                     obj_seq_type == "99250055" ~ "06",    # sales tax refund
                     fund=="0378" & object=="9925" ~ "24", # insurance privilege tax refund
-                    fund=="0001" & object=="9925" ~ "35", # all other taxes
+                    (fund=="0001" & object=="9925") | (object=="9925" & fund == "0384" & fy == 2023) ~ "35", # all other taxes
                   # TRUE ~ "CHECK"
                   TRUE ~ NA
    #  .default = as.character(x)
@@ -1262,6 +1266,8 @@ exp_temp <- exp_temp %>% filter(refund == "not refund")
 ```
 
 `tax_refund` amounts are removed from expenditure totals and subtracted from revenue totals (since they were tax refunds).
+
+> Looked at tax_refund_long on Dec.18 2023. Cannabis Excise Taxes should be included with Sales Tax
 
 
 ### Pension Expenditures
@@ -1812,6 +1818,8 @@ rev_temp <- rev_temp %>%
     agency == "560" ~ "592", # IL finance authority (fire trucks and agriculture stuff)to state fire marshal
     agency == "570" & fund == "0011" ~ "494",   # city of Chicago road fund to transportation
     TRUE ~ (as.character(agency)))) 
+
+#write_csv(rev_temp, "rev_temp.csv")
 ```
 
 
@@ -1939,18 +1947,18 @@ exp_temp %>% filter(fy >2018 & (fund_name == "STATE CURE" | fund_name == "LOCAL 
             appropriated = sum(appn_net_xfer)) %>% 
   arrange(-appropriated)
 
-exp_temp %>% filter(fy == 2022 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(org_name, agency_name, object, wh_approp_name, fund_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
+exp_temp %>% filter(fy == 2023 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(org_name, agency_name, object, wh_approp_name, fund_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
 
-exp_temp %>% filter(fy == 2022 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(agency_name, object, wh_approp_name, fund_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
+exp_temp %>% filter(fy == 2023 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(agency_name, object, wh_approp_name, fund_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
 
-exp_temp %>% filter(fy == 2022 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(fund_name, object, org_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
+exp_temp %>% filter(fy == 2023 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(fund_name, object, org_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
 
 
-exp_temp %>% filter(fy == 2022 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(fund_name, agency_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
+exp_temp %>% filter(fy == 2023 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(fund_name, agency_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
 
-exp_temp %>% filter(fy == 2022 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(agency_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
+exp_temp %>% filter(fy == 2023 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(agency_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
 
-exp_temp %>% filter(fy == 2021 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(wh_approp_name, fund_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
+exp_temp %>% filter(fy == 2022 | fy == 2021 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(wh_approp_name, fund_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
 ```
 
 **Dropping State CURE Revenue**
@@ -2087,7 +2095,8 @@ table(rev_temp$rev_type_new)
 rev_temp %>% 
   group_by(fy, rev_type_new) %>% 
   summarize(total_reciepts = sum(receipts)/1000000) %>%
-  pivot_wider(names_from = rev_type_new, values_from = total_reciepts, names_prefix = "rev_") 
+  pivot_wider(names_from = rev_type_new, values_from = total_reciepts, names_prefix = "rev_") %>%
+  mutate_if(is.numeric, round)
 
 # combines smallest 4  categories to to "Other"
 # they were the 4 smallest in past years, are they still the 4 smallest? 
@@ -2475,11 +2484,17 @@ write_csv(exp_long, "expenditures_recoded_long_FY23.csv")
 write_csv(rev_long, "revenue_recoded_long_FY23.csv")
 
 aggregated_totals_long <- rbind(rev_long, exp_long)
-aggregated_totals_long
+
+
+aggregated_totals_long %>% 
+  mutate_if(is.numeric, round) %>%
+  rename("Dollars (in Millions)"  = Dollars, 
+         "Revenue Category" = Category_name)
 
 
 
 year_totals <- aggregated_totals_long %>% 
+  mutate(Year = as.character(Year)) %>%
   group_by(type, Year) %>% 
   summarize(Dollars = sum(Dollars, na.rm = TRUE)) %>% 
   pivot_wider(names_from = "type", values_from = Dollars) %>% 
@@ -2491,8 +2506,16 @@ year_totals <- aggregated_totals_long %>%
 # %>%  arrange(desc(Year))
 # creates variable for the Gap each year
 
-year_totals  %>%  
-  kbl(caption = "Fiscal Gap for each Fiscal Year") %>% 
+# 
+# year_totals %>% mutate_if(is.numeric, function(x) format(round(x), big.mark = ",")) %>%
+# kable(digits = 0, format = "markdown", caption = "Fiscal Gap for each Fiscal Year", align = "r", full_width = FALSE)
+# 
+# year_totals %>% mutate_if(is.numeric, function(x) format(round(x), big.mark = ",")) %>%
+# kable(digits = 0, format = "markdown", caption = "Fiscal Gap for each Fiscal Year", align = "r")  %>%
+#   kable_classic() %>% add_footnote(c("Fiscal Gap calculations may vary from past publications; see methodology changes.", "Values include Federal Stimulus Package Revenue"))
+
+year_totals %>% mutate_if(is.numeric, function(x) format(round(x), big.mark = ",")) %>%  
+  kbl(caption = "Fiscal Gap for each Fiscal Year", align = "r", full.width=FALSE) %>% 
 kable_classic() %>%  
   add_footnote(c("Fiscal Gap calculations may vary from past publications; see methodology changes.", "Values include Federal Stimulus Package Revenue"))
 ```
@@ -2566,6 +2589,7 @@ annotation <- data.frame(
 ## Dashed line versions for expenditures: 
 
 fiscal_gap <- year_totals %>%  
+  mutate(Year = as.numeric(Year)) %>%
   ggplot() +
   geom_hline(yintercept = 0) +
   # geom_smooth adds regression line, graphed first so it appears behind line graph
@@ -2601,6 +2625,7 @@ fiscal_gap
 
 
 fiscal_gap2 <- year_totals %>%  
+  mutate(Year = as.numeric(Year)) %>%
   ggplot() +
   geom_hline(yintercept = 0) +
   geom_line(aes(x = Year, y = Revenue/1000), color = "Black", lwd=1) +
