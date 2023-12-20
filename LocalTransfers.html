@@ -343,12 +343,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quantmod)</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geofacet)</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>())</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>exp_temp <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"./data/exp_temp.csv"</span>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>rev_temp <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"./data/rev_temp.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>exp_temp <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"./data/exp_temp.csv"</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>rev_temp <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"./data/rev_temp.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
@@ -765,72 +766,73 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quantmod)</span>
 <span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geofacet)</span>
 <span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>())</span>
 <span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>exp_temp <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"./data/exp_temp.csv"</span>)</span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>rev_temp <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"./data/rev_temp.csv"</span>)</span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>exp_temp <span class="ot">&lt;-</span> exp_temp <span class="sc">%&gt;%</span> </span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">agency =</span> <span class="fu">case_when</span>(</span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>      fund<span class="sc">==</span><span class="st">"0515"</span> <span class="sc">&amp;</span> object<span class="sc">==</span><span class="st">"4470"</span> <span class="sc">&amp;</span> type<span class="sc">==</span><span class="st">"08"</span> <span class="sc">~</span> <span class="st">"971"</span>, <span class="co"># income tax to local governments</span></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>      fund<span class="sc">==</span><span class="st">"0515"</span> <span class="sc">&amp;</span> object<span class="sc">==</span><span class="st">"4491"</span> <span class="sc">&amp;</span> type<span class="sc">==</span><span class="st">"08"</span> <span class="sc">&amp;</span> sequence<span class="sc">==</span><span class="st">"00"</span> <span class="sc">~</span> <span class="st">"971"</span>, <span class="co"># object is shared revenue payments</span></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>      fund<span class="sc">==</span><span class="st">"0802"</span> <span class="sc">&amp;</span> object<span class="sc">==</span><span class="st">"4491"</span> <span class="sc">~</span> <span class="st">"972"</span>, <span class="co">#pprt transfer</span></span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>      fund<span class="sc">==</span><span class="st">"0515"</span> <span class="sc">&amp;</span> object<span class="sc">==</span><span class="st">"4491"</span> <span class="sc">&amp;</span> type<span class="sc">==</span><span class="st">"08"</span> <span class="sc">&amp;</span> sequence<span class="sc">==</span><span class="st">"01"</span> <span class="sc">~</span> <span class="st">"976"</span>, <span class="co">#gst to local</span></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>      fund<span class="sc">==</span><span class="st">"0627"</span> <span class="sc">&amp;</span> object<span class="sc">==</span><span class="st">"4472"</span><span class="sc">~</span> <span class="st">"976"</span> , <span class="co"># public transportation fund but no observations exist</span></span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>      fund<span class="sc">==</span><span class="st">"0648"</span> <span class="sc">&amp;</span> object<span class="sc">==</span><span class="st">"4472"</span> <span class="sc">~</span> <span class="st">"976"</span>, <span class="co"># downstate public transportation, but doesn't exist</span></span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>      fund<span class="sc">==</span><span class="st">"0515"</span> <span class="sc">&amp;</span> object<span class="sc">==</span><span class="st">"4470"</span> <span class="sc">&amp;</span> type<span class="sc">==</span><span class="st">"00"</span> <span class="sc">~</span> <span class="st">"976"</span>, <span class="co"># object 4470 is grants to local governments</span></span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>      object<span class="sc">==</span><span class="st">"4491"</span> <span class="sc">&amp;</span> (fund<span class="sc">==</span><span class="st">"0188"</span><span class="sc">|</span>fund<span class="sc">==</span><span class="st">"0189"</span>) <span class="sc">~</span> <span class="st">"976"</span>,</span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>      fund<span class="sc">==</span><span class="st">"0187"</span> <span class="sc">&amp;</span> object<span class="sc">==</span><span class="st">"4470"</span> <span class="sc">~</span> <span class="st">"976"</span>,</span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>      fund<span class="sc">==</span><span class="st">"0186"</span> <span class="sc">&amp;</span> object<span class="sc">==</span><span class="st">"4470"</span> <span class="sc">~</span> <span class="st">"976"</span>,</span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>      object<span class="sc">==</span><span class="st">"4491"</span> <span class="sc">&amp;</span> (fund<span class="sc">==</span><span class="st">"0413"</span><span class="sc">|</span>fund<span class="sc">==</span><span class="st">"0414"</span><span class="sc">|</span>fund<span class="sc">==</span><span class="st">"0415"</span>)  <span class="sc">~</span> <span class="st">"975"</span>, <span class="co">#mft to local</span></span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>      fund <span class="sc">==</span> <span class="st">"0952"</span><span class="sc">~</span> <span class="st">"975"</span>, <span class="co"># Added Sept 29 2022 AWM. Transportation Renewal MFT</span></span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.character</span>(agency)),</span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>    <span class="at">agency_name =</span> <span class="fu">case_when</span>(</span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>      agency <span class="sc">==</span> <span class="st">"971"</span><span class="sc">~</span> <span class="st">"INCOME TAX 1/10 TO LOCAL"</span>,</span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>      agency <span class="sc">==</span> <span class="st">"972"</span> <span class="sc">~</span> <span class="st">"PPRT TRANSFER TO LOCAL"</span>,</span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>      agency <span class="sc">==</span> <span class="st">"975"</span> <span class="sc">~</span> <span class="st">"MFT TO LOCAL"</span>,</span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>      agency <span class="sc">==</span> <span class="st">"976"</span> <span class="sc">~</span> <span class="st">"GST TO LOCAL"</span>,</span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span><span class="sc">~</span><span class="fu">as.character</span>(agency_name))) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> <span class="fu">ifelse</span>(agency<span class="sc">&gt;</span><span class="st">"970"</span> <span class="sc">&amp;</span> agency <span class="sc">&lt;</span> <span class="st">"977"</span>, <span class="fu">as.character</span>(agency), <span class="st">""</span>))</span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>exp_temp <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"./data/exp_temp.csv"</span>)</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>rev_temp <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"./data/rev_temp.csv"</span>)</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>exp_temp <span class="ot">&lt;-</span> exp_temp <span class="sc">%&gt;%</span> </span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">agency =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>      fund<span class="sc">==</span><span class="st">"0515"</span> <span class="sc">&amp;</span> object<span class="sc">==</span><span class="st">"4470"</span> <span class="sc">&amp;</span> type<span class="sc">==</span><span class="st">"08"</span> <span class="sc">~</span> <span class="st">"971"</span>, <span class="co"># income tax to local governments</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>      fund<span class="sc">==</span><span class="st">"0515"</span> <span class="sc">&amp;</span> object<span class="sc">==</span><span class="st">"4491"</span> <span class="sc">&amp;</span> type<span class="sc">==</span><span class="st">"08"</span> <span class="sc">&amp;</span> sequence<span class="sc">==</span><span class="st">"00"</span> <span class="sc">~</span> <span class="st">"971"</span>, <span class="co"># object is shared revenue payments</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>      fund<span class="sc">==</span><span class="st">"0802"</span> <span class="sc">&amp;</span> object<span class="sc">==</span><span class="st">"4491"</span> <span class="sc">~</span> <span class="st">"972"</span>, <span class="co">#pprt transfer</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>      fund<span class="sc">==</span><span class="st">"0515"</span> <span class="sc">&amp;</span> object<span class="sc">==</span><span class="st">"4491"</span> <span class="sc">&amp;</span> type<span class="sc">==</span><span class="st">"08"</span> <span class="sc">&amp;</span> sequence<span class="sc">==</span><span class="st">"01"</span> <span class="sc">~</span> <span class="st">"976"</span>, <span class="co">#gst to local</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>      fund<span class="sc">==</span><span class="st">"0627"</span> <span class="sc">&amp;</span> object<span class="sc">==</span><span class="st">"4472"</span><span class="sc">~</span> <span class="st">"976"</span> , <span class="co"># public transportation fund but no observations exist</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>      fund<span class="sc">==</span><span class="st">"0648"</span> <span class="sc">&amp;</span> object<span class="sc">==</span><span class="st">"4472"</span> <span class="sc">~</span> <span class="st">"976"</span>, <span class="co"># downstate public transportation, but doesn't exist</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>      fund<span class="sc">==</span><span class="st">"0515"</span> <span class="sc">&amp;</span> object<span class="sc">==</span><span class="st">"4470"</span> <span class="sc">&amp;</span> type<span class="sc">==</span><span class="st">"00"</span> <span class="sc">~</span> <span class="st">"976"</span>, <span class="co"># object 4470 is grants to local governments</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>      object<span class="sc">==</span><span class="st">"4491"</span> <span class="sc">&amp;</span> (fund<span class="sc">==</span><span class="st">"0188"</span><span class="sc">|</span>fund<span class="sc">==</span><span class="st">"0189"</span>) <span class="sc">~</span> <span class="st">"976"</span>,</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>      fund<span class="sc">==</span><span class="st">"0187"</span> <span class="sc">&amp;</span> object<span class="sc">==</span><span class="st">"4470"</span> <span class="sc">~</span> <span class="st">"976"</span>,</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>      fund<span class="sc">==</span><span class="st">"0186"</span> <span class="sc">&amp;</span> object<span class="sc">==</span><span class="st">"4470"</span> <span class="sc">~</span> <span class="st">"976"</span>,</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>      object<span class="sc">==</span><span class="st">"4491"</span> <span class="sc">&amp;</span> (fund<span class="sc">==</span><span class="st">"0413"</span><span class="sc">|</span>fund<span class="sc">==</span><span class="st">"0414"</span><span class="sc">|</span>fund<span class="sc">==</span><span class="st">"0415"</span>)  <span class="sc">~</span> <span class="st">"975"</span>, <span class="co">#mft to local</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>      fund <span class="sc">==</span> <span class="st">"0952"</span><span class="sc">~</span> <span class="st">"975"</span>, <span class="co"># Added Sept 29 2022 AWM. Transportation Renewal MFT</span></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.character</span>(agency)),</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>    <span class="at">agency_name =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>      agency <span class="sc">==</span> <span class="st">"971"</span><span class="sc">~</span> <span class="st">"INCOME TAX 1/10 TO LOCAL"</span>,</span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>      agency <span class="sc">==</span> <span class="st">"972"</span> <span class="sc">~</span> <span class="st">"PPRT TRANSFER TO LOCAL"</span>,</span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>      agency <span class="sc">==</span> <span class="st">"975"</span> <span class="sc">~</span> <span class="st">"MFT TO LOCAL"</span>,</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>      agency <span class="sc">==</span> <span class="st">"976"</span> <span class="sc">~</span> <span class="st">"GST TO LOCAL"</span>,</span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span><span class="sc">~</span><span class="fu">as.character</span>(agency_name))) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> <span class="fu">ifelse</span>(agency<span class="sc">&gt;</span><span class="st">"970"</span> <span class="sc">&amp;</span> agency <span class="sc">&lt;</span> <span class="st">"977"</span>, <span class="fu">as.character</span>(agency), <span class="st">""</span>))</span>
 <span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>transfers_long <span class="ot">&lt;-</span> exp_temp <span class="sc">%&gt;%</span> </span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(group <span class="sc">==</span> <span class="st">"971"</span> <span class="sc">|</span>group <span class="sc">==</span> <span class="st">"972"</span> <span class="sc">|</span> group <span class="sc">==</span> <span class="st">"975"</span> <span class="sc">|</span> group <span class="sc">==</span> <span class="st">"976"</span>)</span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="in">```{r graph-local-transfers}</span></span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>transfers_long <span class="sc">%&gt;%</span> </span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(fy, group ) <span class="sc">%&gt;%</span></span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">sum_expenditure =</span> <span class="fu">sum</span>(expenditure)<span class="sc">/</span><span class="dv">1000000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">"group"</span>, <span class="at">values_from =</span> <span class="st">"sum_expenditure"</span>, <span class="at">names_prefix =</span> <span class="st">"exp_"</span> )</span>
-<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>transfers_long <span class="sc">%&gt;%</span> </span>
-<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(agency_name, group, fy) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">expenditure =</span> <span class="fu">sum</span>(expenditure, <span class="at">na.rm=</span><span class="cn">TRUE</span>) )<span class="sc">%&gt;%</span> </span>
-<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>fy, <span class="at">y =</span> expenditure, <span class="at">color=</span>agency_name)) <span class="sc">+</span> </span>
-<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Transfers to Local Governments"</span>, <span class="at">caption =</span> <span class="st">"Data Source: Illinois Office of the Comptroller"</span>)</span>
-<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>Large increases in local transfers were driven by large increases in overall tax revenue collected by the state.</span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>transfers_long <span class="ot">&lt;-</span> exp_temp <span class="sc">%&gt;%</span> </span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(group <span class="sc">==</span> <span class="st">"971"</span> <span class="sc">|</span>group <span class="sc">==</span> <span class="st">"972"</span> <span class="sc">|</span> group <span class="sc">==</span> <span class="st">"975"</span> <span class="sc">|</span> group <span class="sc">==</span> <span class="st">"976"</span>)</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="in">```{r graph-local-transfers}</span></span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>transfers_long <span class="sc">%&gt;%</span> </span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(fy, group ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">sum_expenditure =</span> <span class="fu">sum</span>(expenditure)<span class="sc">/</span><span class="dv">1000000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">"group"</span>, <span class="at">values_from =</span> <span class="st">"sum_expenditure"</span>, <span class="at">names_prefix =</span> <span class="st">"exp_"</span> )</span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>transfers_long <span class="sc">%&gt;%</span> </span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(agency_name, group, fy) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">expenditure =</span> <span class="fu">sum</span>(expenditure, <span class="at">na.rm=</span><span class="cn">TRUE</span>) )<span class="sc">%&gt;%</span> </span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>fy, <span class="at">y =</span> expenditure, <span class="at">color=</span>agency_name)) <span class="sc">+</span> </span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Transfers to Local Governments"</span>, <span class="at">caption =</span> <span class="st">"Data Source: Illinois Office of the Comptroller"</span>)</span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>Large increases in local transfers were driven by large increases in overall tax revenue collected by the state.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
