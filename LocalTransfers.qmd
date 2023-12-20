@@ -37,6 +37,7 @@ library(data.table)
 library(quantmod)
 library(geofacet)
 library(janitor)
+theme_set(theme_classic())
 
 
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)

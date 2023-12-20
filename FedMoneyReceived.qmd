@@ -777,7 +777,6 @@ ggplot(cure_exp2023,
         geom_text(stat = "stratum", aes(label = after_stat(stratum)), size = 2, reverse=FALSE) 
 ```
 
-
 ### Fiscal Years 2020-2022
 
 During fiscal years 2020 through 2022 \$11.03 billion (\$8.4 CURE + \$3.082 ESSER) in State CURE and ESSER funds have been spent by the state. An additional \$6.9 billion of grants from CARES, CRRSA, and ARPA has been spent by state departments.
@@ -1022,7 +1021,6 @@ ggplot(cure_exp2022,
   theme_void() + 
         geom_text(stat = "stratum", aes(label = after_stat(stratum)), size = 2, reverse=FALSE) 
 ```
-
 
 ### State CURE Expenditures with FY2023 and beyond allocations
 
@@ -1390,19 +1388,19 @@ exp_temp %>% filter(fy >2019 & (fund_name == "STATE CURE" | fund_name == "LOCAL 
 
 
 
-exp_temp %>% filter(fy == 2022 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(org_name, agency_name, # object,
+exp_temp %>% filter(fy == 2023 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(org_name, agency_name, # object,
                                                                                                        wh_approp_name, fund_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
 
-exp_temp %>% filter(fy == 2022 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(agency_name, # object, 
+exp_temp %>% filter(fy == 2023 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(agency_name, # object, 
                                                                                                        wh_approp_name, fund_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
 
-exp_temp %>% filter(fy == 2022 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(fund_name, #object, 
+exp_temp %>% filter(fy == 2023 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(fund_name, #object, 
                                                                                                        org_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
 
 
-exp_temp %>% filter(fy == 2022 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(fund_name, agency_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
+exp_temp %>% filter(fy == 2023 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(fund_name, agency_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
 
-exp_temp %>% filter(fy == 2022 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(agency_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
+exp_temp %>% filter(fy == 2023 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(agency_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
 
 exp_temp %>% filter(fy == 2021 & (fund_name == "STATE CURE" | fund_name == "LOCAL CURE")) %>% group_by(wh_approp_name, fund_name) %>% summarize(sum=sum(expenditure)) %>% arrange(-sum)
 

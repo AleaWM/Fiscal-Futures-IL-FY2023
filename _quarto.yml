@@ -51,7 +51,7 @@ book:
 
           
 
-site-url: https://aleawm.github.io/https://github.com/AleaWM/Fiscal-Futures-IL-FY2023.git
+# site-url: https://aleawm.github.io/https://github.com/AleaWM/Fiscal-Futures-IL-FY2023.git
 #  repo-actions: [edit]
 #  downloads: [pdf, epub]
 #  sharing: [twitter, facebook]
@@ -64,6 +64,7 @@ site-url: https://aleawm.github.io/https://github.com/AleaWM/Fiscal-Futures-IL-F
 
 format:
   html:
+    theme: pulse
     toc: true
     code-fold: true
     code-tools: true
@@ -72,9 +73,6 @@ format:
     fig-cap-location: top
     tbl-cap-location: top
     df-print: paged
-    theme: 
-      light: lightly
-      dark: darkly
     grid: 
       sidebar-width: 200px
       body-width: 900px

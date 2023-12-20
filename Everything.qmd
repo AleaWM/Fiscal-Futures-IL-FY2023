@@ -19,6 +19,7 @@ library(geofacet)
 library(janitor)
 library(cmapplot)
 
+theme_set(theme_classic())
 
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 

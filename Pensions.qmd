@@ -15,6 +15,7 @@ library(tidyverse)
 library(data.table)
 library(janitor)
 
+theme_set(theme_classic())
 
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 

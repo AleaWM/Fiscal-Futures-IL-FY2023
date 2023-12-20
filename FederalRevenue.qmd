@@ -38,8 +38,10 @@ library(data.table)
 library(quantmod)
 library(geofacet)
 library(janitor)
-devtools::install_github("CMAP-REPOS/cmapplot", build_vignettes=TRUE)
+#devtools::install_github("CMAP-REPOS/cmapplot", build_vignettes=TRUE)
 library(cmapplot)
+
+theme_set(theme_classic())
 
 
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
