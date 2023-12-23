@@ -177,7 +177,7 @@ fedrev %>% # Medicaid reimbursements and healthcare provider funds
 
 Read the charts from the top to the bottom. Most of the graphs below begin with either the year the money was committed or the name of the Law that provided the funds and then shows it flowing down to either who received the money or how it was spent.
 
-`Sankeyattempt2022.csv` file totals \$32 billion flowing into the state. \$3.5 came in FY20, \$12.6 billion came in FY21 and \$16.1 billion in FY22. These values include both the State CURE and other federal grants to state departments for education, health providers, and much more. These observations are based more on the IOC revenue data for revenue received.
+`Sankey2023.csv` file totals \$32 billion flowing into the state. \$3.5 came in FY20, \$12.6 billion came in FY21 and \$16.1 billion in FY22. These values include both the State CURE and other federal grants to state departments for education, health providers, and much more. These observations are based more on the IOC revenue data for revenue received.
 
 Note: \$57 million in Federal Transportation dollars are grouped with the billions of other federal revenue for simplified graphs and summaries.
 
@@ -207,7 +207,7 @@ sankey_rev_ioc <- sankey_rev_ioc %>% select(Federal, FF_Cat, StateFunds, StFund,
   filter(StFund == "Total") %>%
   mutate(value=as.numeric(value),
          # keeps order of year received from oldest to newest in graphs
-    StateFunds = factor(StateFunds, levels = c("Total_received_fy20","Total_received_fy21", "Total_received_fy22")),
+    StateFunds = factor(StateFunds, levels = c("Total_received_fy20","Total_received_fy21", "Total_received_fy22", "Total_received_fy23")),
     # other includes transit and public health grants
                  Expenditures_ordered = factor(Expenditures, levels = c("Federal Other", "Other",  "K-12",  "Medicaid", "Medicare", "Misc.")),
     FF_Cat_ordered=factor(FF_Cat, levels = c("Other", "Transit", "Medicare","Medicaid", "Federal Other")),
@@ -398,7 +398,7 @@ coord_flip()+
        HPF = Healthcare Provider Fund")
 
 
-# Color indicates state fund name. this way STate CURE funds are the same color from CARES and ARPA
+# Color indicates state fund name. this way State CURE funds are the same color from CARES and ARPA
 ggplot(sankey_rev_ioc, 
        aes(y = value, axis3 = Notes, axis2 = stfundname, axis1=Expenditures_ordered, label = "stratum")) +
   geom_flow(aes(fill = stfundname), color = "black",reverse=FALSE) +
@@ -545,14 +545,12 @@ During fiscal years 2020 through 2023 \$11.03 billion (\$8.4 CURE + \$3.4266 ESS
 
 Over \$9 billion of State CURE funds (includes both CARES Act and ARP Act State Fiscal Recovery Fund) was received in in FY2020-2023 (nearly all of it in FY 2022).
 
-
 #### CURE Dollars
 
-> As of FY23, $6.648 billion of the $9 billion received has been spent.
-> 2.352 billion allocated for the future in FY24 + 
+> As of FY23, \$6.648 billion of the \$9 billion received has been spent. 2.352 billion allocated for the future in FY24 +
 
-- Remember: All revenue was recieved in FY22 and the Fiscal Futures model ignores Statutory Transfers to the Fiscal Gap will look negative in FY22 (i.e. it looks "good") and the gap will be positive in FY23 and beyond (i.e. it looks "bad" because expenses > revenues when ignoring transfers).
- 
+-   Remember: All revenue was recieved in FY22 and the Fiscal Futures model ignores Statutory Transfers to the Fiscal Gap will look negative in FY22 (i.e. it looks "good") and the gap will be positive in FY23 and beyond (i.e. it looks "bad" because expenses \> revenues when ignoring transfers).
+
 **CARES State CURE money:**
 
 -   \$370 million was spent in the initial pandemic response in the very end of FY2020 and \$2.858 billion CARES dollars were spent in FY21.
@@ -564,30 +562,32 @@ Over \$9 billion of State CURE funds (includes both CARES Act and ARP Act State 
 -   In FY22, \$4.9 billion (of \$8.127 billion received) ARPA-State CURE dollars were spent:
 
     -   \$2.7 billion for repaying unemployment insurance trust fund, \$1 billion transferred to the general revenue fund to make up for any lost revenue caused by the pandemic (aka "Essential Government Services"), and \$1.23 billion on other programs and services (e.g. hospital stability payments, operational expenses, back to business grants and economic development).
-    
-    - $2.47 billion spent in FY 23: 1.36 billion for UI Trust fund repayment, and $1.1 billion on additional areas: $212 million for nursing home financial assistance, $150 million for affordable housing grants, plus many more
-    
-- As of the end of FY23, $8.01 billion of State CURE funds have been spent 
+
+-   In FY23, \$2.47 billion spent:
+
+    -   1.36 billion for UI Trust fund repayment, and \$1.1 billion on additional areas: \$212 million for nursing home financial assistance, \$150 million for affordable housing grants, plus many more
+
+-   As of the end of FY23, \$8.01 billion of State CURE funds have been spent
 
 Values presented in LBOC documents for the end of FY22 are slightly different than the values calculated using IOC expenditure data. IOC expenditure data includes all lag period expenditures through October so values are slightly higher than end of June calculations.
 
+**K-12 Spending and ESSER Money**
 
-**K-12 Spending and ESSER Money **
+> \$3.4266 billion Total spent through FY23 from ARP and ESSER Funds. - 1.694 billion spent in 2023 (ARP = ESSER III) but that money arrived in 2022 (=\> Fiscal Gap Implications!)
 
-> $3.4266 billion Total spent through FY23 from ARP and ESSER Funds.
-- 1.694 billion spent in 2023 (ARP = ESSER III) but that money arrived in 2022 (=> Fiscal Gap Implications!)
+-   \$2.34 Billion of ARP Emergency Relief Funds (aka ESSER III) spent in 2022 and 2023 combined
 
-- $2.34 Billion of ARP Emergency Relief Funds (aka ESSER III) spent in 2022 and 2023 combined.
-- 583 million for ESSER II in 2021
-- 376 million with ESSER I in 2021 and 128 million in 2020.
+-   583 million for ESSER II in 2021
 
-- ISBE received around an additional $7.9 billion total from ESSER compared to its normal federal funding because of COVID
-- At end of State's FY23, \$3.43/$7.9 billion = ~ 50% spent
-- As of Dec.7th, it has spent 74.1% of these funds  (“ESSER Spending Dashboard” 2023)
+-   376 million with ESSER I in 2021 and 128 million in 2020.
 
-- 640 million allocated for FY24 (according to CPS, I think they have fiscal years though...)
+-   ISBE received around an additional \$7.9 billion total from ESSER compared to its normal federal funding because of COVID
 
+-   At end of State's FY23, \$3.43/\$7.9 billion = \~ 50% spent
 
+-   As of Dec.7th, it has spent 74.1% of these funds ("ESSER Spending Dashboard" 2023)
+
+-   640 million allocated for FY24 (according to CPS, I think they have fiscal years though...)
 
 ```{r}
 #| code-fold: false
@@ -1540,7 +1540,7 @@ sankey <- sankeydata %>%
   #select(Federal, StateFunds, StFund, Expenditures, stfundname, value, Notes) %>%
   #  filter(StFund == "Total") %>%
 
-  mutate(StateFunds = factor(FY, levels = c( "FY20", "FY21", "FY22")),
+  mutate(StateFunds = factor(FY, levels = c( "FY20", "FY21", "FY22", "FY23")),
         Legislation2 = factor(Legislation2, levels = c( "Other", "CARES", "CRRSA", "ARPA")),
                               Legislation = factor(Legislation, levels = c( "CARES", "FFCRA","PPP", "CRRSA", "ARPA"))
 )
