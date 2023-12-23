@@ -19,7 +19,7 @@ library(geofacet)
 library(janitor)
 library(cmapplot)
 
-theme_set(theme_classic())
+theme_set(theme_classic() )
 
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
@@ -570,7 +570,7 @@ rev_temp %>%
   ggplot() +
       geom_recessions(xformay = "numeric",text = FALSE)+
   geom_line(aes(x=fy, y=receipts,color=rev_type_name)) +
-      theme_bw() +
+      theme_classic() +
   scale_y_continuous(labels = comma)+
   labs(title = "Federal to State Transfers", 
        y = "Millions of Dollars", x = "") + 
@@ -1166,13 +1166,13 @@ fiscal_gap <-
   # labels
     theme_classic() +
     theme(legend.position = "none")+
-
     scale_linetype_manual(values = c("dashed", "dashed")) +
+  scale_x_continuous(expand = c(0,0)) +
 
 #  scale_y_continuous(labels = comma)+
   xlab("Year") + 
   ylab("Billions of Dollars")  +
-  ggtitle("Illinois Expenditures and Revenue Totals, 1998-2022")
+  ggtitle("Illinois Expenditures and Revenue Totals, 1998-2023")
 
 fiscal_gap
 
@@ -1195,13 +1195,15 @@ fiscal_gap2 <-ggplot(data = year_totals, aes(x=Year, y = Revenue/1000)) +
   geom_hline(yintercept = 0) +
 
   scale_y_continuous(labels = comma)+
+  scale_x_continuous(expand = c(0,0)) +
+
   xlab("Year") + 
   ylab("Billions of Dollars")  +
-  ggtitle("Illinois Expenditures and Revenue Totals, 1998-2022")
+  ggtitle("Illinois Expenditures and Revenue Totals, 1998-2023")
 
 
 fiscal_gap2
-#ggsave(plot = fiscal_gap2, filename= "Figure1.eps")
+ggsave(plot = fiscal_gap2, filename= "Figure1-fiscalgap.eps")
 
 
 ```
@@ -1235,7 +1237,7 @@ fiscal_gap2 <-ggplot(data = year_totals, aes(x=Year, y = Revenue/1000)) +
   scale_y_continuous(labels = comma)+
   xlab("Year") + 
   ylab("Billions of Dollars")  +
-  ggtitle("Illinois Expenditures and Revenue Totals, 1998-2022")
+  ggtitle("Illinois Expenditures and Revenue Totals, 1998-2023")
 
 
 fiscal_gap2
@@ -1348,12 +1350,12 @@ exp_long %>%
  # select(-c(Year, Dollars, rank)) %>%
   arrange(desc(Dollars)) %>%
   ggplot() + 
-  geom_col(aes(x = fct_reorder(Category_name, `Dollars`), y = `Dollars`), fill = "rosybrown2")+ 
+  geom_col(aes(x = fct_reorder(Category_name, `Dollars`), y = `Dollars`/1000), fill = "rosybrown2")+ 
   coord_flip() +
       theme_classic() +
     labs(title = "Expenditures for FY2023") +
     xlab("") +
-  ylab("Millions of Dollars")
+  ylab("Billions of Dollars")
 
 rev_long %>%
   filter( Year == 2023) %>%
@@ -1361,33 +1363,34 @@ rev_long %>%
         Category_name = ifelse(rank > 10, Category_name, 'All Other Sources')) %>%
   arrange(desc(Dollars)) %>%
   ggplot() + 
-  geom_col(aes(x = fct_reorder(Category_name, `Dollars`), y = `Dollars`), fill = "dark gray")+ 
+  geom_col(aes(x = fct_reorder(Category_name, `Dollars`/1000), y = `Dollars`), fill = "dark gray")+ 
   coord_flip() +
       theme_classic() +
     labs(title = "Revenues for FY2023") +
     xlab("") +
-  ylab("Millions of Dollars")
+  ylab("Billions of Dollars")
 ```
 
-**Changes in Categories - 2021 to 2022**
+**Changes in Categories - 2022 to 2023**
 
 ```{r}
 #| label: fig-dotplots
-#| fig-cap:  Change from FY21 to FY22
+#| fig-cap:  Change from FY22 to FY23
 #| fig-subcap: 
-#| - "Change in Revenue Sources, FY21 to FY22"
-#| - "Change in Expenditure Categories, FY21 to FY22"
+#| - "Change in Revenue Sources, FY22 to FY23"
+#| - "Change in Expenditure Categories, FY22 to FY23"
 #| fig-cap-location: top
+
 rev_dotplot <- rev_long %>%
     filter(Year == "2023" | Year == "2022") %>%
   mutate(Year = as.character(Year)) %>%
-  ggplot(aes(x = Dollars, y = reorder(Category, Dollars))) +
+  ggplot(aes(x = Dollars/1000, y = reorder(Category, Dollars))) +
   geom_line(aes(group = Category) )+
-    geom_text(aes(x = ifelse(Year == "2023", as.numeric(Dollars), NA),  label = ifelse(Year == "2023", Category_name, "")),  
+    geom_text(aes(x = ifelse(Year == "2023", as.numeric(Dollars)/1000, NA),  label = ifelse(Year == "2023", Category_name, "")),  
             hjust = -0.2,
             size = 2.8) +
          geom_point(aes(color = Year), size=2)  +
-  labs(title = "2022 to 2023 Change in Revenue", x = "Millions of Dollars" , y = "",  caption = "")  +
+  labs(title = "2022 to 2023 Change in Revenue", x = "Billions of Dollars" , y = "",  caption = "")  +
    scale_fill_manual(values = c("#d62828", "#003049"), labels = c("FY 2022", "FY 2023"))+
     scale_color_manual(values = c("#d62828", "#003049")) +   
   theme_classic()+ 
@@ -1395,23 +1398,20 @@ rev_dotplot <- rev_long %>%
    legend.position = "bottom" ,
   axis.text.y = element_blank(),
   axis.ticks.y = element_blank(),
-  axis.line.y.left  = element_blank(),
- # axis.line.x = element_blank(),
-  #  axis.title.y = element_blank(),
- # axis.ticks.x = element_blank()
- )+
-  scale_x_continuous(limits = c(0, 35000), labels = comma)
+  axis.line.y.left  = element_blank())+
+  scale_x_continuous(limits = c(0, 35), labels = comma)
+
 rev_dotplot
 
-#ggsave(plot = rev_dotplot, file = "Figure3.eps")
+# ggsave(plot = rev_dotplot, file = "Figure3.eps")
 
 exp_long %>%
     filter(Year == "2023" | Year == "2022") %>%
   mutate(Year = as.character(Year)) %>%
-  ggplot(aes(x = Dollars, y = reorder(Category, Dollars))) +
+  ggplot(aes(x = Dollars/1000, y = reorder(Category, Dollars))) +
   geom_line(aes(group = Category) )+
-  geom_text(aes(x = ifelse(Year == "2023", (as.numeric(Dollars)+1100), NA),  
-                label = ifelse(Year == "20223", Category_name, "")),  
+  geom_text(aes(x = ifelse(Year == "2023", (as.numeric(Dollars)/1000)+1, NA),  
+                label = ifelse(Year == "2023", Category_name, "")),  
             hjust = 0,
             size = 2.8) +
   geom_point(aes(color = Year), size=2 #, alpha = 0.5
@@ -1419,18 +1419,13 @@ exp_long %>%
   labs(title = "2022 to 2023 Change in Expenditures", x = "Millions of Dollars" , y = "",  caption = "")  +
    scale_fill_manual(values = c("#d62828", "#003049"), labels = c("FY 2022", "FY 2023"))+
     scale_color_manual(values = c("#d62828", "#003049")) +
-
    theme_classic()+ 
     theme(
     legend.position = "bottom" ,
   axis.text.y = element_blank(),
   axis.ticks.y = element_blank(),
-  axis.line.y.left  = element_blank(),
-  #axis.line.x = element_blank(),
-   # axis.title.y = element_blank(),
-  #axis.ticks.x = element_blank()
-  )+
-  scale_x_continuous(limits = c(0, 35000), labels = comma)
+  axis.line.y.left  = element_blank() ) +
+  scale_x_continuous(limits = c(0, 35), labels = comma)
 ```
 
 ```{r, eval=FALSE, include=FALSE}
@@ -1498,7 +1493,7 @@ top3 <- ggplot(data = top3, aes(x=Year, y=Dollars/1000))+
   geom_line(aes(x=Year, y=Dollars/1000, color = Category_name)) + 
   geom_text(data = annotation, aes(x=x, y=y, label=label))+
     theme_classic() +
-  
+  scale_x_continuous(expand = c(0,0)) +
   scale_y_continuous(labels = comma)+
   scale_linetype_manual(values = c("dotted", "dashed", "solid")) +
 
@@ -1561,10 +1556,10 @@ rev_temp %>%
   ggplot(aes(x=fy, y=receipts))+
   geom_recessions()+
   geom_line(aes(color=fund_name_ab))+
-    geom_vline(xintercept = 2018)+
-
+  geom_vline(xintercept = 2018)+
   geom_vline(xintercept = 2021)+
   theme_classic()+
+  scale_x_continuous(expand = c(0,0))
   labs(title="State Retailers' Occupation Tax, Source 0481",
        caption = "Leveling the Playing Field went into effect for Amazon on January 1, 2020(mid-FY21) 
        and for other remote retailers starting January 1, 2021 (mid-FY22)")
@@ -1597,7 +1592,8 @@ rev_temp %>%
   geom_vline(xintercept = 2018)+
 
   geom_vline(xintercept = 2020)+
-  theme_classic()+
+  theme_classic() +
+  scale_x_continuous(expand = c(0,0)) +
   labs(title="State Retailers' Occupation Tax",
        subtitle = "Large increases due to Leveling the Playing Field Act & Online shopping during pandemic")
 
@@ -1607,11 +1603,11 @@ rev_temp %>%
   summarize(revenue=sum(receipts))  %>% 
   ggplot()+
   geom_line(aes(x=fy, y=revenue, color=fund_name_ab))+
-    geom_vline(xintercept = 2018)+
-
-  geom_vline(xintercept = 2021)+
+  geom_vline(xintercept = 2018) +
+  geom_vline(xintercept = 2021) +
   #geom_recessions(aes(x=fy, y=receipts)+
   theme_classic()+
+  scale_x_continuous(expand = c(0,0)) +
   labs(title="State ROT - 2.2%",
        subtitle = "Large increases due to Leveling the Playing Field Act & Online shopping during pandemic??",
        caption = "State tax began being collected for remote retailers based on 
@@ -1625,10 +1621,11 @@ rev_temp %>%
   ggplot()+
   geom_line(aes(x=fy, y=revenue, color=source_name_AWM))+
   geom_vline(xintercept = 2018)+
-
   geom_vline(xintercept = 2021)+
   #geom_recessions(aes(x=fy, y=receipts)+
   theme_classic()+
+  scale_x_continuous(expand = c(0,0)) + 
+
   labs(title="State ROT - 2.2% & ",
        subtitle = "Large increases due to Leveling the Playing Field Act & Online shopping during pandemic??",
        caption = "Leveling the Playing Field went into effect for Amazon on January 1, 2020(mid-FY21) 
@@ -1663,12 +1660,13 @@ annotation <- data.frame(
 )
 
 
-ownsource_graph<-ggplot(ownsource_rev, aes(x=Year, y=Dollars/1000)) + 
+ownsource_graph <- ggplot(ownsource_rev, aes(x=Year, y=Dollars/1000)) + 
   geom_recessions( text = FALSE)+
   geom_line(data = ownsource_rev, aes(x=Year, y=Dollars/1000), color = "Red") + 
   geom_line(data = fed_rev, aes(x=fy, y=fed_total/1000), color = "Black") + 
     geom_text(data = annotation, aes(x=x, y=y, label=label))+
     scale_y_continuous(labels = comma)+
+  scale_x_continuous(expand = c(0,0)) + 
   theme(legend.position = "none")+
 
   theme_classic()+
@@ -1686,7 +1684,6 @@ Each year, you will need to update the CAGR formulas! Change the filter() year.
 `calc_cagr` is a function created for calculating the CAGRs for different spans of time.
 
 ```{r}
-
 #| label: tbl-good-exp-CAGR-withTotals
 #| tbl-cap: Expenditure Category CAGRs with Total CAGR
 #| tbl-cap-location: top
@@ -1824,7 +1821,7 @@ calc_cagr <- function(df, n) {
 
 Things to do when updating the code:
 
--   Each year, you neeed to increase the cagr value by 1. The value should be the (current year - 1998). For FY23, this is 2023-1998 = 25. So all cagr values that were 24 will be changed to 25.
+-   Each year, you need to increase the cagr value by 1. The value should be the (current year - 1998). For FY23, this is 2023-1998 = 25. So all cagr values that were 24 will be changed to 25.
 
 ```{r }
 # This works for one variable at a time
@@ -2598,13 +2595,14 @@ fiscal_gap1 <- year_totals %>%
   geom_line(aes(x = Year, y = `Fiscal Gap`/1000), color = "gray") +
 
   geom_text(data = annotation_billions, aes(x=x, y=y, label=label))+
-    theme_bw() +
+    theme_classic() +
   theme(legend.position = "none", #axis.text.y = element_blank(),  
         #axis.ticks.y = element_blank(),
                                     axis.title.y = element_blank())+
     scale_linetype_manual(values = c("dashed", "dashed")) +
   scale_y_continuous(limits = c(-20, 120), labels = comma)+
-    scale_x_continuous(limits=c(1998,2023))
+    scale_x_continuous(limits=c(1998,2023), expand = c(0,0)) 
+  
 
 fiscal_gap1
 
@@ -2619,13 +2617,14 @@ fiscal_gap_droppedCURE <- year_totals2 %>%
   geom_line(aes(x = Year, y = `Fiscal Gap`/1000), color = "gray") +
   
   geom_text(data = annotation_billions, aes(x=x, y=y, label=label))+
-    theme_bw() +
+    theme_classic() +
   theme(legend.position = "none",# axis.text.y = element_blank(),
                                     #axis.ticks.y = element_blank(),
                                     axis.title.y = element_blank() )+
     scale_linetype_manual(values = c("dashed", "dashed")) +
   scale_y_continuous(limits=c(-20,120), labels = comma)+
-    scale_x_continuous(limits=c(1998,2023))
+    scale_x_continuous(limits=c(1998,2023), expand = c(0,0)) 
+
   # # geom_smooth adds regression line, graphed first so it appears behind line graph
   # geom_smooth(aes(x = Year, y = Revenue), color = "gray", method = "lm", se = FALSE) + 
   # geom_smooth(aes(x = Year, y = Expenditures), color = "rosybrown2", method = "lm", se = FALSE) +
