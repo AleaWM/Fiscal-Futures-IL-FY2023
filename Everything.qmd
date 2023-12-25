@@ -834,7 +834,6 @@ aggregate_rev_labels
 
 Create exp_970 for all local government transfers (exp_971 + exp_972 + exp_975 + exp_976).
 
-~~Create state employee healthcare costs that reflects the health costs minus the optional insurance premiums that came in (904_new=904−med_option_amt_recent).~~ Do not do this. This was done for FY21 only and will not be done again. Small differences in overall Fiscal Gap from methodology change.
 
 ```{r tbl-ffexp-notlabeled}
 
@@ -1125,7 +1124,7 @@ year_totals  %>%
   kbl(caption = "Fiscal Gap for each Fiscal Year") %>% 
   kable_styling(bootstrap_options = c("striped"))  %>%
   kable_classic() %>%   
-  add_footnote(c("Methodology has changed slightly since FY21 so totals may differ from past publications", "All changes documented in ___ document.","Values include State CURE dollars"))
+  add_footnote(c("Methodology has changed slightly since FY21 so totals may differ from past publications", "All changes documented in ___ document.","Values include State CURE dollars (SLFRF)"))
 ```
 
 Graphs made from `aggregated_totals_long` dataframe.
@@ -1206,41 +1205,6 @@ fiscal_gap2
 ggsave(plot = fiscal_gap2, filename= "Figure1-fiscalgap.eps")
 
 
-```
-
-```{r include=FALSE, eval=FALSE}
-#| label: fig-fiscalgap2
-#| fig-cap: Fiscal Gap Image 2 without Trend Lines
-
-# already included in above chunk 
-
-
-
-# annotation_billions <- data.frame(
-#   x = c(2004, 2017, 2019),
-#   y = c(60, 50, 5),  
-#   label = c("Expenditures","Revenue", "Fiscal Gap"))
-
-
-fiscal_gap2 <-ggplot(data = year_totals, aes(x=Year, y = Revenue/1000)) +
-  geom_recessions(text = FALSE)+
-  geom_line(aes(x = Year, y = Revenue/1000), color = "Black", lwd=1) +
-  geom_line(aes(x = Year, y = Expenditures/1000, linetype = "dashed"), color = "red", lwd=1) +
-  geom_line(aes(x = Year, y = (`Fiscal Gap`/1000)), color = "darkgray", lwd=1) +
-  
-  geom_text(data = annotation, aes(x=x, y=y, label=label))+
-    theme_classic() +
-  theme(legend.position = "none")+
-    scale_linetype_manual(values = c("dashed", "dashed")) +
-  geom_hline(yintercept = 0) +
-
-  scale_y_continuous(labels = comma)+
-  xlab("Year") + 
-  ylab("Billions of Dollars")  +
-  ggtitle("Illinois Expenditures and Revenue Totals, 1998-2023")
-
-
-fiscal_gap2
 ```
 
 ```{r include=FALSE, eval=FALSE}
@@ -1363,7 +1327,7 @@ rev_long %>%
         Category_name = ifelse(rank > 10, Category_name, 'All Other Sources')) %>%
   arrange(desc(Dollars)) %>%
   ggplot() + 
-  geom_col(aes(x = fct_reorder(Category_name, `Dollars`/1000), y = `Dollars`), fill = "dark gray")+ 
+  geom_col(aes(x = fct_reorder(Category_name, `Dollars`/1000), y = `Dollars`/1000), fill = "dark gray")+ 
   coord_flip() +
       theme_classic() +
     labs(title = "Revenues for FY2023") +
@@ -1480,7 +1444,7 @@ exp_long %>%
 #| fig-cap-location: top
 
 annotation <- data.frame(
-  x = c(2012, 2019, 2012),
+  x = c(2013, 2018, 2013),
   y = c(16, 10, 5),  
   label = c("Individual Income Tax", "Sales Tax", "Corporate Income Tax")
 )
@@ -1673,7 +1637,8 @@ ownsource_graph <- ggplot(ownsource_rev, aes(x=Year, y=Dollars/1000)) +
   labs(title = "Own Source Revenue and Federal Revenue", 
   y = "Billions of Nominal Dollars")
 ownsource_graph
-#ggsave(plot = ownsource_graph, file = "Figure4.eps")
+
+ggsave(plot = ownsource_graph, file = "Figure4.eps")
 
 ```
 
@@ -1684,11 +1649,6 @@ Each year, you will need to update the CAGR formulas! Change the filter() year.
 `calc_cagr` is a function created for calculating the CAGRs for different spans of time.
 
 ```{r}
-#| label: tbl-good-exp-CAGR-withTotals
-#| tbl-cap: Expenditure Category CAGRs with Total CAGR
-#| tbl-cap-location: top
-
-
 exp_totals <- ff_exp %>% 
   rowwise() %>% 
   mutate(exp_TOTALS = sum(across(exp_402:exp_970)))
@@ -1736,8 +1696,9 @@ rev_long <- pivot_longer(rev_totals, rev_02:rev_TOTALS, names_to = c("type","Cat
     Category == "78" ~  "ALL OTHER SOURCES" ,
     Category == "79" ~   "COOK COUNTY IGT", #dropped
     Category == "98" ~  "PRIOR YEAR REFUNDS", #dropped
-Category == "TOTALS" ~ "Total"
-
+    Category == "TOTALS" ~ "Total",
+    T ~ "CHECK ME"
+    
   ) ) %>% 
   select(-type, -Category) %>%  # drop extra columns type and Category number
   group_by(Year, Category_name) %>%
@@ -1746,29 +1707,26 @@ Category == "TOTALS" ~ "Total"
 
 # creates wide version of table where each revenue source is a column
 revenue_wide2 <- rev_long %>% pivot_wider(names_from = Category_name, 
-              values_from = Dollars) %>%
-#  relocate("Other Revenue Sources **", .after = last_col()) %>%
+                                          values_from = Dollars) %>%
+  #  relocate("Other Revenue Sources **", .after = last_col()) %>%
   relocate("Total", .after =  last_col())
 
-```
-
-```{r }
-exp_long <- pivot_longer(exp_totals, exp_402:exp_TOTALS , names_to = c("type", "Category"), values_to = "Dollars", names_sep = "_") %>% 
+exp_long <- pivot_longer(exp_totals, exp_402:exp_TOTALS , names_to = c("type", "Category"), values_to = "Dollars", names_sep = "_") %>%
   rename(Year = fy ) %>% 
   mutate(Category_name = 
            case_when(
-            Category == "402" ~ "AGING" ,
-            Category == "406" ~ "AGRICULTURE", 
+             Category == "402" ~ "AGING" ,
+             Category == "406" ~ "AGRICULTURE", 
              Category == "416" ~ "Central Management",
-            Category == "418" ~ "CHILDREN AND FAMILY SERVICES", 
+             Category == "418" ~ "CHILDREN AND FAMILY SERVICES", 
              Category == "420" ~ "Community Development",
-            Category == "422" ~ "NATURAL RESOURCES" ,
+             Category == "422" ~ "NATURAL RESOURCES" ,
              Category == "426" ~ "CORRECTIONS",
-            Category == "427" ~ "EMPLOYMENT SECURITY" ,
+             Category == "427" ~ "EMPLOYMENT SECURITY" ,
              Category == "444" ~ "Human Services" ,
-           Category == "478" ~ "HEALTHCARE & FAM SER NET OF MEDICAID", 
-            Category == "482" ~ "PUBLIC HEALTH", 
-            Category == "492" ~ "REVENUE", 
+             Category == "478" ~ "HEALTHCARE & FAM SER NET OF MEDICAID", 
+             Category == "482" ~ "PUBLIC HEALTH", 
+             Category == "492" ~ "REVENUE", 
              Category == "494" ~ "Transportation" ,
              Category == "532" ~ "ENVIRONMENTAL PROTECT AGENCY" ,
              Category == "557" ~ "Tollway" ,
@@ -1793,8 +1751,10 @@ exp_long <- pivot_longer(exp_totals, exp_402:exp_TOTALS , names_to = c("type", "
              Category == "959" ~ "K-12 Education" ,
              Category == "960" ~ "UNIVERSITY EDUCATION",
              Category == "970" ~ "Local Govt Revenue Sharing",
-          Category == "TOTALS" ~ "Total") #,T ~ "All Other Expenditures **")
-           ) %>% 
+             Category == "TOTALS" ~ "Total",
+             T ~ "CHECK ME" 
+             # T ~ "All Other Expenditures **")
+           )) %>% 
   select(-type, -Category) %>% 
   group_by(Year, Category_name) %>% 
   summarise(Dollars= round(sum(Dollars),digits=2)) %>% 
@@ -1803,7 +1763,6 @@ exp_long <- pivot_longer(exp_totals, exp_402:exp_TOTALS , names_to = c("type", "
 expenditure_wide2 <- exp_long%>% 
   pivot_wider(names_from = Category_name, 
               values_from = Dollars) %>%
-  #relocate("All Other Expenditures **", .after = last_col()) %>%
   relocate("Total", .after =  last_col())
 
 
@@ -1814,7 +1773,7 @@ calc_cagr <- function(df, n) {
     arrange(Category_name, Year) %>%
     group_by(Category_name) %>%
     mutate(cagr = ((`Dollars` / lag(`Dollars`, n)) ^ (1 / n)) - 1)
-
+  
   return(df)
 }
 ```
@@ -1824,6 +1783,10 @@ Things to do when updating the code:
 -   Each year, you need to increase the cagr value by 1. The value should be the (current year - 1998). For FY23, this is 2023-1998 = 25. So all cagr values that were 24 will be changed to 25.
 
 ```{r }
+#| label: tbl-good-exp-CAGR-withTotals
+#| tbl-cap: Expenditure Category CAGRs with Total CAGR
+#| tbl-cap-location: top
+
 # This works for one variable at a time
 cagr_25 <- calc_cagr(exp_long, 25) %>% 
   # group_by(Category) %>%
@@ -1864,13 +1827,15 @@ CAGR_expenditures_summary_tot <- data.frame(cagr_1, cagr_2, cagr_3, cagr_5, cagr
 
 move_to_last <- function(df, n) df[c(setdiff(seq_len(nrow(df)), n), n), ]
 
-CAGR_expenditures_summary_tot <- move_to_last(CAGR_expenditures_summary_tot, 29) 
+CAGR_expenditures_summary_tot <- move_to_last(CAGR_expenditures_summary_tot, 29
+                                          ) 
 
 #CAGR_expenditures_summary_tot <-   select(CAGR_expenditures_summary_tot, -1) 
 
-CAGR_expenditures_summary_tot%>%   
+CAGR_expenditures_summary_tot %>%   
   kbl(caption = "CAGR Calculations for All Expenditure Categories" , row.names=FALSE) %>% 
-     kable_classic() 
+  kable_classic() %>%
+  row_spec(31, bold = T, color = "black", background = "gray")
 ```
 
 ```{r }
@@ -1917,9 +1882,13 @@ CAGR_revenue_summary_tot <- move_to_last(CAGR_revenue_summary_tot,1)
 CAGR_revenue_summary_tot <- move_to_last(CAGR_revenue_summary_tot,22)
 
 CAGR_revenue_summary_tot %>% 
-  kbl(caption = "CAGR Calculations for All Revenue Sources", row.names = FALSE) %>% 
-     kable_classic() 
+  kbl(caption = "CAGR Calculations for All Revenue Sources (Ordered Alphabetical)", row.names = FALSE) %>% 
+   kable_classic() %>%
+    row_spec(23, bold = T, color = "black", background = "gray")
+```
 
+
+```{r include = FALSE}
 rm(cagr_1, cagr_2, cagr_3, cagr_5, cagr_10, cagr_25)
 ```
 
@@ -1990,13 +1959,14 @@ expenditure_change2 %>%
 
 ## Summary Tables - Largest Categories
 
-The 10 largest revenue sources and 13 largest expenditure sources remain separate categories and all other smaller sources/expenditures are combined into "All Other \_\_\_\_\_". These condensed tables are typically used in the Fiscal Futures articles. They were manually created in past years but this hopefully automates the process a bit until final formatting stages.
+The 10 largest revenue sources and 15 largest expenditure sources remain separate categories and all other smaller sources/expenditures are combined into "All Other Revenues (Expenditures)". These condensed tables are typically used in the Fiscal Futures articles. They were manually created in past years but this hopefully automates the process a bit until final formatting stages.
 
 -   take ff_rev and ff_exp data frames, which were in wide format, pivot them longer and mutate the Category_name variable to nicer labels. Keep largest categories separate and aggregate the rest.
+-   You need to manually comment out the categories that are not the largest each year. Check and compare to the previous years largest categories!
 
 ```{r }
-#| label: tbl-top10-exp-CAGRs
-#| tbl-cap: Top 10 Expenditure Categories with CAGRs
+#| label: tbl-top-exp-CAGRs
+#| tbl-cap: Largest Expenditure Categories with CAGRs
 
 
 exp_totals <- ff_exp %>% rowwise() %>% mutate(exp_TOTALS = sum(across(exp_402:exp_970))) # creates total column too
@@ -2010,40 +1980,40 @@ rev_long_majorcats <- pivot_longer(rev_totals, rev_02:rev_TOTALS, names_to = c("
     Category == "03" ~ "Corporate Income Tax" ,
     Category == "06" ~ "Sales Tax" ,
     Category == "09" ~ "Motor Fuel Taxes" ,
- #   Category == "12" ~ "PUBLIC UTILITY TAXES, gross of PPRT" ,
-  #  Category == "15" ~ "CIGARETTE TAXES" ,
- #   Category == "18" ~ "LIQUOR GALLONAGE TAXES" ,
- #  Category == "21" ~ "INHERITANCE TAX" ,
-  #  Category == "24" ~ "INSURANCE TAXES&FEES&LICENSES, net of refunds " ,
-   # Category == "27" ~ "CORP FRANCHISE TAXES & FEES" ,
- #   Category == "30" ~ "HORSE RACING TAXES & FEES",  # in Other
+    #   Category == "12" ~ "PUBLIC UTILITY TAXES, gross of PPRT" ,
+    #  Category == "15" ~ "CIGARETTE TAXES" ,
+    #   Category == "18" ~ "LIQUOR GALLONAGE TAXES" ,
+    #  Category == "21" ~ "INHERITANCE TAX" ,
+    #  Category == "24" ~ "INSURANCE TAXES&FEES&LICENSES, net of refunds " ,
+    # Category == "27" ~ "CORP FRANCHISE TAXES & FEES" ,
+    #   Category == "30" ~ "HORSE RACING TAXES & FEES",  # in Other
     Category == "31" ~ "Medical Provider Assessments" ,
-  #  Category == "32" ~ "GARNISHMENT-LEVIES" , # dropped
-  #  Category == "33" ~  "LOTTERY RECEIPTS" ,
-   # Category == "35" ~  "OTHER TAXES" ,
+    #  Category == "32" ~ "GARNISHMENT-LEVIES" , # dropped
+    #  Category == "33" ~  "LOTTERY RECEIPTS" ,
+    # Category == "35" ~  "OTHER TAXES" ,
     Category == "36" ~  "Receipts from Revenue Producing", 
     Category == "39" ~  "Licenses, Fees, Registration" ,
-   # Category == "42" ~  "MOTOR VEHICLE AND OPERATORS" ,
-#    Category == "45" ~  "STUDENT FEES-UNIVERSITIES",   # dropped
-#    Category == "48" ~  "RIVERBOAT WAGERING TAXES" ,
-  #  Category == "51" ~  "RETIREMENT CONTRIBUTIONS" , # dropped
-   # Category == "54" ~ "GIFTS AND BEQUESTS", 
+    # Category == "42" ~  "MOTOR VEHICLE AND OPERATORS" ,
+    #    Category == "45" ~  "STUDENT FEES-UNIVERSITIES",   # dropped
+    #    Category == "48" ~  "RIVERBOAT WAGERING TAXES" ,
+    #  Category == "51" ~  "RETIREMENT CONTRIBUTIONS" , # dropped
+    # Category == "54" ~ "GIFTS AND BEQUESTS", 
     Category == "57" ~  "Federal Other" ,
     Category == "58" ~  "Federal Medicaid Reimbursements", 
     Category == "59" ~  "Federal Transportation" ,
- #   Category == "60" ~  "OTHER GRANTS AND CONTRACTS", #other
-#    Category == "63" ~  "INVESTMENT INCOME", # other
- #   Category == "66" ~ "PROCEEDS,INVESTMENT MATURITIES" , #dropped
- #   Category == "72" ~ "BOND ISSUE PROCEEDS",  #dropped
- #   Category == "75" ~  "INTER-AGENCY RECEIPTS ",  #dropped
- #   Category == "76" ~  "TRANSFER IN FROM OUT FUNDS",  #other
-   # Category == "78new" ~  "ALL OTHER SOURCES" ,
-   # Category == "79" ~   "COOK COUNTY IGT", #dropped
- #   Category == "98" ~  "PRIOR YEAR REFUNDS", #dropped
-                
-Category == "TOTALS" ~ "Total Revenue",
-T ~ "All Other Sources **" # any other Category number that was not specifically referenced is cobined into Other Revenue Sources
-
+    #   Category == "60" ~  "OTHER GRANTS AND CONTRACTS", #other
+    #    Category == "63" ~  "INVESTMENT INCOME", # other
+    #   Category == "66" ~ "PROCEEDS,INVESTMENT MATURITIES" , #dropped
+    #   Category == "72" ~ "BOND ISSUE PROCEEDS",  #dropped
+    #   Category == "75" ~  "INTER-AGENCY RECEIPTS ",  #dropped
+    #   Category == "76" ~  "TRANSFER IN FROM OUT FUNDS",  #other
+    # Category == "78new" ~  "ALL OTHER SOURCES" ,
+    # Category == "79" ~   "COOK COUNTY IGT", #dropped
+    #   Category == "98" ~  "PRIOR YEAR REFUNDS", #dropped
+    
+    Category == "TOTALS" ~ "Total Revenue",
+    T ~ "All Other Sources **" # any other Category number that was not specifically referenced is combined into Other Revenue Sources
+    
   ) ) %>% 
   select(-type, -Category) %>%  # drop extra columns type and Category number
   group_by(Year, Category_name) %>%
@@ -2064,18 +2034,18 @@ exp_long_majorcats <- pivot_longer(exp_totals, exp_402:exp_TOTALS , names_to = c
   rename(Year = fy ) %>% 
   mutate(Category_name = 
            case_when(
-            # Category == "402" ~ "AGING" ,
-           #  Category == "406" ~ "AGRICULTURE", 
-             Category == "416" ~ "Central Management",
-            # Category == "418" ~ "CHILDREN AND FAMILY SERVICES", 
+          #   Category == "402" ~ "Aging" ,
+          #  Category == "406" ~ "AGRICULTURE", 
+         #    Category == "416" ~ "Central Management",
+             Category == "418" ~ "Children & Family Services", 
              Category == "420" ~ "Community Development",
            #  Category == "422" ~ "NATURAL RESOURCES" ,
-            # Category == "426" ~ "CORRECTIONS",
+             Category == "426" ~ "Corrections",
            #  Category == "427" ~ "EMPLOYMENT SECURITY" ,
              Category == "444" ~ "Human Services" ,
            #  Category == "478" ~ "HEALTHCARE & FAM SER NET OF MEDICAID", 
            #  Category == "482" ~ "PUBLIC HEALTH", 
-           #  Category == "492" ~ "REVENUE", 
+             Category == "492" ~ "Revenue", 
              Category == "494" ~ "Transportation" ,
            #  Category == "532" ~ "ENVIRONMENTAL PROTECT AGENCY" ,
              Category == "557" ~ "Tollway" ,
@@ -2087,18 +2057,18 @@ exp_long_majorcats <- pivot_longer(exp_totals, exp_402:exp_TOTALS , names_to = c
              Category == "904" ~ "State Employee Healthcare",
            #  Category == "910" ~ "LEGISLATIVE"  ,
           #   Category == "920" ~ "JUDICIAL" ,
-          #   Category == "930" ~ "ELECTED OFFICERS" , 
+         #   Category == "930" ~ "Elected Officers" , 
             # Category == "940" ~ "OTHER HEALTH-RELATED", 
              Category == "941" ~ "Public Safety" ,
            #  Category == "942" ~ "ECON DEVT & INFRASTRUCTURE" ,
            #  Category == "943" ~ "CENTRAL SERVICES",
            #  Category == "944" ~ "BUS & PROFESSION REGULATION" ,
              Category == "945" ~ "Medicaid" ,
-             Category == "946" ~ "Capital Improvement" , 
+          #   Category == "946" ~ "Capital Improvement" , 
            #  Category == "948" ~ "OTHER DEPARTMENTS" ,
             # Category == "949" ~ "OTHER BOARDS & COMMISSIONS" ,
              Category == "959" ~ "K-12 Education" ,
-           #  Category == "960" ~ "UNIVERSITY EDUCATION",
+             Category == "960" ~ "University Education",
              Category == "970" ~ "Local Govt Revenue Sharing",
           Category == "TOTALS" ~ "Total Expenditures",
              T ~ "All Other Expenditures **")
@@ -2166,12 +2136,13 @@ CAGR_expenditures_majorcats_tot <- data.frame(cagr_1, cagr_2, cagr_3, cagr_5, ca
 move_to_last <- function(df, n) df[c(setdiff(seq_len(nrow(df)), n), n), ]
 
 CAGR_expenditures_majorcats_tot <- move_to_last(CAGR_expenditures_majorcats_tot, 1)
-CAGR_expenditures_majorcats_tot <- move_to_last(CAGR_expenditures_majorcats_tot, 13) 
+CAGR_expenditures_majorcats_tot <- move_to_last(CAGR_expenditures_majorcats_tot, 15) 
 
 
 CAGR_expenditures_majorcats_tot%>%   
   kbl(caption = "CAGR Calculations for Largest Expenditure Categories" , row.names=FALSE) %>% 
-     kable_classic() 
+     kable_classic()  %>%
+    row_spec(17, bold = T, color = "black", background = "gray")
 
 current_year <- 2023
 last_year <- 2022
@@ -2190,14 +2161,14 @@ expenditure_change_majorcats <- exp_long_majorcats %>%
   rename( "25-Year CAGR" = `25-Year CAGR`, 
           "Expenditure Category" = Category_name )
 
-expenditure_change_majorcats <- move_to_last(expenditure_change_majorcats, 3) 
+expenditure_change_majorcats <- move_to_last(expenditure_change_majorcats, 4) 
 
 expenditure_change_majorcats <- move_to_last(expenditure_change_majorcats, 1)
 
 expenditure_change_majorcats %>% 
   kbl(caption = "Yearly Change in Expenditures", row.names = FALSE, align = "l") %>% 
   kable_classic() %>%
-    row_spec(15, bold = T, color = "black", background = "gray")
+    row_spec(17, bold = T, color = "black", background = "gray")
 
 ```
 
@@ -2282,7 +2253,7 @@ revenue_change_majorcats <- rev_long_majorcats %>%
   rename("Revenue Category" = Category_name ) %>%
   select(-c(Dollars_2023, Dollars_2022, `1 Year CAGR`:`25-Year CAGR`)) 
 
-revenue_change_majorcats <- move_to_last(revenue_change_majorcats,6)
+revenue_change_majorcats <- move_to_last(revenue_change_majorcats,5)
 
 revenue_change_majorcats <- move_to_last(revenue_change_majorcats,1)
 
@@ -2336,7 +2307,7 @@ dataset_names <- list('Aggregate Revenues' = revenue_wide2,
                       'aggregated_totals_long' = aggregated_totals_long # all data in long format. Good for creating pivot tables in Excel
                       )
 
-write.xlsx(dataset_names, file = 'summary_file_FY23_wTotals_Nov142023.xlsx')
+write.xlsx(dataset_names, file = 'summary_file_FY23_wTotals_Dec242023.xlsx')
 ```
 
 ```{r include= FALSE}
