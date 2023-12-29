@@ -19,6 +19,7 @@ book:
     - Healthcare.qmd
     - FederalRevenue.qmd
     - Medicaid.qmd
+    - K12_Education.qmd
     - Everything.qmd 
 #    - FiscalGap.qmd
 
@@ -40,9 +41,10 @@ book:
           - Healthcare.qmd
           - FederalRevenue.qmd
           - Medicaid.qmd
+          - K12-Spending.qmd
           - Everything.qmd
       - text: "Data"
-        href: https://github.com/AleaWM/https://github.com/AleaWM/Fiscal-Futures-IL-FY2023.git/tree/main/data
+        href: https://github.com/AleaWM/https://github.com/AleaWM/Fiscal-Futures-IL-FY2023/tree/main/data
 #      - text: "Reports"
 #        file: FiscalGap.qmd
  #     - text: "COVID-related Federal Revenue"
@@ -64,7 +66,7 @@ book:
 
 format:
   html:
-    theme: pulse
+    theme: zephyr
     toc: true
     code-fold: true
     code-tools: true
@@ -73,10 +75,11 @@ format:
     fig-cap-location: top
     tbl-cap-location: top
     df-print: paged
-    grid: 
-      sidebar-width: 200px
-      body-width: 900px
-      margin-width: 200px
+  #   grid: 
+  #     gutter-width: 1rem
+  #     sidebar-width: 300px
+  # #    body-width: 900px
+  #     margin-width: 300px
     
   # pdf:
   #   documentclass: scrreport
