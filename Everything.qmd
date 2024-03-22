@@ -720,8 +720,6 @@ rm(exp_1998_2022)
 
 ### Revenues
 
-I chose to drop rev_76 for Transfers in and Out because I do not understand why that step occurs in the previously used Stata code. Rev_76 was created and included in rev_78 for All Other Revenues in old Stata code for years before FY21 but that method has been discontinued for FY22. Including vs excluding rev_76 does not change the overall interpretation of the fiscal gap.
-
 <!--- If there are NA rev types, it will cause the code to  break when binding dataframes together later --->
 
 ```{r code-break-check, include=FALSE}
@@ -1105,6 +1103,8 @@ exp_long <- pivot_longer(ff_exp, exp_402:exp_970 , names_to = c("type", "Categor
 #write_csv(exp_long, "expenditures_recoded_long_FY23.csv")
 #write_csv(rev_long, "revenue_recoded_long_FY23.csv")
 
+
+# combine revenue and expenditures into one data frame
 aggregated_totals_long <- rbind(rev_long, exp_long)
 
 aggregated_totals_long %>% mutate(`Dollars (Millions)` = round(Dollars, digits = 0)) %>% select(-Dollars) %>%
@@ -1121,10 +1121,9 @@ year_totals <- aggregated_totals_long %>%
   summarize(Dollars = sum(Dollars, na.rm = TRUE)) %>% 
   pivot_wider(names_from = "type", values_from = Dollars) %>% 
 
-  rename(
-         Expenditures = exp,
+  rename(Expenditures = exp,
          Revenue = rev) %>%  
-  mutate(`Fiscal Gap` = round(Revenue - Expenditures))
+  mutate(`Fiscal Gap` = Revenue - Expenditures)
 # %>%  arrange(desc(Year))
 # creates variable for the Gap each year
 
@@ -1152,6 +1151,11 @@ annotation <- data.frame(
   label = c("Expenditures","Revenue", "Fiscal Gap")
 )
 
+annotation_nums <- data.frame(
+  x = c(2023, 2023, 2023),
+  y = c(115, 95, -5),  
+  label = c("$110.6","$108.1", "-$2.5")
+)
 ## Dashed line versions for expenditures: 
 library(cmapplot)
 fiscal_gap <-   
@@ -1191,18 +1195,19 @@ fiscal_gap
 
 fiscal_gap2 <-ggplot(data = year_totals, aes(x=Year, y = Revenue/1000)) +
   geom_recessions(text = FALSE)+
-  geom_line(aes(x = Year, y = Revenue/1000), color = "Black", lwd=1) +
-  geom_line(aes(x = Year, y = Expenditures/1000, linetype = "dashed"), color = "red", lwd=1) +
+  geom_line(aes(x = Year, y = Revenue/1000), color = "Black") +
+  geom_line(aes(x = Year, y = Expenditures/1000), color = "red", linetype = "dotted", lwd = 1) +
   geom_line(aes(x = Year, y = (`Fiscal Gap`/1000)), color = "darkgray", lwd=1) +
   
   geom_text(data = annotation, aes(x=x, y=y, label=label))+
+  geom_text(data = annotation_nums, aes(x = x, y = y, label = label), size = 3) + 
     theme_classic() +
   theme(legend.position = "none")+
-    scale_linetype_manual(values = c("dashed", "dashed")) +
+   # scale_linetype_manual(values = c("dashed", "dotted")) +
   geom_hline(yintercept = 0) +
 
   scale_y_continuous(labels = comma)+
-  scale_x_continuous(expand = c(0,0)) +
+  scale_x_continuous(expand = c(0,0), limits = c(1998, 2024) ) +
 
   xlab("Year") + 
   ylab("Billions of Dollars")  +
@@ -1553,28 +1558,39 @@ As of Feb. 6 2023, Source 481 Retailers Occupation Tax has collected \$9.3 billi
 ### Own Source and Fed Transfers {#sec-own-source-and-fed-transfers}
 
 ```{r}
-#| label: fig-ownsource-and-fed-revenue
-#| fig-cap: Comparison of Own Source and Federal Revenue. Historicaly, federal revenue tends to increase when state revenue decreases from some sort of economic shock (e.g. Housing Bubble in 2008). 
+#| label: tbl-ownsource-and-fed-revenue
+#| tbl-cap: "Own Source and Federal Revenue"
+#| tbl-location: margin
+ 
 
 ownsource_rev <- rev_long %>%
   filter(!Category %in% c("57", "58", "59")) %>%
   group_by(Year) %>% 
   summarize(Dollars = sum(Dollars))
 
+ownsource_rev
 # ownsource_rev %>% 
 #   ggplot()+geom_line(aes(x=Year, y=Dollars)) + 
 #   labs(title = "Own Source Revenues", subtitle = "Total own source revenue", y = "Millions of Dollars")
 
+```
+
+```{r}
 fed_rev <- ff_rev %>% select(fy, rev_57, rev_58, rev_59) %>%
   mutate(fed_total = rev_57+rev_58+rev_59)
 
 
 annotation <- data.frame(
-  x = c(2014, 2015),
+  x = c(2013, 2015),
   y = c(50, 25),  
   label = c("Own Source Revenue", "Federal Revenue")
 )
 
+annotation_nums (
+  x = c(2023, 2023),
+  y = c(50, 25),  
+  label = c("Own Source Revenue", "Federal Revenue")
+)
 
 ownsource_graph <- ggplot(ownsource_rev, aes(x=Year, y=Dollars/1000)) + 
   geom_recessions( text = FALSE)+
@@ -1586,8 +1602,8 @@ ownsource_graph <- ggplot(ownsource_rev, aes(x=Year, y=Dollars/1000)) +
   theme(legend.position = "none")+
 
   theme_classic()+
-  labs(title = "Own Source Revenue and Federal Revenue", 
-  y = "Billions of Nominal Dollars")
+  labs(title = "Own Source Revenue and Federal Revenue, 1998-2023", 
+  y = "Billions of Dollars")
 ownsource_graph
 
 ggsave(plot = ownsource_graph, file = "Figure4.eps")
@@ -2250,7 +2266,7 @@ dataset_names <- list('Aggregate Revenues' = revenue_wide2,
                       'aggregated_totals_long' = aggregated_totals_long # all data in long format. Good for creating pivot tables in Excel
                       )
 
-write.xlsx(dataset_names, file = 'summary_file_FY23_wTotals_Dec292023.xlsx')
+# write.xlsx(dataset_names, file = 'summary_file_FY23_wTotals_DATE_2023.xlsx')
 ```
 
 Saves main items in one excel file named `summary_file.xlsx`. Delete `eval=FALSE` to run on local computer.
@@ -2323,7 +2339,6 @@ ESSER_exp <- exp_temp %>%
   filter(ESSERfunds == "ESSER")
 ESSER_exp
 ```
-
 
 ```{r drop-coviddollars2}
 rev_temp <- rev_temp %>%  filter(covid_dollars==0) # keeps observations that were not coded as COVID federal funds
@@ -2561,7 +2576,6 @@ rev_long %>%
     xlab("Revenue Categories") +
   ylab("Millions of Dollars")
 ```
-
 
 ## Forecasting attempt
 
@@ -2814,9 +2828,7 @@ autoplot(tsexp2019) +
 
 Graphing the 3 federal revenue types together may be the most reliable since some COVID funding is still recorded in Federal Other and some are in other categories (like Disaster Response in FY2021). Need to look at more before using.
 
-
-
-```{r drop-coviddollars2}
+```{r drop-coviddollars3}
 # does not include rev_type == 58, medicaid dollars
 # covid_dollars <- rev_temp %>% filter(covid_dollars==1) # check what was dropped
 
@@ -3093,7 +3105,6 @@ rev_long %>%
   ylab("Millions of Dollars")
 ```
 
-
 ## All Categories with Totals
 
 ```{r}
@@ -3211,5 +3222,3 @@ expenditure_wide2 <- exp_long%>%
   relocate("Total", .after =  last_col())
 
 ```
-
-
