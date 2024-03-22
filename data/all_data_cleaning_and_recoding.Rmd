@@ -47,20 +47,17 @@ Variable names must identical to merge files together.
 
 ```{r create-rev-csv-FY22, eval=FALSE}
 # years after fy22: add line of code to bind csv files after binding the dta files.
-setwd("./data/revenue")
+setwd("./data/ioc_data_received/revenue")
 
-allrevfiles23 = list.files(path = "./data/revenue",  pattern = ".dta") %>%  lapply(read_dta) %>% bind_rows
+allrevfiles23 = list.files(path = "./data/ioc_data_received/revenue",  pattern = ".dta") %>%  lapply(read_dta) %>% bind_rows
 #Fy21: 62294 observations, 13 variables
 #FY22: 65094 obs, 13 vars
 
-#write_csv(allrevfiles23, "allrevfiles.csv")
 
 
+setwd("./data/ioc_data_received/expenditures")
 
-
-setwd("./data/expenditures")
-
-allexpfiles23 = list.files(path = ".data/expenditures",  pattern = ".dta") %>%  lapply(read_dta) %>% bind_rows
+allexpfiles23 = list.files(path = ".data/ioc_data_received/expenditures",  pattern = ".dta") %>%  lapply(read_dta) %>% bind_rows
 
 #fy21 213372 observations, 20 variables
 # fy22 225587 obs, 21 vars.
@@ -84,9 +81,6 @@ allexpfiles23 <- allexpfiles23 %>%
              fy == "2021" ~ "exp IOC Nov 2022", # when FOIA data request was received
              fy == "2022" ~ "exp IOC Nov 2023",
              TRUE ~ source_name))
-
-#write_csv(allexpfiles23, "allexpfiles.csv")
-        
 
 ```
 
@@ -397,6 +391,13 @@ exp_temp <- exp_temp %>%
   mutate(transfer = ifelse(org_name == "TRANSFERS", 1, 0),
          trans_agency = ifelse(org_name == "TRANSFERS", str_sub(obj_seq_type,1,3), NA),
          trans_type = ifelse(org_name == "TRANSFERS", str_sub(obj_seq_type,4,9), NA)
+         )  %>%   
+  
+  # these come from ioc_source file after merging
+  mutate(
+         object = ifelse(transfer == 0, as.character(str_sub(obj_seq_type, 1, 4)), NA_character_),
+         sequence = ifelse(transfer == 0, as.character(str_sub(obj_seq_type, 5,6)), NA_character_),
+         type = ifelse(transfer == 0, str_sub(obj_seq_type, 7,8), NA_character_)
          )
 ```
 
@@ -889,10 +890,10 @@ For aggregating revenue, use the rev_1998_2022 dataframe, join the funds_ab_in_2
 
 ```{r, warning = FALSE, message=FALSE}
 # fund info to revenue for all years
-rev_temp <- inner_join(rev_1998_2022, funds_ab_in_2022, by = "fund") %>% arrange(source)
+rev_temp <- inner_join(rev_1998_2023, funds_ab_in_2023, by = "fund") %>% arrange(source)
 
 # need to update the ioc_source_type file every year! 
-ioc_source_type <- readxl::read_xlsx("C:/Users/aleaw/OneDrive/Documents/PhD Fall 2021 - Spring 2022/Merriman RA/Fiscal Futures FY2022/Replication-Files/ioc_source_updated22_AWM.xlsx")
+ioc_source_type <- readxl::read_xlsx("ioc_source_updated23_AWM.xlsx")
 
 rev_temp <- left_join(rev_temp, ioc_source_type, by = "source")
 # automatically used source, source name does not match for the join to work using source_name
@@ -1086,8 +1087,8 @@ rm(exp_1998_2022)
 #write.csv(exp_temp, "allexp_fy22_recoded_02242023.csv")
 #write.csv(rev_temp, "allrev_fy22_recoded_02242023.csv")
 
-write.csv(exp_temp, "allexp_fy22_recoded_April262023.csv")
-write.csv(rev_temp, "allrev_fy22_recoded_April262023.csv")
+write.csv(exp_temp, "allexp_fy23_recoded_Dec2023.csv")
+write.csv(rev_temp, "allrev_fy23_recoded_Dec2023.csv")
 
 ```
 
