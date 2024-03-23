@@ -1,4 +1,4 @@
-# Calculating the Fiscal Gap {#sec-all-code}
+# Calculating the Fiscal Gap - Rounded Output {#sec-all-code}
 
 ```{r setup, warning=FALSE, message=FALSE}
 
@@ -39,9 +39,13 @@ Aggregate expenditures: Save tax refunds as negative revenue. Code refunds to ma
 ## negative revenue becomes tax refunds
 
 tax_refund_long <- exp_temp %>%           # fund != "0401" # removes State Trust Funds
-  filter(fund != "0401" & (object=="9910"|object=="9921"|object=="9923"|object=="9925")) %>%
+  filter(fund != "0401" & 
+                              (object =="9900" |    # one-time abatements in FY23
+                                 object=="9910"|object=="9921"|object=="9923"|object=="9925")) %>%
   # keeps these objects which represent revenue, insurance, treasurer,and financial and professional reg tax refunds
   mutate(refund = case_when(
+                        object == "9900" ~ "FY23Abatements",
+
     fund=="0278" & sequence == "00" ~ "02", # for income tax refund
     fund=="0278" & sequence == "01" ~ "03", # tax administration and enforcement and tax operations become corporate income tax refund
      fund == "0278" & sequence == "02" ~ "02",
@@ -81,7 +85,16 @@ exp_temp <- exp_temp %>% filter(refund == "not refund")
 
 ```
 
-`tax_refund` amounts are removed from expenditure totals and subtracted from revenue totals (since they were tax refunds).
+Ideally the money going in and out of the funds used for refunds would be approximately equal. If equal, would drop from Fiscal Futures analysis so that Revenue reflects the amount of money the state gets to keep (and the local portion that becomes the local govt transfer).
+
+For FY23, the one-time abatement, object 9900, is included as an expenditure item within the Department of Revenue.
+
+```{r}
+# manually adds the abatements as expenditure item and keeps on expenditure side.
+# otherwise ignored since it is in fund 0278 and 
+exp_temp <- exp_temp %>%
+  mutate(in_ff = ifelse(object == 9900, 1, in_ff))
+```
 
 ### Pension Expenditures
 
@@ -678,7 +691,7 @@ rev_temp <- rev_temp %>%
 ```{r droprevtypes}
 # revenue types to drop
 drop_type <- c("32", "45", "51", 
-               "66", "72", "75", "79", "98")
+               "66", "72", "75", "76", "79", "98", "99")
 
 # drops Blank, Student Fees, Retirement contributions, proceeds/investments,
 # bond issue proceeds, interagency receipts, cook IGT, Prior year refunds.
@@ -698,7 +711,8 @@ rev_temp %>%
 # they were the 4 smallest in past years, are they still the 4 smallest? 
 
 rev_temp <- rev_temp %>%  
- mutate(rev_type_new = ifelse(rev_type=="30" | rev_type=="60" | rev_type=="63" | rev_type=="76", "78", rev_type_new))
+ mutate(rev_type_new = ifelse(rev_type=="30" | rev_type=="60" | rev_type=="63",  ##  | rev_type=="76", # Added 76 to drop_types
+                              "78", rev_type_new))
 
 
 #table(rev_temp$rev_type_new)  # check work
@@ -709,8 +723,8 @@ rm(rev_1998_2022)
 rm(exp_1998_2022)
 
 
-#write.csv(exp_temp, "exp_fy22_recoded_12192022.csv")
-#write.csv(rev_temp, "rev_fy22_recoded_12192022.csv")
+#write.csv(exp_temp, "exp_fy22_recoded_22March2024.csv")
+#write.csv(rev_temp, "rev_fy22_recoded_22March2024.csv")
 
 ```
 
@@ -737,7 +751,7 @@ ff_rev <- rev_temp %>%
   summarize(sum_receipts = sum(receipts, na.rm=TRUE)/1000000 ) %>%
   pivot_wider(names_from = "rev_type_new", values_from = "sum_receipts", names_prefix = "rev_")
 
-ff_rev<- left_join(ff_rev, tax_refund)
+# ff_rev<- left_join(ff_rev, tax_refund)
 
 #ff_rev <- left_join(ff_rev, pension2_fy22, by=c("fy" = "year"))
 
@@ -767,20 +781,20 @@ ff_rev <- mutate_all(ff_rev, ~replace_na(.,0))
 
 #noproblem <- c(0)  # if ref_CHECK = $0, then there is no problem. :) 
 
-if((sum(ff_rev$ref_CHECK) == 0 )){
-
-ff_rev <- ff_rev %>%
-  
-  mutate(rev_02 = rev_02 - ref_02,
-         rev_03 = rev_03 - ref_03,
-         rev_06 = rev_06 - ref_06,
-         rev_09 = rev_09 - ref_09,
-         rev_21 = rev_21 - ref_21,
-         rev_24 = rev_24 - ref_24,
-         rev_35 = rev_35 - ref_35
-         ) %>% 
-  select(-c(ref_02:ref_35, rev_99, rev_76, ref_CHECK )) 
-}else{"You have a problem! Check what revenue items did not have rev codes (causing it to be coded as rev_NA) or the check if there were refunds that were not assigned revenue codes (tax_refunds_long objects)"}
+# if((sum(ff_rev$ref_CHECK) == 0 )){
+# 
+# ff_rev <- ff_rev %>%
+#   
+#   mutate(rev_02 = rev_02 - ref_02,
+#          rev_03 = rev_03 - ref_03,
+#          rev_06 = rev_06 - ref_06,
+#          rev_09 = rev_09 - ref_09,
+#          rev_21 = rev_21 - ref_21,
+#          rev_24 = rev_24 - ref_24,
+#          rev_35 = rev_35 - ref_35
+#          ) %>% 
+#   select(-c(ref_02:ref_35, rev_99, rev_76, ref_CHECK )) 
+# }else{"You have a problem! Check what revenue items did not have rev codes (causing it to be coded as rev_NA) or the check if there were refunds that were not assigned revenue codes (tax_refunds_long objects)"}
 
 ff_rev %>%  mutate_all(., ~round(.,digits=0))
 ```
@@ -802,7 +816,7 @@ aggregate_rev_labels <- ff_rev %>%
          "INHERITANCE TAX" = rev_21,
          "INSURANCE TAXES&FEES&LICENSES, net of refunds" = rev_24 ,
          "CORP FRANCHISE TAXES & FEES" = rev_27,
-       # "HORSE RACING TAXES & FEES" = rev_30,  # in Other
+         # "HORSE RACING TAXES & FEES" = rev_30,  # in Other
          "MEDICAL PROVIDER ASSESSMENTS" = rev_31 ,
          # "GARNISHMENT-LEVIES " = rev_32 , # dropped
          "LOTTERY RECEIPTS" = rev_33 ,
@@ -810,19 +824,19 @@ aggregate_rev_labels <- ff_rev %>%
          "RECEIPTS FROM REVENUE PRODUCNG" = rev_36, 
          "LICENSES, FEES & REGISTRATIONS" = rev_39 ,
          "MOTOR VEHICLE AND OPERATORS" = rev_42 ,
-         #  "STUDENT FEES-UNIVERSITIES" = rev_45,   # dropped
+         # "STUDENT FEES-UNIVERSITIES" = rev_45,   # dropped
          "RIVERBOAT WAGERING TAXES" = rev_48 ,
          # "RETIREMENT CONTRIBUTIONS " = rev_51, # dropped
          "GIFTS AND BEQUESTS" = rev_54, 
          "FEDERAL OTHER" = rev_57 ,
          "FEDERAL MEDICAID" = rev_58, 
          "FEDERAL TRANSPORTATION" = rev_59 ,
-         #"OTHER GRANTS AND CONTRACTS" = rev_60, #other
-       # "INVESTMENT INCOME" = rev_63, # other
+         # "OTHER GRANTS AND CONTRACTS" = rev_60, #other
+         # "INVESTMENT INCOME" = rev_63, # other
          # "PROCEEDS,INVESTMENT MATURITIES" = rev_66 , #dropped
          # "BOND ISSUE PROCEEDS" = rev_72,  #dropped
          # "INTER-AGENCY RECEIPTS" = rev_75,  #dropped
-      #  "TRANSFER IN FROM OUT FUNDS" = rev_76,  #other
+         # "TRANSFER IN FROM OUT FUNDS" = rev_76,  #other
          "ALL OTHER SOURCES" = rev_78,
          # "COOK COUNTY IGT" = rev_79, #dropped
          # "PRIOR YEAR REFUNDS" = rev_98 #dropped
@@ -1589,7 +1603,7 @@ ownsource_graph <- ggplot(ownsource_rev, aes(x=Year, y=Dollars/1000)) +
   y = "Billions of Nominal Dollars")
 ownsource_graph
 
-ggsave(plot = ownsource_graph, file = "Figure4.eps")
+# ggsave(plot = ownsource_graph, file = "Figure4.eps")
 
 ```
 
@@ -2250,7 +2264,7 @@ dataset_names <- list('Aggregate Revenues' = revenue_wide2,
                       'aggregated_totals_long' = aggregated_totals_long # all data in long format. Good for creating pivot tables in Excel
                       )
 
-write.xlsx(dataset_names, file = 'summary_file_FY23_wTotals_Dec302023.xlsx')
+write.xlsx(dataset_names, file = 'summary_file_FY23_wTotals_22March2024.xlsx')
 ```
 
 Saves main items in one excel file named `summary_file.xlsx`. Delete `eval=FALSE` to run on local computer.
@@ -2334,23 +2348,21 @@ ff_rev <- rev_temp %>%
   summarize(sum_receipts = round(sum(receipts, na.rm=TRUE)/1000000 )) %>%
   pivot_wider(names_from = "rev_type_new", values_from = "sum_receipts", names_prefix = "rev_")
 
-ff_rev<- left_join(ff_rev, tax_refund)
-
 ff_rev <- mutate_all(ff_rev, ~replace_na(.,0))
 
-
-ff_rev <- ff_rev %>%
-  mutate(rev_02 = rev_02 - ref_02,
-         rev_03 = rev_03 - ref_03,
-         rev_06 = rev_06 - ref_06,
-         rev_09 = rev_09 - ref_09,
-         rev_21 = rev_21 - ref_21,
-         rev_24 = rev_24 - ref_24,
-         rev_35 = rev_35 - ref_35
-
-         ) %>% 
-  select(-c(ref_02:ref_35, rev_99, rev_76, ref_CHECK
-            ))
+# 
+# ff_rev <- ff_rev %>%
+#   mutate(rev_02 = rev_02 - ref_02,
+#          rev_03 = rev_03 - ref_03,
+#          rev_06 = rev_06 - ref_06,
+#          rev_09 = rev_09 - ref_09,
+#          rev_21 = rev_21 - ref_21,
+#          rev_24 = rev_24 - ref_24,
+#          rev_35 = rev_35 - ref_35
+# 
+#          ) %>% 
+#   select(-c(ref_02:ref_35, rev_99, rev_76, ref_CHECK
+#             ))
 
 rev_long <- pivot_longer(ff_rev, rev_02:rev_78, names_to = c("type","Category"), values_to = "Dollars", names_sep = "_") %>% 
   rename(Year = fy) %>%
@@ -2828,24 +2840,24 @@ ff_rev <- rev_temp %>%
   summarize(sum_receipts = sum(receipts, na.rm=TRUE)/1000000 ) %>%
   pivot_wider(names_from = "rev_type_new", values_from = "sum_receipts", names_prefix = "rev_")
 
-ff_rev<- left_join(ff_rev, tax_refund)
+# ff_rev<- left_join(ff_rev, tax_refund)
 
 ff_rev <- mutate_all(ff_rev, ~replace_na(.,0))
 
-
-ff_rev <- ff_rev %>%
-  mutate(rev_02 = rev_02 - ref_02,
-         rev_03 = rev_03 - ref_03,
-         rev_06 = rev_06 - ref_06,
-         rev_09 = rev_09 - ref_09,
-         rev_21 = rev_21 - ref_21,
-         rev_24 = rev_24 - ref_24,
-         rev_35 = rev_35 - ref_35
-
-         ) %>% 
-  select(-c(ref_02:ref_35, rev_99, rev_76
-            ,ref_CHECK
-            ))
+# 
+# ff_rev <- ff_rev %>%
+#   mutate(rev_02 = rev_02 - ref_02,
+#          rev_03 = rev_03 - ref_03,
+#          rev_06 = rev_06 - ref_06,
+#          rev_09 = rev_09 - ref_09,
+#          rev_21 = rev_21 - ref_21,
+#          rev_24 = rev_24 - ref_24,
+#          rev_35 = rev_35 - ref_35
+# 
+#          ) %>% 
+#   select(-c(ref_02:ref_35, rev_99, rev_76
+#             ,ref_CHECK
+#             ))
 
 rev_long <- pivot_longer(ff_rev, rev_02:rev_78, names_to = c("type","Category"), values_to = "Dollars", names_sep = "_") %>% 
   rename(Year = fy) %>%

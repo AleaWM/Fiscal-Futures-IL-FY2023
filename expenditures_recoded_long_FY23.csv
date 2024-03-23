@@ -10,7 +10,7 @@ Year,type,Category,Dollars,Category_name
 1998,exp,444,3934,Human Services
 1998,exp,478,113,Family Services Net Medicaid
 1998,exp,482,161,Public Health
-1998,exp,492,421,Revenue
+1998,exp,492,440,Revenue
 1998,exp,494,1978,Transportation
 1998,exp,532,310,Environmental Protect Agency
 1998,exp,557,367,Il State Toll Highway Auth
@@ -18,7 +18,7 @@ Year,type,Category,Dollars,Category_name
 1998,exp,904,730,State Employee Healthcare
 1998,exp,910,60,Legislative
 1998,exp,920,267,Judicial
-1998,exp,930,411,Elected Officers
+1998,exp,930,416,Elected Officers
 1998,exp,941,437,Public Safety
 1998,exp,944,154,Bus & Profession Regulation
 1998,exp,945,5398,Medicaid
@@ -40,7 +40,7 @@ Year,type,Category,Dollars,Category_name
 1999,exp,444,4129,Human Services
 1999,exp,478,120,Family Services Net Medicaid
 1999,exp,482,169,Public Health
-1999,exp,492,442,Revenue
+1999,exp,492,479,Revenue
 1999,exp,494,1895,Transportation
 1999,exp,532,320,Environmental Protect Agency
 1999,exp,557,461,Il State Toll Highway Auth
@@ -48,7 +48,7 @@ Year,type,Category,Dollars,Category_name
 1999,exp,904,779,State Employee Healthcare
 1999,exp,910,63,Legislative
 1999,exp,920,295,Judicial
-1999,exp,930,445,Elected Officers
+1999,exp,930,449,Elected Officers
 1999,exp,941,465,Public Safety
 1999,exp,944,167,Bus & Profession Regulation
 1999,exp,945,5767,Medicaid
@@ -70,7 +70,7 @@ Year,type,Category,Dollars,Category_name
 2000,exp,444,4238,Human Services
 2000,exp,478,141,Family Services Net Medicaid
 2000,exp,482,185,Public Health
-2000,exp,492,448,Revenue
+2000,exp,492,500,Revenue
 2000,exp,494,2480,Transportation
 2000,exp,532,359,Environmental Protect Agency
 2000,exp,557,435,Il State Toll Highway Auth
@@ -78,9 +78,9 @@ Year,type,Category,Dollars,Category_name
 2000,exp,904,927,State Employee Healthcare
 2000,exp,910,69,Legislative
 2000,exp,920,331,Judicial
-2000,exp,930,490,Elected Officers
+2000,exp,930,498,Elected Officers
 2000,exp,941,489,Public Safety
-2000,exp,944,138,Bus & Profession Regulation
+2000,exp,944,140,Bus & Profession Regulation
 2000,exp,945,6442,Medicaid
 2000,exp,946,829,Capital Improvement
 2000,exp,948,620,Other Departments
@@ -100,7 +100,7 @@ Year,type,Category,Dollars,Category_name
 2001,exp,444,4559,Human Services
 2001,exp,478,140,Family Services Net Medicaid
 2001,exp,482,227,Public Health
-2001,exp,492,809,Revenue
+2001,exp,492,856,Revenue
 2001,exp,494,2718,Transportation
 2001,exp,532,393,Environmental Protect Agency
 2001,exp,557,346,Il State Toll Highway Auth
@@ -108,9 +108,9 @@ Year,type,Category,Dollars,Category_name
 2001,exp,904,1000,State Employee Healthcare
 2001,exp,910,74,Legislative
 2001,exp,920,342,Judicial
-2001,exp,930,561,Elected Officers
+2001,exp,930,569,Elected Officers
 2001,exp,941,513,Public Safety
-2001,exp,944,147,Bus & Profession Regulation
+2001,exp,944,152,Bus & Profession Regulation
 2001,exp,945,7187,Medicaid
 2001,exp,946,891,Capital Improvement
 2001,exp,948,637,Other Departments
@@ -130,7 +130,7 @@ Year,type,Category,Dollars,Category_name
 2002,exp,444,4574,Human Services
 2002,exp,478,147,Family Services Net Medicaid
 2002,exp,482,271,Public Health
-2002,exp,492,675,Revenue
+2002,exp,492,718,Revenue
 2002,exp,494,3224,Transportation
 2002,exp,532,471,Environmental Protect Agency
 2002,exp,557,393,Il State Toll Highway Auth
@@ -138,9 +138,9 @@ Year,type,Category,Dollars,Category_name
 2002,exp,904,1062,State Employee Healthcare
 2002,exp,910,80,Legislative
 2002,exp,920,374,Judicial
-2002,exp,930,584,Elected Officers
+2002,exp,930,592,Elected Officers
 2002,exp,941,512,Public Safety
-2002,exp,944,152,Bus & Profession Regulation
+2002,exp,944,154,Bus & Profession Regulation
 2002,exp,945,7292,Medicaid
 2002,exp,946,1150,Capital Improvement
 2002,exp,948,633,Other Departments
@@ -160,7 +160,7 @@ Year,type,Category,Dollars,Category_name
 2003,exp,444,4483,Human Services
 2003,exp,478,310,Family Services Net Medicaid
 2003,exp,482,247,Public Health
-2003,exp,492,537,Revenue
+2003,exp,492,573,Revenue
 2003,exp,494,3296,Transportation
 2003,exp,532,468,Environmental Protect Agency
 2003,exp,557,361,Il State Toll Highway Auth
@@ -168,9 +168,9 @@ Year,type,Category,Dollars,Category_name
 2003,exp,904,1315,State Employee Healthcare
 2003,exp,910,73,Legislative
 2003,exp,920,368,Judicial
-2003,exp,930,566,Elected Officers
+2003,exp,930,574,Elected Officers
 2003,exp,941,526,Public Safety
-2003,exp,944,151,Bus & Profession Regulation
+2003,exp,944,153,Bus & Profession Regulation
 2003,exp,945,7901,Medicaid
 2003,exp,946,1077,Capital Improvement
 2003,exp,948,664,Other Departments
@@ -190,7 +190,7 @@ Year,type,Category,Dollars,Category_name
 2004,exp,444,4664,Human Services
 2004,exp,478,300,Family Services Net Medicaid
 2004,exp,482,269,Public Health
-2004,exp,492,808,Revenue
+2004,exp,492,843,Revenue
 2004,exp,494,3019,Transportation
 2004,exp,532,565,Environmental Protect Agency
 2004,exp,557,417,Il State Toll Highway Auth
@@ -198,9 +198,9 @@ Year,type,Category,Dollars,Category_name
 2004,exp,904,1432,State Employee Healthcare
 2004,exp,910,74,Legislative
 2004,exp,920,363,Judicial
-2004,exp,930,538,Elected Officers
+2004,exp,930,546,Elected Officers
 2004,exp,941,495,Public Safety
-2004,exp,944,143,Bus & Profession Regulation
+2004,exp,944,146,Bus & Profession Regulation
 2004,exp,945,10061,Medicaid
 2004,exp,946,834,Capital Improvement
 2004,exp,948,351,Other Departments
@@ -220,7 +220,7 @@ Year,type,Category,Dollars,Category_name
 2005,exp,444,4796,Human Services
 2005,exp,478,493,Family Services Net Medicaid
 2005,exp,482,295,Public Health
-2005,exp,492,711,Revenue
+2005,exp,492,730,Revenue
 2005,exp,494,2681,Transportation
 2005,exp,532,384,Environmental Protect Agency
 2005,exp,557,479,Il State Toll Highway Auth
@@ -228,9 +228,9 @@ Year,type,Category,Dollars,Category_name
 2005,exp,904,1523,State Employee Healthcare
 2005,exp,910,76,Legislative
 2005,exp,920,381,Judicial
-2005,exp,930,554,Elected Officers
+2005,exp,930,563,Elected Officers
 2005,exp,941,567,Public Safety
-2005,exp,944,182,Bus & Profession Regulation
+2005,exp,944,184,Bus & Profession Regulation
 2005,exp,945,9530,Medicaid
 2005,exp,946,583,Capital Improvement
 2005,exp,948,233,Other Departments
@@ -250,7 +250,7 @@ Year,type,Category,Dollars,Category_name
 2006,exp,444,4863,Human Services
 2006,exp,478,728,Family Services Net Medicaid
 2006,exp,482,297,Public Health
-2006,exp,492,817,Revenue
+2006,exp,492,839,Revenue
 2006,exp,494,2790,Transportation
 2006,exp,532,380,Environmental Protect Agency
 2006,exp,557,1074,Il State Toll Highway Auth
@@ -258,9 +258,9 @@ Year,type,Category,Dollars,Category_name
 2006,exp,904,1623,State Employee Healthcare
 2006,exp,910,77,Legislative
 2006,exp,920,339,Judicial
-2006,exp,930,598,Elected Officers
+2006,exp,930,607,Elected Officers
 2006,exp,941,618,Public Safety
-2006,exp,944,185,Bus & Profession Regulation
+2006,exp,944,186,Bus & Profession Regulation
 2006,exp,945,10466,Medicaid
 2006,exp,946,493,Capital Improvement
 2006,exp,948,218,Other Departments
@@ -280,7 +280,7 @@ Year,type,Category,Dollars,Category_name
 2007,exp,444,4974,Human Services
 2007,exp,478,689,Family Services Net Medicaid
 2007,exp,482,331,Public Health
-2007,exp,492,839,Revenue
+2007,exp,492,859,Revenue
 2007,exp,494,3043,Transportation
 2007,exp,532,420,Environmental Protect Agency
 2007,exp,557,1433,Il State Toll Highway Auth
@@ -288,9 +288,9 @@ Year,type,Category,Dollars,Category_name
 2007,exp,904,1752,State Employee Healthcare
 2007,exp,910,83,Legislative
 2007,exp,920,350,Judicial
-2007,exp,930,663,Elected Officers
+2007,exp,930,673,Elected Officers
 2007,exp,941,776,Public Safety
-2007,exp,944,208,Bus & Profession Regulation
+2007,exp,944,210,Bus & Profession Regulation
 2007,exp,945,11198,Medicaid
 2007,exp,946,390,Capital Improvement
 2007,exp,948,216,Other Departments
@@ -310,7 +310,7 @@ Year,type,Category,Dollars,Category_name
 2008,exp,444,5223,Human Services
 2008,exp,478,706,Family Services Net Medicaid
 2008,exp,482,357,Public Health
-2008,exp,492,843,Revenue
+2008,exp,492,866,Revenue
 2008,exp,494,2860,Transportation
 2008,exp,532,403,Environmental Protect Agency
 2008,exp,557,1588,Il State Toll Highway Auth
@@ -318,9 +318,9 @@ Year,type,Category,Dollars,Category_name
 2008,exp,904,1790,State Employee Healthcare
 2008,exp,910,86,Legislative
 2008,exp,920,364,Judicial
-2008,exp,930,692,Elected Officers
+2008,exp,930,702,Elected Officers
 2008,exp,941,799,Public Safety
-2008,exp,944,210,Bus & Profession Regulation
+2008,exp,944,212,Bus & Profession Regulation
 2008,exp,945,12699,Medicaid
 2008,exp,946,262,Capital Improvement
 2008,exp,948,175,Other Departments
@@ -340,7 +340,7 @@ Year,type,Category,Dollars,Category_name
 2009,exp,444,5433,Human Services
 2009,exp,478,717,Family Services Net Medicaid
 2009,exp,482,360,Public Health
-2009,exp,492,870,Revenue
+2009,exp,492,890,Revenue
 2009,exp,494,3071,Transportation
 2009,exp,532,419,Environmental Protect Agency
 2009,exp,557,1599,Il State Toll Highway Auth
@@ -348,7 +348,7 @@ Year,type,Category,Dollars,Category_name
 2009,exp,904,1770,State Employee Healthcare
 2009,exp,910,91,Legislative
 2009,exp,920,398,Judicial
-2009,exp,930,700,Elected Officers
+2009,exp,930,709,Elected Officers
 2009,exp,941,829,Public Safety
 2009,exp,944,228,Bus & Profession Regulation
 2009,exp,945,13827,Medicaid
@@ -370,7 +370,7 @@ Year,type,Category,Dollars,Category_name
 2010,exp,444,5413,Human Services
 2010,exp,478,475,Family Services Net Medicaid
 2010,exp,482,369,Public Health
-2010,exp,492,715,Revenue
+2010,exp,492,736,Revenue
 2010,exp,494,3815,Transportation
 2010,exp,532,534,Environmental Protect Agency
 2010,exp,557,1292,Il State Toll Highway Auth
@@ -378,9 +378,9 @@ Year,type,Category,Dollars,Category_name
 2010,exp,904,1792,State Employee Healthcare
 2010,exp,910,84,Legislative
 2010,exp,920,388,Judicial
-2010,exp,930,633,Elected Officers
+2010,exp,930,634,Elected Officers
 2010,exp,941,782,Public Safety
-2010,exp,944,254,Bus & Profession Regulation
+2010,exp,944,255,Bus & Profession Regulation
 2010,exp,945,14156,Medicaid
 2010,exp,946,216,Capital Improvement
 2010,exp,948,126,Other Departments
@@ -400,7 +400,7 @@ Year,type,Category,Dollars,Category_name
 2011,exp,444,5710,Human Services
 2011,exp,478,509,Family Services Net Medicaid
 2011,exp,482,316,Public Health
-2011,exp,492,743,Revenue
+2011,exp,492,761,Revenue
 2011,exp,494,4474,Transportation
 2011,exp,532,771,Environmental Protect Agency
 2011,exp,557,740,Il State Toll Highway Auth
@@ -408,9 +408,9 @@ Year,type,Category,Dollars,Category_name
 2011,exp,904,1884,State Employee Healthcare
 2011,exp,910,84,Legislative
 2011,exp,920,365,Judicial
-2011,exp,930,648,Elected Officers
+2011,exp,930,649,Elected Officers
 2011,exp,941,805,Public Safety
-2011,exp,944,238,Bus & Profession Regulation
+2011,exp,944,240,Bus & Profession Regulation
 2011,exp,945,14161,Medicaid
 2011,exp,946,367,Capital Improvement
 2011,exp,948,182,Other Departments
@@ -430,7 +430,7 @@ Year,type,Category,Dollars,Category_name
 2012,exp,444,5272,Human Services
 2012,exp,478,541,Family Services Net Medicaid
 2012,exp,482,408,Public Health
-2012,exp,492,502,Revenue
+2012,exp,492,525,Revenue
 2012,exp,494,4464,Transportation
 2012,exp,532,654,Environmental Protect Agency
 2012,exp,557,699,Il State Toll Highway Auth
@@ -438,9 +438,9 @@ Year,type,Category,Dollars,Category_name
 2012,exp,904,2354,State Employee Healthcare
 2012,exp,910,101,Legislative
 2012,exp,920,387,Judicial
-2012,exp,930,672,Elected Officers
+2012,exp,930,681,Elected Officers
 2012,exp,941,793,Public Safety
-2012,exp,944,257,Bus & Profession Regulation
+2012,exp,944,258,Bus & Profession Regulation
 2012,exp,945,12228,Medicaid
 2012,exp,946,619,Capital Improvement
 2012,exp,948,2466,Other Departments
@@ -460,7 +460,7 @@ Year,type,Category,Dollars,Category_name
 2013,exp,444,5612,Human Services
 2013,exp,478,390,Family Services Net Medicaid
 2013,exp,482,363,Public Health
-2013,exp,492,402,Revenue
+2013,exp,492,425,Revenue
 2013,exp,494,4296,Transportation
 2013,exp,532,538,Environmental Protect Agency
 2013,exp,557,950,Il State Toll Highway Auth
@@ -468,9 +468,9 @@ Year,type,Category,Dollars,Category_name
 2013,exp,904,2175,State Employee Healthcare
 2013,exp,910,121,Legislative
 2013,exp,920,353,Judicial
-2013,exp,930,684,Elected Officers
+2013,exp,930,685,Elected Officers
 2013,exp,941,839,Public Safety
-2013,exp,944,275,Bus & Profession Regulation
+2013,exp,944,276,Bus & Profession Regulation
 2013,exp,945,14776,Medicaid
 2013,exp,946,533,Capital Improvement
 2013,exp,948,3148,Other Departments
@@ -490,7 +490,7 @@ Year,type,Category,Dollars,Category_name
 2014,exp,444,5628,Human Services
 2014,exp,478,484,Family Services Net Medicaid
 2014,exp,482,466,Public Health
-2014,exp,492,473,Revenue
+2014,exp,492,495,Revenue
 2014,exp,494,4473,Transportation
 2014,exp,532,482,Environmental Protect Agency
 2014,exp,557,1423,Il State Toll Highway Auth
@@ -500,7 +500,7 @@ Year,type,Category,Dollars,Category_name
 2014,exp,920,373,Judicial
 2014,exp,930,751,Elected Officers
 2014,exp,941,837,Public Safety
-2014,exp,944,305,Bus & Profession Regulation
+2014,exp,944,307,Bus & Profession Regulation
 2014,exp,945,15190,Medicaid
 2014,exp,946,741,Capital Improvement
 2014,exp,948,3285,Other Departments
@@ -520,7 +520,7 @@ Year,type,Category,Dollars,Category_name
 2015,exp,444,5902,Human Services
 2015,exp,478,430,Family Services Net Medicaid
 2015,exp,482,405,Public Health
-2015,exp,492,442,Revenue
+2015,exp,492,459,Revenue
 2015,exp,494,4535,Transportation
 2015,exp,532,642,Environmental Protect Agency
 2015,exp,557,1894,Il State Toll Highway Auth
@@ -530,7 +530,7 @@ Year,type,Category,Dollars,Category_name
 2015,exp,920,397,Judicial
 2015,exp,930,809,Elected Officers
 2015,exp,941,783,Public Safety
-2015,exp,944,311,Bus & Profession Regulation
+2015,exp,944,314,Bus & Profession Regulation
 2015,exp,945,16914,Medicaid
 2015,exp,946,754,Capital Improvement
 2015,exp,948,3747,Other Departments
@@ -550,7 +550,7 @@ Year,type,Category,Dollars,Category_name
 2016,exp,444,5066,Human Services
 2016,exp,478,358,Family Services Net Medicaid
 2016,exp,482,348,Public Health
-2016,exp,492,416,Revenue
+2016,exp,492,435,Revenue
 2016,exp,494,4334,Transportation
 2016,exp,532,818,Environmental Protect Agency
 2016,exp,557,2246,Il State Toll Highway Auth
@@ -558,9 +558,9 @@ Year,type,Category,Dollars,Category_name
 2016,exp,904,479,State Employee Healthcare
 2016,exp,910,89,Legislative
 2016,exp,920,388,Judicial
-2016,exp,930,697,Elected Officers
+2016,exp,930,698,Elected Officers
 2016,exp,941,737,Public Safety
-2016,exp,944,232,Bus & Profession Regulation
+2016,exp,944,234,Bus & Profession Regulation
 2016,exp,945,17035,Medicaid
 2016,exp,946,96,Capital Improvement
 2016,exp,948,3615,Other Departments
@@ -580,7 +580,7 @@ Year,type,Category,Dollars,Category_name
 2017,exp,444,5410,Human Services
 2017,exp,478,389,Family Services Net Medicaid
 2017,exp,482,373,Public Health
-2017,exp,492,490,Revenue
+2017,exp,492,510,Revenue
 2017,exp,494,4180,Transportation
 2017,exp,532,925,Environmental Protect Agency
 2017,exp,557,1764,Il State Toll Highway Auth
@@ -588,9 +588,9 @@ Year,type,Category,Dollars,Category_name
 2017,exp,904,3321,State Employee Healthcare
 2017,exp,910,90,Legislative
 2017,exp,920,421,Judicial
-2017,exp,930,737,Elected Officers
+2017,exp,930,738,Elected Officers
 2017,exp,941,827,Public Safety
-2017,exp,944,199,Bus & Profession Regulation
+2017,exp,944,202,Bus & Profession Regulation
 2017,exp,945,17853,Medicaid
 2017,exp,946,258,Capital Improvement
 2017,exp,948,3710,Other Departments
@@ -610,7 +610,7 @@ Year,type,Category,Dollars,Category_name
 2018,exp,444,5436,Human Services
 2018,exp,478,411,Family Services Net Medicaid
 2018,exp,482,379,Public Health
-2018,exp,492,524,Revenue
+2018,exp,492,550,Revenue
 2018,exp,494,3600,Transportation
 2018,exp,532,906,Environmental Protect Agency
 2018,exp,557,1468,Il State Toll Highway Auth
@@ -620,7 +620,7 @@ Year,type,Category,Dollars,Category_name
 2018,exp,920,430,Judicial
 2018,exp,930,842,Elected Officers
 2018,exp,941,900,Public Safety
-2018,exp,944,191,Bus & Profession Regulation
+2018,exp,944,194,Bus & Profession Regulation
 2018,exp,945,18587,Medicaid
 2018,exp,946,227,Capital Improvement
 2018,exp,948,3836,Other Departments
@@ -640,7 +640,7 @@ Year,type,Category,Dollars,Category_name
 2019,exp,444,5623,Human Services
 2019,exp,478,497,Family Services Net Medicaid
 2019,exp,482,437,Public Health
-2019,exp,492,599,Revenue
+2019,exp,492,619,Revenue
 2019,exp,494,3449,Transportation
 2019,exp,532,842,Environmental Protect Agency
 2019,exp,557,1751,Il State Toll Highway Auth
@@ -648,9 +648,9 @@ Year,type,Category,Dollars,Category_name
 2019,exp,904,3152,State Employee Healthcare
 2019,exp,910,94,Legislative
 2019,exp,920,416,Judicial
-2019,exp,930,923,Elected Officers
+2019,exp,930,924,Elected Officers
 2019,exp,941,1013,Public Safety
-2019,exp,944,197,Bus & Profession Regulation
+2019,exp,944,199,Bus & Profession Regulation
 2019,exp,945,19026,Medicaid
 2019,exp,946,260,Capital Improvement
 2019,exp,948,3850,Other Departments
@@ -670,7 +670,7 @@ Year,type,Category,Dollars,Category_name
 2020,exp,444,5997,Human Services
 2020,exp,478,351,Family Services Net Medicaid
 2020,exp,482,560,Public Health
-2020,exp,492,1126,Revenue
+2020,exp,492,1155,Revenue
 2020,exp,494,4082,Transportation
 2020,exp,532,719,Environmental Protect Agency
 2020,exp,557,1918,Il State Toll Highway Auth
@@ -680,7 +680,7 @@ Year,type,Category,Dollars,Category_name
 2020,exp,920,477,Judicial
 2020,exp,930,890,Elected Officers
 2020,exp,941,1489,Public Safety
-2020,exp,944,194,Bus & Profession Regulation
+2020,exp,944,196,Bus & Profession Regulation
 2020,exp,945,22289,Medicaid
 2020,exp,946,311,Capital Improvement
 2020,exp,948,4440,Other Departments
@@ -700,7 +700,7 @@ Year,type,Category,Dollars,Category_name
 2021,exp,444,6550,Human Services
 2021,exp,478,393,Family Services Net Medicaid
 2021,exp,482,943,Public Health
-2021,exp,492,1679,Revenue
+2021,exp,492,1712,Revenue
 2021,exp,494,5339,Transportation
 2021,exp,532,675,Environmental Protect Agency
 2021,exp,557,1963,Il State Toll Highway Auth
@@ -710,7 +710,7 @@ Year,type,Category,Dollars,Category_name
 2021,exp,920,519,Judicial
 2021,exp,930,953,Elected Officers
 2021,exp,941,2008,Public Safety
-2021,exp,944,201,Bus & Profession Regulation
+2021,exp,944,205,Bus & Profession Regulation
 2021,exp,945,26277,Medicaid
 2021,exp,946,458,Capital Improvement
 2021,exp,948,4787,Other Departments
@@ -730,7 +730,7 @@ Year,type,Category,Dollars,Category_name
 2022,exp,444,7277,Human Services
 2022,exp,478,377,Family Services Net Medicaid
 2022,exp,482,837,Public Health
-2022,exp,492,1834,Revenue
+2022,exp,492,1868,Revenue
 2022,exp,494,4325,Transportation
 2022,exp,532,653,Environmental Protect Agency
 2022,exp,557,2102,Il State Toll Highway Auth
@@ -738,9 +738,9 @@ Year,type,Category,Dollars,Category_name
 2022,exp,904,3005,State Employee Healthcare
 2022,exp,910,128,Legislative
 2022,exp,920,506,Judicial
-2022,exp,930,986,Elected Officers
+2022,exp,930,987,Elected Officers
 2022,exp,941,1721,Public Safety
-2022,exp,944,217,Bus & Profession Regulation
+2022,exp,944,219,Bus & Profession Regulation
 2022,exp,945,28652,Medicaid
 2022,exp,946,428,Capital Improvement
 2022,exp,948,4863,Other Departments
@@ -760,7 +760,7 @@ Year,type,Category,Dollars,Category_name
 2023,exp,444,8830,Human Services
 2023,exp,478,427,Family Services Net Medicaid
 2023,exp,482,767,Public Health
-2023,exp,492,1982,Revenue
+2023,exp,492,3113,Revenue
 2023,exp,494,5029,Transportation
 2023,exp,532,616,Environmental Protect Agency
 2023,exp,557,1894,Il State Toll Highway Auth
@@ -770,7 +770,7 @@ Year,type,Category,Dollars,Category_name
 2023,exp,920,611,Judicial
 2023,exp,930,1065,Elected Officers
 2023,exp,941,1742,Public Safety
-2023,exp,944,230,Bus & Profession Regulation
+2023,exp,944,232,Bus & Profession Regulation
 2023,exp,945,32406,Medicaid
 2023,exp,946,653,Capital Improvement
 2023,exp,948,5652,Other Departments

@@ -1,17 +1,17 @@
 Year,type,Category,Dollars,Category_name
-1998,rev,02,6334,Individual Income Taxes
-1998,rev,03,1631,Corporate Income Taxes
+1998,rev,02,6847,Individual Income Taxes
+1998,rev,03,1860,Corporate Income Taxes
 1998,rev,06,7198,Sales Taxes
-1998,rev,09,1291,Motor Fuel Tax
+1998,rev,09,1301,Motor Fuel Tax
 1998,rev,12,1193,Public Utility Taxes
 1998,rev,15,464,Cigarette Taxes
 1998,rev,18,57,Liquor Gallonage Taxes
-1998,rev,21,246,Inheritance Tax
+1998,rev,21,250,Inheritance Tax
 1998,rev,24,132,Insurance Taxes&Fees&Licenses
 1998,rev,27,123,Corp Franchise Taxes & Fees
 1998,rev,31,543,Medical Provider Assessments
 1998,rev,33,835,Lottery Receipts
-1998,rev,35,236,Other Taxes
+1998,rev,35,245,Other Taxes
 1998,rev,36,728,Receipts From Revenue Producing
 1998,rev,39,305,"Licenses, Fees & Registrations"
 1998,rev,42,747,Motor Vehicle And Operators
@@ -21,19 +21,19 @@ Year,type,Category,Dollars,Category_name
 1998,rev,58,3339,Federal Medicaid
 1998,rev,59,835,Federal Transportation
 1998,rev,78,931,All Other Sources
-1999,rev,02,6609,Individual Income Taxes
-1999,rev,03,1577,Corporate Income Taxes
+1999,rev,02,7226,Individual Income Taxes
+1999,rev,03,1855,Corporate Income Taxes
 1999,rev,06,7647,Sales Taxes
-1999,rev,09,1317,Motor Fuel Tax
+1999,rev,09,1329,Motor Fuel Tax
 1999,rev,12,1423,Public Utility Taxes
 1999,rev,15,499,Cigarette Taxes
 1999,rev,18,57,Liquor Gallonage Taxes
-1999,rev,21,343,Inheritance Tax
+1999,rev,21,347,Inheritance Tax
 1999,rev,24,249,Insurance Taxes&Fees&Licenses
 1999,rev,27,121,Corp Franchise Taxes & Fees
 1999,rev,31,549,Medical Provider Assessments
 1999,rev,33,845,Lottery Receipts
-1999,rev,35,245,Other Taxes
+1999,rev,35,269,Other Taxes
 1999,rev,36,716,Receipts From Revenue Producing
 1999,rev,39,328,"Licenses, Fees & Registrations"
 1999,rev,42,773,Motor Vehicle And Operators
@@ -43,19 +43,19 @@ Year,type,Category,Dollars,Category_name
 1999,rev,58,3600,Federal Medicaid
 1999,rev,59,726,Federal Transportation
 1999,rev,78,1015,All Other Sources
-2000,rev,02,6911,Individual Income Taxes
-2000,rev,03,1698,Corporate Income Taxes
+2000,rev,02,7686,Individual Income Taxes
+2000,rev,03,2068,Corporate Income Taxes
 2000,rev,06,8218,Sales Taxes
-2000,rev,09,1340,Motor Fuel Tax
+2000,rev,09,1356,Motor Fuel Tax
 2000,rev,12,1524,Public Utility Taxes
 2000,rev,15,467,Cigarette Taxes
 2000,rev,18,128,Liquor Gallonage Taxes
-2000,rev,21,341,Inheritance Tax
-2000,rev,24,267,Insurance Taxes&Fees&Licenses
+2000,rev,21,348,Inheritance Tax
+2000,rev,24,268,Insurance Taxes&Fees&Licenses
 2000,rev,27,144,Corp Franchise Taxes & Fees
 2000,rev,31,649,Medical Provider Assessments
 2000,rev,33,814,Lottery Receipts
-2000,rev,35,240,Other Taxes
+2000,rev,35,275,Other Taxes
 2000,rev,36,737,Receipts From Revenue Producing
 2000,rev,39,403,"Licenses, Fees & Registrations"
 2000,rev,42,973,Motor Vehicle And Operators
@@ -65,19 +65,19 @@ Year,type,Category,Dollars,Category_name
 2000,rev,58,3763,Federal Medicaid
 2000,rev,59,927,Federal Transportation
 2000,rev,78,1452,All Other Sources
-2001,rev,02,7156,Individual Income Taxes
-2001,rev,03,1551,Corporate Income Taxes
+2001,rev,02,7996,Individual Income Taxes
+2001,rev,03,1790,Corporate Income Taxes
 2001,rev,06,8175,Sales Taxes
-2001,rev,09,1354,Motor Fuel Tax
+2001,rev,09,1367,Motor Fuel Tax
 2001,rev,12,1606,Public Utility Taxes
 2001,rev,15,473,Cigarette Taxes
 2001,rev,18,124,Liquor Gallonage Taxes
-2001,rev,21,354,Inheritance Tax
-2001,rev,24,293,Insurance Taxes&Fees&Licenses
+2001,rev,21,361,Inheritance Tax
+2001,rev,24,298,Insurance Taxes&Fees&Licenses
 2001,rev,27,151,Corp Franchise Taxes & Fees
 2001,rev,31,678,Medical Provider Assessments
 2001,rev,33,765,Lottery Receipts
-2001,rev,35,248,Other Taxes
+2001,rev,35,282,Other Taxes
 2001,rev,36,743,Receipts From Revenue Producing
 2001,rev,39,527,"Licenses, Fees & Registrations"
 2001,rev,42,1135,Motor Vehicle And Operators
@@ -87,19 +87,19 @@ Year,type,Category,Dollars,Category_name
 2001,rev,58,4356,Federal Medicaid
 2001,rev,59,1019,Federal Transportation
 2001,rev,78,1439,All Other Sources
-2002,rev,02,6638,Individual Income Taxes
-2002,rev,03,1173,Corporate Income Taxes
+2002,rev,02,7471,Individual Income Taxes
+2002,rev,03,1384,Corporate Income Taxes
 2002,rev,06,8279,Sales Taxes
-2002,rev,09,1358,Motor Fuel Tax
+2002,rev,09,1374,Motor Fuel Tax
 2002,rev,12,1568,Public Utility Taxes
 2002,rev,15,469,Cigarette Taxes
 2002,rev,18,122,Liquor Gallonage Taxes
-2002,rev,21,322,Inheritance Tax
-2002,rev,24,321,Insurance Taxes&Fees&Licenses
+2002,rev,21,329,Inheritance Tax
+2002,rev,24,323,Insurance Taxes&Fees&Licenses
 2002,rev,27,165,Corp Franchise Taxes & Fees
 2002,rev,31,656,Medical Provider Assessments
 2002,rev,33,826,Lottery Receipts
-2002,rev,35,251,Other Taxes
+2002,rev,35,278,Other Taxes
 2002,rev,36,750,Receipts From Revenue Producing
 2002,rev,39,554,"Licenses, Fees & Registrations"
 2002,rev,42,1178,Motor Vehicle And Operators
@@ -109,19 +109,19 @@ Year,type,Category,Dollars,Category_name
 2002,rev,58,4484,Federal Medicaid
 2002,rev,59,996,Federal Transportation
 2002,rev,78,1348,All Other Sources
-2003,rev,02,6096,Individual Income Taxes
-2003,rev,03,936,Corporate Income Taxes
+2003,rev,02,7341,Individual Income Taxes
+2003,rev,03,1293,Corporate Income Taxes
 2003,rev,06,8228,Sales Taxes
-2003,rev,09,1373,Motor Fuel Tax
-2003,rev,12,1439,Public Utility Taxes
+2003,rev,09,1388,Motor Fuel Tax
+2003,rev,12,1440,Public Utility Taxes
 2003,rev,15,700,Cigarette Taxes
 2003,rev,18,123,Liquor Gallonage Taxes
-2003,rev,21,230,Inheritance Tax
-2003,rev,24,370,Insurance Taxes&Fees&Licenses
+2003,rev,21,237,Inheritance Tax
+2003,rev,24,372,Insurance Taxes&Fees&Licenses
 2003,rev,27,147,Corp Franchise Taxes & Fees
 2003,rev,31,818,Medical Provider Assessments
 2003,rev,33,817,Lottery Receipts
-2003,rev,35,250,Other Taxes
+2003,rev,35,271,Other Taxes
 2003,rev,36,742,Receipts From Revenue Producing
 2003,rev,39,554,"Licenses, Fees & Registrations"
 2003,rev,42,1107,Motor Vehicle And Operators
@@ -131,19 +131,19 @@ Year,type,Category,Dollars,Category_name
 2003,rev,58,4674,Federal Medicaid
 2003,rev,59,846,Federal Transportation
 2003,rev,78,1376,All Other Sources
-2004,rev,02,6170,Individual Income Taxes
-2004,rev,03,987,Corporate Income Taxes
+2004,rev,02,7272,Individual Income Taxes
+2004,rev,03,1596,Corporate Income Taxes
 2004,rev,06,8637,Sales Taxes
-2004,rev,09,1406,Motor Fuel Tax
-2004,rev,12,1536,Public Utility Taxes
+2004,rev,09,1424,Motor Fuel Tax
+2004,rev,12,1543,Public Utility Taxes
 2004,rev,15,760,Cigarette Taxes
 2004,rev,18,127,Liquor Gallonage Taxes
-2004,rev,21,215,Inheritance Tax
-2004,rev,24,470,Insurance Taxes&Fees&Licenses
+2004,rev,21,222,Inheritance Tax
+2004,rev,24,473,Insurance Taxes&Fees&Licenses
 2004,rev,27,169,Corp Franchise Taxes & Fees
 2004,rev,31,901,Medical Provider Assessments
 2004,rev,33,880,Lottery Receipts
-2004,rev,35,281,Other Taxes
+2004,rev,35,298,Other Taxes
 2004,rev,36,866,Receipts From Revenue Producing
 2004,rev,39,812,"Licenses, Fees & Registrations"
 2004,rev,42,1162,Motor Vehicle And Operators
@@ -153,19 +153,19 @@ Year,type,Category,Dollars,Category_name
 2004,rev,58,6360,Federal Medicaid
 2004,rev,59,999,Federal Transportation
 2004,rev,78,1305,All Other Sources
-2005,rev,02,6936,Individual Income Taxes
-2005,rev,03,1605,Corporate Income Taxes
+2005,rev,02,7979,Individual Income Taxes
+2005,rev,03,1972,Corporate Income Taxes
 2005,rev,06,8981,Sales Taxes
-2005,rev,09,1420,Motor Fuel Tax
-2005,rev,12,1501,Public Utility Taxes
+2005,rev,09,1435,Motor Fuel Tax
+2005,rev,12,1502,Public Utility Taxes
 2005,rev,15,656,Cigarette Taxes
 2005,rev,18,147,Liquor Gallonage Taxes
-2005,rev,21,301,Inheritance Tax
-2005,rev,24,432,Insurance Taxes&Fees&Licenses
+2005,rev,21,310,Inheritance Tax
+2005,rev,24,434,Insurance Taxes&Fees&Licenses
 2005,rev,27,190,Corp Franchise Taxes & Fees
 2005,rev,31,1601,Medical Provider Assessments
 2005,rev,33,903,Lottery Receipts
-2005,rev,35,315,Other Taxes
+2005,rev,35,320,Other Taxes
 2005,rev,36,824,Receipts From Revenue Producing
 2005,rev,39,876,"Licenses, Fees & Registrations"
 2005,rev,42,1169,Motor Vehicle And Operators
@@ -175,19 +175,19 @@ Year,type,Category,Dollars,Category_name
 2005,rev,58,5853,Federal Medicaid
 2005,rev,59,1002,Federal Transportation
 2005,rev,78,1460,All Other Sources
-2006,rev,02,7537,Individual Income Taxes
-2006,rev,03,2061,Corporate Income Taxes
+2006,rev,02,8635,Individual Income Taxes
+2006,rev,03,2400,Corporate Income Taxes
 2006,rev,06,9638,Sales Taxes
-2006,rev,09,1430,Motor Fuel Tax
-2006,rev,12,1550,Public Utility Taxes
+2006,rev,09,1446,Motor Fuel Tax
+2006,rev,12,1551,Public Utility Taxes
 2006,rev,15,640,Cigarette Taxes
 2006,rev,18,152,Liquor Gallonage Taxes
-2006,rev,21,263,Inheritance Tax
-2006,rev,24,403,Insurance Taxes&Fees&Licenses
+2006,rev,21,272,Inheritance Tax
+2006,rev,24,404,Insurance Taxes&Fees&Licenses
 2006,rev,27,189,Corp Franchise Taxes & Fees
 2006,rev,31,890,Medical Provider Assessments
 2006,rev,33,981,Lottery Receipts
-2006,rev,35,344,Other Taxes
+2006,rev,35,351,Other Taxes
 2006,rev,36,878,Receipts From Revenue Producing
 2006,rev,39,808,"Licenses, Fees & Registrations"
 2006,rev,42,1296,Motor Vehicle And Operators
@@ -197,19 +197,19 @@ Year,type,Category,Dollars,Category_name
 2006,rev,58,5997,Federal Medicaid
 2006,rev,59,1141,Federal Transportation
 2006,rev,78,1794,All Other Sources
-2007,rev,02,8270,Individual Income Taxes
-2007,rev,03,2644,Corporate Income Taxes
+2007,rev,02,9408,Individual Income Taxes
+2007,rev,03,2936,Corporate Income Taxes
 2007,rev,06,9785,Sales Taxes
-2007,rev,09,1440,Motor Fuel Tax
-2007,rev,12,1604,Public Utility Taxes
+2007,rev,09,1454,Motor Fuel Tax
+2007,rev,12,1606,Public Utility Taxes
 2007,rev,15,639,Cigarette Taxes
 2007,rev,18,156,Liquor Gallonage Taxes
-2007,rev,21,255,Inheritance Tax
-2007,rev,24,407,Insurance Taxes&Fees&Licenses
+2007,rev,21,264,Inheritance Tax
+2007,rev,24,409,Insurance Taxes&Fees&Licenses
 2007,rev,27,201,Corp Franchise Taxes & Fees
 2007,rev,31,1529,Medical Provider Assessments
 2007,rev,33,957,Lottery Receipts
-2007,rev,35,347,Other Taxes
+2007,rev,35,354,Other Taxes
 2007,rev,36,1108,Receipts From Revenue Producing
 2007,rev,39,794,"Licenses, Fees & Registrations"
 2007,rev,42,1288,Motor Vehicle And Operators
@@ -219,19 +219,19 @@ Year,type,Category,Dollars,Category_name
 2007,rev,58,6421,Federal Medicaid
 2007,rev,59,1159,Federal Transportation
 2007,rev,78,2337,All Other Sources
-2008,rev,02,9105,Individual Income Taxes
-2008,rev,03,2935,Corporate Income Taxes
+2008,rev,02,10320,Individual Income Taxes
+2008,rev,03,3116,Corporate Income Taxes
 2008,rev,06,9994,Sales Taxes
-2008,rev,09,1319,Motor Fuel Tax
-2008,rev,12,1636,Public Utility Taxes
+2008,rev,09,1335,Motor Fuel Tax
+2008,rev,12,1637,Public Utility Taxes
 2008,rev,15,614,Cigarette Taxes
 2008,rev,18,158,Liquor Gallonage Taxes
-2008,rev,21,364,Inheritance Tax
-2008,rev,24,399,Insurance Taxes&Fees&Licenses
+2008,rev,21,373,Inheritance Tax
+2008,rev,24,401,Insurance Taxes&Fees&Licenses
 2008,rev,27,234,Corp Franchise Taxes & Fees
 2008,rev,31,2189,Medical Provider Assessments
 2008,rev,33,992,Lottery Receipts
-2008,rev,35,339,Other Taxes
+2008,rev,35,346,Other Taxes
 2008,rev,36,911,Receipts From Revenue Producing
 2008,rev,39,836,"Licenses, Fees & Registrations"
 2008,rev,42,1302,Motor Vehicle And Operators
@@ -241,19 +241,19 @@ Year,type,Category,Dollars,Category_name
 2008,rev,58,6889,Federal Medicaid
 2008,rev,59,1367,Federal Transportation
 2008,rev,78,2139,All Other Sources
-2009,rev,02,7858,Individual Income Taxes
-2009,rev,03,2539,Corporate Income Taxes
+2009,rev,02,9223,Individual Income Taxes
+2009,rev,03,2752,Corporate Income Taxes
 2009,rev,06,9298,Sales Taxes
-2009,rev,09,1451,Motor Fuel Tax
-2009,rev,12,1667,Public Utility Taxes
+2009,rev,09,1467,Motor Fuel Tax
+2009,rev,12,1668,Public Utility Taxes
 2009,rev,15,582,Cigarette Taxes
 2009,rev,18,158,Liquor Gallonage Taxes
-2009,rev,21,279,Inheritance Tax
-2009,rev,24,439,Insurance Taxes&Fees&Licenses
+2009,rev,21,288,Inheritance Tax
+2009,rev,24,440,Insurance Taxes&Fees&Licenses
 2009,rev,27,210,Corp Franchise Taxes & Fees
 2009,rev,31,1724,Medical Provider Assessments
 2009,rev,33,989,Lottery Receipts
-2009,rev,35,284,Other Taxes
+2009,rev,35,288,Other Taxes
 2009,rev,36,877,Receipts From Revenue Producing
 2009,rev,39,757,"Licenses, Fees & Registrations"
 2009,rev,42,1302,Motor Vehicle And Operators
@@ -263,15 +263,15 @@ Year,type,Category,Dollars,Category_name
 2009,rev,58,7043,Federal Medicaid
 2009,rev,59,1384,Federal Transportation
 2009,rev,78,2072,All Other Sources
-2010,rev,02,7174,Individual Income Taxes
+2010,rev,02,8510,Individual Income Taxes
 2010,rev,03,2196,Corporate Income Taxes
 2010,rev,06,8789,Sales Taxes
-2010,rev,09,1318,Motor Fuel Tax
-2010,rev,12,1572,Public Utility Taxes
+2010,rev,09,1339,Motor Fuel Tax
+2010,rev,12,1573,Public Utility Taxes
 2010,rev,15,582,Cigarette Taxes
 2010,rev,18,176,Liquor Gallonage Taxes
 2010,rev,21,243,Inheritance Tax
-2010,rev,24,425,Insurance Taxes&Fees&Licenses
+2010,rev,24,426,Insurance Taxes&Fees&Licenses
 2010,rev,27,216,Corp Franchise Taxes & Fees
 2010,rev,31,1575,Medical Provider Assessments
 2010,rev,33,1071,Lottery Receipts
@@ -285,15 +285,15 @@ Year,type,Category,Dollars,Category_name
 2010,rev,58,7327,Federal Medicaid
 2010,rev,59,1885,Federal Transportation
 2010,rev,78,1888,All Other Sources
-2011,rev,02,9694,Individual Income Taxes
-2011,rev,03,2964,Corporate Income Taxes
+2011,rev,02,11225,Individual Income Taxes
+2011,rev,03,2986,Corporate Income Taxes
 2011,rev,06,9514,Sales Taxes
-2011,rev,09,1296,Motor Fuel Tax
-2011,rev,12,1624,Public Utility Taxes
+2011,rev,09,1314,Motor Fuel Tax
+2011,rev,12,1637,Public Utility Taxes
 2011,rev,15,588,Cigarette Taxes
 2011,rev,18,182,Liquor Gallonage Taxes
 2011,rev,21,122,Inheritance Tax
-2011,rev,24,423,Insurance Taxes&Fees&Licenses
+2011,rev,24,424,Insurance Taxes&Fees&Licenses
 2011,rev,27,215,Corp Franchise Taxes & Fees
 2011,rev,31,1635,Medical Provider Assessments
 2011,rev,33,1091,Lottery Receipts
@@ -307,19 +307,19 @@ Year,type,Category,Dollars,Category_name
 2011,rev,58,8124,Federal Medicaid
 2011,rev,59,1916,Federal Transportation
 2011,rev,78,1642,All Other Sources
-2012,rev,02,14145,Individual Income Taxes
-2012,rev,03,2708,Corporate Income Taxes
+2012,rev,02,15512,Individual Income Taxes
+2012,rev,03,3482,Corporate Income Taxes
 2012,rev,06,10003,Sales Taxes
-2012,rev,09,1270,Motor Fuel Tax
-2012,rev,12,1481,Public Utility Taxes
+2012,rev,09,1290,Motor Fuel Tax
+2012,rev,12,1482,Public Utility Taxes
 2012,rev,15,606,Cigarette Taxes
 2012,rev,18,279,Liquor Gallonage Taxes
-2012,rev,21,227,Inheritance Tax
-2012,rev,24,443,Insurance Taxes&Fees&Licenses
+2012,rev,21,235,Inheritance Tax
+2012,rev,24,445,Insurance Taxes&Fees&Licenses
 2012,rev,27,200,Corp Franchise Taxes & Fees
 2012,rev,31,1677,Medical Provider Assessments
 2012,rev,33,1273,Lottery Receipts
-2012,rev,35,298,Other Taxes
+2012,rev,35,301,Other Taxes
 2012,rev,36,1694,Receipts From Revenue Producing
 2012,rev,39,1027,"Licenses, Fees & Registrations"
 2012,rev,42,1498,Motor Vehicle And Operators
@@ -329,19 +329,19 @@ Year,type,Category,Dollars,Category_name
 2012,rev,58,6528,Federal Medicaid
 2012,rev,59,1845,Federal Transportation
 2012,rev,78,1468,All Other Sources
-2013,rev,02,14805,Individual Income Taxes
-2013,rev,03,3924,Corporate Income Taxes
+2013,rev,02,16539,Individual Income Taxes
+2013,rev,03,4448,Corporate Income Taxes
 2013,rev,06,10236,Sales Taxes
-2013,rev,09,1242,Motor Fuel Tax
-2013,rev,12,1507,Public Utility Taxes
+2013,rev,09,1260,Motor Fuel Tax
+2013,rev,12,1508,Public Utility Taxes
 2013,rev,15,856,Cigarette Taxes
 2013,rev,18,280,Liquor Gallonage Taxes
-2013,rev,21,280,Inheritance Tax
-2013,rev,24,454,Insurance Taxes&Fees&Licenses
+2013,rev,21,293,Inheritance Tax
+2013,rev,24,455,Insurance Taxes&Fees&Licenses
 2013,rev,27,213,Corp Franchise Taxes & Fees
 2013,rev,31,1656,Medical Provider Assessments
 2013,rev,33,1379,Lottery Receipts
-2013,rev,35,350,Other Taxes
+2013,rev,35,356,Other Taxes
 2013,rev,36,1986,Receipts From Revenue Producing
 2013,rev,39,1131,"Licenses, Fees & Registrations"
 2013,rev,42,1462,Motor Vehicle And Operators
@@ -351,19 +351,19 @@ Year,type,Category,Dollars,Category_name
 2013,rev,58,8286,Federal Medicaid
 2013,rev,59,1705,Federal Transportation
 2013,rev,78,1489,All Other Sources
-2014,rev,02,14715,Individual Income Taxes
-2014,rev,03,3907,Corporate Income Taxes
+2014,rev,02,16642,Individual Income Taxes
+2014,rev,03,4435,Corporate Income Taxes
 2014,rev,06,10654,Sales Taxes
-2014,rev,09,1276,Motor Fuel Tax
-2014,rev,12,1454,Public Utility Taxes
+2014,rev,09,1294,Motor Fuel Tax
+2014,rev,12,1456,Public Utility Taxes
 2014,rev,15,860,Cigarette Taxes
 2014,rev,18,280,Liquor Gallonage Taxes
-2014,rev,21,259,Inheritance Tax
-2014,rev,24,454,Insurance Taxes&Fees&Licenses
+2014,rev,21,276,Inheritance Tax
+2014,rev,24,456,Insurance Taxes&Fees&Licenses
 2014,rev,27,211,Corp Franchise Taxes & Fees
 2014,rev,31,2413,Medical Provider Assessments
 2014,rev,33,1335,Lottery Receipts
-2014,rev,35,469,Other Taxes
+2014,rev,35,473,Other Taxes
 2014,rev,36,1959,Receipts From Revenue Producing
 2014,rev,39,1191,"Licenses, Fees & Registrations"
 2014,rev,42,1511,Motor Vehicle And Operators
@@ -373,15 +373,15 @@ Year,type,Category,Dollars,Category_name
 2014,rev,58,8878,Federal Medicaid
 2014,rev,59,1738,Federal Transportation
 2014,rev,78,1670,All Other Sources
-2015,rev,02,13994,Individual Income Taxes
-2015,rev,03,3538,Corporate Income Taxes
+2015,rev,02,15914,Individual Income Taxes
+2015,rev,03,4054,Corporate Income Taxes
 2015,rev,06,11148,Sales Taxes
-2015,rev,09,1276,Motor Fuel Tax
-2015,rev,12,1476,Public Utility Taxes
+2015,rev,09,1293,Motor Fuel Tax
+2015,rev,12,1479,Public Utility Taxes
 2015,rev,15,862,Cigarette Taxes
 2015,rev,18,283,Liquor Gallonage Taxes
-2015,rev,21,312,Inheritance Tax
-2015,rev,24,466,Insurance Taxes&Fees&Licenses
+2015,rev,21,333,Inheritance Tax
+2015,rev,24,469,Insurance Taxes&Fees&Licenses
 2015,rev,27,219,Corp Franchise Taxes & Fees
 2015,rev,31,1961,Medical Provider Assessments
 2015,rev,33,1261,Lottery Receipts
@@ -395,15 +395,15 @@ Year,type,Category,Dollars,Category_name
 2015,rev,58,10491,Federal Medicaid
 2015,rev,59,2031,Federal Transportation
 2015,rev,78,1921,All Other Sources
-2016,rev,02,11951,Individual Income Taxes
-2016,rev,03,2915,Corporate Income Taxes
+2016,rev,02,13807,Individual Income Taxes
+2016,rev,03,3192,Corporate Income Taxes
 2016,rev,06,11307,Sales Taxes
-2016,rev,09,1335,Motor Fuel Tax
-2016,rev,12,1406,Public Utility Taxes
+2016,rev,09,1354,Motor Fuel Tax
+2016,rev,12,1407,Public Utility Taxes
 2016,rev,15,845,Cigarette Taxes
 2016,rev,18,288,Liquor Gallonage Taxes
-2016,rev,21,292,Inheritance Tax
-2016,rev,24,520,Insurance Taxes&Fees&Licenses
+2016,rev,21,306,Inheritance Tax
+2016,rev,24,522,Insurance Taxes&Fees&Licenses
 2016,rev,27,216,Corp Franchise Taxes & Fees
 2016,rev,31,1952,Medical Provider Assessments
 2016,rev,33,1303,Lottery Receipts
@@ -417,15 +417,15 @@ Year,type,Category,Dollars,Category_name
 2016,rev,58,11247,Federal Medicaid
 2016,rev,59,1845,Federal Transportation
 2016,rev,78,1619,All Other Sources
-2017,rev,02,11738,Individual Income Taxes
-2017,rev,03,2389,Corporate Income Taxes
+2017,rev,02,13662,Individual Income Taxes
+2017,rev,03,2747,Corporate Income Taxes
 2017,rev,06,11385,Sales Taxes
-2017,rev,09,1328,Motor Fuel Tax
-2017,rev,12,1396,Public Utility Taxes
+2017,rev,09,1348,Motor Fuel Tax
+2017,rev,12,1397,Public Utility Taxes
 2017,rev,15,782,Cigarette Taxes
 2017,rev,18,294,Liquor Gallonage Taxes
-2017,rev,21,254,Inheritance Tax
-2017,rev,24,529,Insurance Taxes&Fees&Licenses
+2017,rev,21,261,Inheritance Tax
+2017,rev,24,532,Insurance Taxes&Fees&Licenses
 2017,rev,27,215,Corp Franchise Taxes & Fees
 2017,rev,31,2138,Medical Provider Assessments
 2017,rev,33,1244,Lottery Receipts
@@ -439,19 +439,19 @@ Year,type,Category,Dollars,Category_name
 2017,rev,58,10448,Federal Medicaid
 2017,rev,59,2105,Federal Transportation
 2017,rev,78,1831,All Other Sources
-2018,rev,02,16832,Individual Income Taxes
-2018,rev,03,2862,Corporate Income Taxes
+2018,rev,02,18748,Individual Income Taxes
+2018,rev,03,3452,Corporate Income Taxes
 2018,rev,06,11745,Sales Taxes
-2018,rev,09,1346,Motor Fuel Tax
-2018,rev,12,1431,Public Utility Taxes
+2018,rev,09,1368,Motor Fuel Tax
+2018,rev,12,1432,Public Utility Taxes
 2018,rev,15,764,Cigarette Taxes
 2018,rev,18,296,Liquor Gallonage Taxes
-2018,rev,21,344,Inheritance Tax
-2018,rev,24,560,Insurance Taxes&Fees&Licenses
+2018,rev,21,358,Inheritance Tax
+2018,rev,24,563,Insurance Taxes&Fees&Licenses
 2018,rev,27,216,Corp Franchise Taxes & Fees
 2018,rev,31,2205,Medical Provider Assessments
 2018,rev,33,1261,Lottery Receipts
-2018,rev,35,820,Other Taxes
+2018,rev,35,825,Other Taxes
 2018,rev,36,2477,Receipts From Revenue Producing
 2018,rev,39,1219,"Licenses, Fees & Registrations"
 2018,rev,42,1483,Motor Vehicle And Operators
@@ -461,19 +461,19 @@ Year,type,Category,Dollars,Category_name
 2018,rev,58,13475,Federal Medicaid
 2018,rev,59,1593,Federal Transportation
 2018,rev,78,2094,All Other Sources
-2019,rev,02,18281,Individual Income Taxes
-2019,rev,03,3670,Corporate Income Taxes
-2019,rev,06,12455,Sales Taxes
-2019,rev,09,1336,Motor Fuel Tax
-2019,rev,12,1474,Public Utility Taxes
+2019,rev,02,20411,Individual Income Taxes
+2019,rev,03,3989,Corporate Income Taxes
+2019,rev,06,12457,Sales Taxes
+2019,rev,09,1351,Motor Fuel Tax
+2019,rev,12,1475,Public Utility Taxes
 2019,rev,15,769,Cigarette Taxes
 2019,rev,18,297,Liquor Gallonage Taxes
-2019,rev,21,377,Inheritance Tax
-2019,rev,24,522,Insurance Taxes&Fees&Licenses
+2019,rev,21,388,Inheritance Tax
+2019,rev,24,524,Insurance Taxes&Fees&Licenses
 2019,rev,27,257,Corp Franchise Taxes & Fees
 2019,rev,31,2376,Medical Provider Assessments
 2019,rev,33,1326,Lottery Receipts
-2019,rev,35,897,Other Taxes
+2019,rev,35,902,Other Taxes
 2019,rev,36,2590,Receipts From Revenue Producing
 2019,rev,39,1178,"Licenses, Fees & Registrations"
 2019,rev,42,1599,Motor Vehicle And Operators
@@ -483,15 +483,15 @@ Year,type,Category,Dollars,Category_name
 2019,rev,58,12067,Federal Medicaid
 2019,rev,59,1363,Federal Transportation
 2019,rev,78,1840,All Other Sources
-2020,rev,02,17611,Individual Income Taxes
-2020,rev,03,3245,Corporate Income Taxes
-2020,rev,06,12252,Sales Taxes
-2020,rev,09,2290,Motor Fuel Tax
+2020,rev,02,19601,Individual Income Taxes
+2020,rev,03,3637,Corporate Income Taxes
+2020,rev,06,12273,Sales Taxes
+2020,rev,09,2319,Motor Fuel Tax
 2020,rev,12,1424,Public Utility Taxes
 2020,rev,15,851,Cigarette Taxes
 2020,rev,18,303,Liquor Gallonage Taxes
-2020,rev,21,270,Inheritance Tax
-2020,rev,24,478,Insurance Taxes&Fees&Licenses
+2020,rev,21,283,Inheritance Tax
+2020,rev,24,480,Insurance Taxes&Fees&Licenses
 2020,rev,27,219,Corp Franchise Taxes & Fees
 2020,rev,31,3474,Medical Provider Assessments
 2020,rev,33,1159,Lottery Receipts
@@ -505,15 +505,15 @@ Year,type,Category,Dollars,Category_name
 2020,rev,58,13842,Federal Medicaid
 2020,rev,59,1784,Federal Transportation
 2020,rev,78,2118,All Other Sources
-2021,rev,02,21172,Individual Income Taxes
-2021,rev,03,5483,Corporate Income Taxes
-2021,rev,06,13866,Sales Taxes
-2021,rev,09,2351,Motor Fuel Tax
+2021,rev,02,23980,Individual Income Taxes
+2021,rev,03,5992,Corporate Income Taxes
+2021,rev,06,13898,Sales Taxes
+2021,rev,09,2384,Motor Fuel Tax
 2021,rev,12,1369,Public Utility Taxes
 2021,rev,15,917,Cigarette Taxes
 2021,rev,18,312,Liquor Gallonage Taxes
-2021,rev,21,437,Inheritance Tax
-2021,rev,24,629,Insurance Taxes&Fees&Licenses
+2021,rev,21,450,Inheritance Tax
+2021,rev,24,633,Insurance Taxes&Fees&Licenses
 2021,rev,27,332,Corp Franchise Taxes & Fees
 2021,rev,31,3809,Medical Provider Assessments
 2021,rev,33,1484,Lottery Receipts
@@ -527,15 +527,15 @@ Year,type,Category,Dollars,Category_name
 2021,rev,58,17556,Federal Medicaid
 2021,rev,59,2380,Federal Transportation
 2021,rev,78,1961,All Other Sources
-2022,rev,02,23838,Individual Income Taxes
-2022,rev,03,9685,Corporate Income Taxes
-2022,rev,06,15431,Sales Taxes
-2022,rev,09,2494,Motor Fuel Tax
+2022,rev,02,26441,Individual Income Taxes
+2022,rev,03,10027,Corporate Income Taxes
+2022,rev,06,15474,Sales Taxes
+2022,rev,09,2527,Motor Fuel Tax
 2022,rev,12,1412,Public Utility Taxes
 2022,rev,15,841,Cigarette Taxes
 2022,rev,18,320,Liquor Gallonage Taxes
-2022,rev,21,594,Inheritance Tax
-2022,rev,24,608,Insurance Taxes&Fees&Licenses
+2022,rev,21,603,Inheritance Tax
+2022,rev,24,610,Insurance Taxes&Fees&Licenses
 2022,rev,27,224,Corp Franchise Taxes & Fees
 2022,rev,31,3734,Medical Provider Assessments
 2022,rev,33,1392,Lottery Receipts
@@ -549,15 +549,15 @@ Year,type,Category,Dollars,Category_name
 2022,rev,58,19045,Federal Medicaid
 2022,rev,59,1834,Federal Transportation
 2022,rev,78,2700,All Other Sources
-2023,rev,02,22106,Individual Income Taxes
-2023,rev,03,10103,Corporate Income Taxes
-2023,rev,06,16173,Sales Taxes
-2023,rev,09,2532,Motor Fuel Tax
+2023,rev,02,25310,Individual Income Taxes
+2023,rev,03,10484,Corporate Income Taxes
+2023,rev,06,16222,Sales Taxes
+2023,rev,09,2569,Motor Fuel Tax
 2023,rev,12,1443,Public Utility Taxes
 2023,rev,15,785,Cigarette Taxes
 2023,rev,18,316,Liquor Gallonage Taxes
-2023,rev,21,488,Inheritance Tax
-2023,rev,24,661,Insurance Taxes&Fees&Licenses
+2023,rev,21,503,Inheritance Tax
+2023,rev,24,662,Insurance Taxes&Fees&Licenses
 2023,rev,27,234,Corp Franchise Taxes & Fees
 2023,rev,31,4088,Medical Provider Assessments
 2023,rev,33,1558,Lottery Receipts
