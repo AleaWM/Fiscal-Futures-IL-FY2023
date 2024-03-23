@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Alea Wilbur-Mujtaba">
-<meta name="dcterms.date" content="2023-12-29">
+<meta name="dcterms.date" content="2024-03-22">
 
 <title>Methodology for the Fiscal Futures Annual Report</title>
 <style>
@@ -24,7 +24,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./FundsIncluded.html" rel="next">
+<link href="./Everything_notrounded.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,7 +82,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -91,6 +97,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -104,9 +111,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Methodology for the Fiscal Futures Annual Report</span>
     </a>
@@ -118,97 +125,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
- <span class="menu-text">About</span></a>
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
   </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-methodology" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Methodology</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-methodology">    
-        <li>
-    <a class="dropdown-item" href="./FundsIncluded.html" rel="" target="">
- <span class="dropdown-text">An All Funds Approach</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./code-cleaning.html" rel="" target="">
- <span class="dropdown-text">Gathering and Cleaning Data!</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./FedMoneyReceived.html" rel="" target="">
- <span class="dropdown-text">Federal COVID Money Received</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./LocalTransfers.html" rel="" target="">
- <span class="dropdown-text">Local Transfers</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./Debt.html" rel="" target="">
- <span class="dropdown-text">Debt Service Discussion</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./Pensions.html" rel="" target="">
- <span class="dropdown-text">Pensions</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./Healthcare.html" rel="" target="">
- <span class="dropdown-text">State Employee Healthcare Discussion</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./FederalRevenue.html" rel="" target="">
- <span class="dropdown-text">Federal Revenue</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./Medicaid.html" rel="" target="">
- <span class="dropdown-text">Medicaid</span></a>
-  </li>  
-        <li class="dropdown-header">K12-Spending.qmd</li>
-        <li>
-    <a class="dropdown-item" href="./Everything.html" rel="" target="">
- <span class="dropdown-text">Calculating the Fiscal Gap</span></a>
-  </li>  
-    </ul>
-  </li>
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/AleaWM/https://github.com/AleaWM/Fiscal-Futures-IL-FY2023/tree/main/data" rel="" target="">
- <span class="menu-text">Data</span></a>
+    <a class="nav-link" href="https://github.com/AleaWM/Fiscal-Futures-IL-FY2023/tree/main/data"> 
+<span class="menu-text">Data</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/AleaWM/Fiscal-Futures-IL-FY2023.git" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/AleaWM/Fiscal-Futures-IL-FY2023.git"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Background Information</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Background Information</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -219,74 +170,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./FundsIncluded.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">An All Funds Approach</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./code-cleaning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gathering and Cleaning Data!</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./FedMoneyReceived.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Federal COVID Money Received</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./LocalTransfers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Local Transfers</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Debt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Debt Service Discussion</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Pensions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Pensions</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Healthcare.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">State Employee Healthcare Discussion</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./FederalRevenue.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Federal Revenue</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Medicaid.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Medicaid</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./K12_Education.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">K-12 Spending</span></span></a>
+  <a href="./Everything_notrounded.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Calculating the Fiscal Gap - Rounded Output</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Everything.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Calculating the Fiscal Gap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Calculating the Fiscal Gap</span></span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -323,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 29, 2023</p>
+      <p class="date">March 22, 2024</p>
     </div>
   </div>
   
@@ -331,13 +228,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="sec-background-info" class="level1 unnumbered">
 <h1 class="unnumbered">Background Information</h1>
+<blockquote class="blockquote">
+<p>This site is for FY23 only. For full Methodology and closer examination of complex fiscal topics, please visit the <a href="https://aleawm.github.io/Fiscal-Futures/">Fiscal Futures Methodology site</a>.</p>
+</blockquote>
 <p>While the main purpose of this site is documenting methodology used in the Fiscal Futures Annual Report, it <strong>also contains useful information on Illinois budget variables used by the Illinois Office of the Comptroller (IOC) that may be valuable to other researchers</strong>. Frequently discussed topics (e.g.&nbsp;Pensions, Debt, Federal Revenue Sources, Medicaid, etc.) each have their own section on this site dedicated to looking at the many relevant variables for that topic, even if the budget variables are not directly included while calculating the Fiscal Gap for the Fiscal Futures Annual Report.</p>
 <blockquote class="blockquote">
-<p>This is a novel dataset containing all revenue items and all expenditure items from fiscal years (FY) 1998 to 2022 received through yearly FOIA requests to the Illinois Comptroller. The data can be downloaded in this page’s data folder. To the authors’ knowledge, the revenue and expenditure data used in the analysis does not exist elsewhere and cannot be downloaded from the Comptroller’s website or the Illinois Data Portal in this format.</p>
+<p>This is a novel dataset containing all revenue items and all expenditure items from fiscal years (FY) 1998 to 2023 received through yearly FOIA requests to the Illinois Comptroller. The data can be downloaded in this page’s data folder. To the authors’ knowledge, the revenue and expenditure data used in the analysis does not exist elsewhere and cannot be downloaded from the Comptroller’s website or the Illinois Data Portal in this format.</p>
 </blockquote>
 <p>This website was originally created by Alea Wilbur-Mujtaba as an internal document for Fiscal Futures researchers to increase reproducibility and update the methodology documentation used for the Fiscal Futures Annual Report. Until August 2022, The FF Annual Report was calculated using Stata code and documentation that had been passed on for years and modified in a piece-meal fashion. AWM translated the Stata files into a very long Rmarkdown file before transitioning to a Github Page with downloadable public data. She also created the method for comparing funds/agencies/revenue sources in current and past fiscal years, identified the important data values and code relevant for various fiscal topics, and coded all files associated with creating this website. The methodology for selecting funds to include in the Fiscal Gap calculation and tracking them over time was created by David Merriman and Richard Dye and updated with the help of many PhD researchers since 2008.</p>
 <p><em>Note from Alea Wilbur-Mujtaba: This document is a good faith effort to increase reproducibility and transparency for both the Fiscal Futures Annual Report and Illinois budget data as a whole. I recognized that the time and effort spent on identifying variables and graphing fiscal topics could be valuable to other researchers and took the initiative to create this page and repository from the documents I inherited as an IGPA Research Assistant. This endeavor has had a sharp learning curve and I could easily have made mistakes along the way. This is a working document and small edits are made to the site frequently. I intend to document major changes with new repository releases.</em></p>
@@ -355,7 +257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>allexp_fy23_recoded.csv</code> and <code>allrev_fy23_recoded</code> are probably the best for any researchers trying to use this data in their own projects.</p>
 <ul>
 <li>Cleanest version of data before aggregating totals or dropping observations not included in the Fiscal Futures fiscal gap calculation. All years in one file. Funds and agencies should have numbers and consistent labels. Includes the “Group” variable used in the FF Annual Report used for calculating expenditures by function. <em>To do: Add group names to go with group number code. Done after pivoting and merging in normal Fiscal Gap calculation code.</em></li>
-<li>Created in February 2023. Still checking accuracy. AWM made this version of the data specifically for other researchers. The normal work flow for the Annual Report involves dropping observations gradually while cleaning and coding the data. Significant changes to the code used for the Annual Report were made to create a new dataset that attempts to keep all Illinois budget observations that have been consistently coded over time with the additional descriptive variables used by Fiscal Futures researchers. Again, I cannot gurantee the accuracy of this file but the original data and code for cleaning the data is available to get you started.</li>
+<li>Created in February 2023. Still checking accuracy. AWM made this version of the data specifically for other researchers. The normal work flow for the Annual Report involves dropping observations gradually while cleaning and coding the data. Significant changes to the code used for the Annual Report were made to create a new dataset that attempts to keep all Illinois budget observations that have been consistently coded over time with the additional descriptive variables used by Fiscal Futures researchers. Again, I cannot guarantee the accuracy of this file but the original data and code for cleaning the data is available to get you started.</li>
 </ul></li>
 </ul>
 <p><code>exp_temp</code> and <code>rev_temp</code></p>
@@ -502,10 +404,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   if (showAllCode) {
     showAllCode.addEventListener("click", toggleCodeHandler(true));
   }
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -515,8 +416,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -529,6 +439,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -572,6 +601,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -597,6 +627,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -660,8 +716,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./FundsIncluded.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">An All Funds Approach</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./Everything_notrounded.html" class="pagination-link" aria-label="Calculating the Fiscal Gap - Rounded Output">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Calculating the Fiscal Gap - Rounded Output</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
@@ -675,41 +731,44 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    code-overflow: wrap</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>While the main purpose of this site is documenting methodology used in the Fiscal Futures Annual Report, it **also contains useful information on Illinois budget variables used by the Illinois Office of the Comptroller (IOC) that may be valuable to other researchers**. Frequently discussed topics (e.g. Pensions, Debt, Federal Revenue Sources, Medicaid, etc.) each have their own section on this site dedicated to looking at the many relevant variables for that topic, even if the budget variables are not directly included while calculating the Fiscal Gap for the Fiscal Futures Annual Report.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; This site is for FY23 only. For full Methodology and closer examination of complex fiscal topics, please visit the </span><span class="co">[</span><span class="ot">Fiscal Futures Methodology site</span><span class="co">](https://aleawm.github.io/Fiscal-Futures/)</span><span class="at">.</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; This is a novel dataset containing all revenue items and all expenditure items from fiscal years (FY) 1998 to 2022 received through yearly FOIA requests to the Illinois Comptroller. The data can be downloaded in this page's data folder. To the authors' knowledge, the revenue and expenditure data used in the analysis does not exist elsewhere and cannot be downloaded from the Comptroller's website or the Illinois Data Portal in this format.</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>While the main purpose of this site is documenting methodology used in the Fiscal Futures Annual Report, it **also contains useful information on Illinois budget variables used by the Illinois Office of the Comptroller (IOC) that may be valuable to other researchers**. Frequently discussed topics (e.g. Pensions, Debt, Federal Revenue Sources, Medicaid, etc.) each have their own section on this site dedicated to looking at the many relevant variables for that topic, even if the budget variables are not directly included while calculating the Fiscal Gap for the Fiscal Futures Annual Report.</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>This website was originally created by Alea Wilbur-Mujtaba as an internal document for Fiscal Futures researchers to increase reproducibility and update the methodology documentation used for the Fiscal Futures Annual Report. Until August 2022, The FF Annual Report was calculated using Stata code and documentation that had been passed on for years and modified in a piece-meal fashion. AWM translated the Stata files into a very long Rmarkdown file before transitioning to a Github Page with downloadable public data. She also created the method for comparing funds/agencies/revenue sources in current and past fiscal years, identified the important data values and code relevant for various fiscal topics, and coded all files associated with creating this website. The methodology for selecting funds to include in the Fiscal Gap calculation and tracking them over time was created by David Merriman and Richard Dye and updated with the help of many PhD researchers since 2008.</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; This is a novel dataset containing all revenue items and all expenditure items from fiscal years (FY) 1998 to 2023 received through yearly FOIA requests to the Illinois Comptroller. The data can be downloaded in this page's data folder. To the authors' knowledge, the revenue and expenditure data used in the analysis does not exist elsewhere and cannot be downloaded from the Comptroller's website or the Illinois Data Portal in this format.</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>*Note from Alea Wilbur-Mujtaba: This document is a good faith effort to increase reproducibility and transparency for both the Fiscal Futures Annual Report and Illinois budget data as a whole. I recognized that the time and effort spent on identifying variables and graphing fiscal topics could be valuable to other researchers and took the initiative to create this page and repository from the documents I inherited as an IGPA Research Assistant. This endeavor has had a sharp learning curve and I could easily have made mistakes along the way. This is a working document and small edits are made to the site frequently. I intend to document major changes with new repository releases.*</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>This website was originally created by Alea Wilbur-Mujtaba as an internal document for Fiscal Futures researchers to increase reproducibility and update the methodology documentation used for the Fiscal Futures Annual Report. Until August 2022, The FF Annual Report was calculated using Stata code and documentation that had been passed on for years and modified in a piece-meal fashion. AWM translated the Stata files into a very long Rmarkdown file before transitioning to a Github Page with downloadable public data. She also created the method for comparing funds/agencies/revenue sources in current and past fiscal years, identified the important data values and code relevant for various fiscal topics, and coded all files associated with creating this website. The methodology for selecting funds to include in the Fiscal Gap calculation and tracking them over time was created by David Merriman and Richard Dye and updated with the help of many PhD researchers since 2008.</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>You can read the FY22 Fiscal Futures Annual Report here: <span class="co">[</span><span class="ot">Recovering from a (COVID) Spending Fever</span><span class="co">](https://igpa.uillinois.edu/wp-content/uploads/2023/03/IGPA_FiscalFuturesCOVID_FeverD.pdf)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>*Note from Alea Wilbur-Mujtaba: This document is a good faith effort to increase reproducibility and transparency for both the Fiscal Futures Annual Report and Illinois budget data as a whole. I recognized that the time and effort spent on identifying variables and graphing fiscal topics could be valuable to other researchers and took the initiative to create this page and repository from the documents I inherited as an IGPA Research Assistant. This endeavor has had a sharp learning curve and I could easily have made mistakes along the way. This is a working document and small edits are made to the site frequently. I intend to document major changes with new repository releases.*</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Alea Wilbur-Mujtaba, Francis Choi, and David Merriman. (2023). "Recovering from a COVID (Spending) Fever." Institute of Government and Public Affairs. <span class="ot">&lt;https://igpa.uillinois.edu/wp-content/uploads/2023/03/IGPA_FiscalFuturesCOVID_FeverD.pdf&gt;</span>.</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>FY2023 Report forthcoming</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>To learn more about the history of the Fiscal Futures Project and read past reports, please visit <span class="co">[</span><span class="ot">The Fiscal Futures webpage.</span><span class="co">](https://igpa.uillinois.edu/fiscal-futures-project/)</span> The Fiscal Future Project is one of many research projects within the University of Illinois' <span class="co">[</span><span class="ot">Institute of Government and Public Affairs (IGPA)</span><span class="co">](https://igpa.uillinois.edu/)</span>.</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>You can read the FY22 Fiscal Futures Annual Report here: <span class="co">[</span><span class="ot">Recovering from a (COVID) Spending Fever</span><span class="co">](https://igpa.uillinois.edu/wp-content/uploads/2023/03/IGPA_FiscalFuturesCOVID_FeverD.pdf)</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Alea Wilbur-Mujtaba, Francis Choi, and David Merriman. (2023). "Recovering from a COVID (Spending) Fever." Institute of Government and Public Affairs. <span class="ot">&lt;https://igpa.uillinois.edu/wp-content/uploads/2023/03/IGPA_FiscalFuturesCOVID_FeverD.pdf&gt;</span>.</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>FY2023 Report forthcoming</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Github Data Notes and Organization</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>To learn more about the history of the Fiscal Futures Project and read past reports, please visit <span class="co">[</span><span class="ot">The Fiscal Futures webpage.</span><span class="co">](https://igpa.uillinois.edu/fiscal-futures-project/)</span> The Fiscal Future Project is one of many research projects within the University of Illinois' <span class="co">[</span><span class="ot">Institute of Government and Public Affairs (IGPA)</span><span class="co">](https://igpa.uillinois.edu/)</span>.</span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>The authors and IGPA believe that these novel datasets will be valuable to other researchers interested in Illinois' finances.</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Github Data Notes and Organization</span></span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Original files as they were received from FOIA requests is in the <span class="in">`data/DATA_RAW`</span> folder. The version of the files used in the analysis and to create this website are in the <span class="in">`data/DATA_DTA`</span> folder. The files within these folders are **before** cleaning or recoding the data. Most of the files for individual years are saved as .dta files due to using Stata before FY21.</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>The authors and IGPA believe that these novel datasets will be valuable to other researchers interested in Illinois' finances.</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`allexp_fy23_recoded.csv`</span> and <span class="in">`allrev_fy23_recoded`</span> are probably the best for any researchers trying to use this data in their own projects.</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Original files as they were received from FOIA requests is in the <span class="in">`data/DATA_RAW`</span> folder. The version of the files used in the analysis and to create this website are in the <span class="in">`data/DATA_DTA`</span> folder. The files within these folders are **before** cleaning or recoding the data. Most of the files for individual years are saved as .dta files due to using Stata before FY21.</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Cleanest version of data before aggregating totals or dropping observations not included in the Fiscal Futures fiscal gap calculation. All years in one file. Funds and agencies should have numbers and consistent labels. Includes the "Group" variable used in the FF Annual Report used for calculating expenditures by function. *To do: Add group names to go with group number code. Done after pivoting and merging in normal Fiscal Gap calculation code.*</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Created in February 2023. Still checking accuracy. AWM made this version of the data specifically for other researchers. The normal work flow for the Annual Report involves dropping observations gradually while cleaning and coding the data. Significant changes to the code used for the Annual Report were made to create a new dataset that attempts to keep all Illinois budget observations that have been consistently coded over time with the additional descriptive variables used by Fiscal Futures researchers. Again, I cannot gurantee the accuracy of this file but the original data and code for cleaning the data is available to get you started.</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="in">`exp_temp`</span> and <span class="in">`rev_temp`</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`allexp_fy23_recoded.csv`</span> and <span class="in">`allrev_fy23_recoded`</span> are probably the best for any researchers trying to use this data in their own projects.</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Cleanest version of data before aggregating totals or dropping observations not included in the Fiscal Futures fiscal gap calculation. All years in one file. Funds and agencies should have numbers and consistent labels. Includes the "Group" variable used in the FF Annual Report used for calculating expenditures by function. *To do: Add group names to go with group number code. Done after pivoting and merging in normal Fiscal Gap calculation code.*</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Created in February 2023. Still checking accuracy. AWM made this version of the data specifically for other researchers. The normal work flow for the Annual Report involves dropping observations gradually while cleaning and coding the data. Significant changes to the code used for the Annual Report were made to create a new dataset that attempts to keep all Illinois budget observations that have been consistently coded over time with the additional descriptive variables used by Fiscal Futures researchers. Again, I cannot guarantee the accuracy of this file but the original data and code for cleaning the data is available to get you started.</span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Used in fiscal gap calculation. Data is cleaned and coded up to the point right before aggregating category totals. Drops observations we do not keep in fiscal gap calculation.</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="in">`exp_temp`</span> and <span class="in">`rev_temp`</span></span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>A summary file containing aggregated yearly expenditure and revenue values for categories used in the Fiscal Futures model can be found in the <span class="in">`summary_file_FY2023.xlsx`</span> excel file. This excel file also contains additional tabs for all CAGR values calculated as well as the yearly change between the most recent fiscal year and the previous fiscal year. All tables included in the Annual Report are in the summary file.</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Used in fiscal gap calculation. Data is cleaned and coded up to the point right before aggregating category totals. Drops observations we do not keep in fiscal gap calculation.</span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>*The Annual Report is part of Fiscal Futures project associated with the University of Illinois System Institute of Government and Policy Affairs (IGPA). Creating the R code, Github folder, and website for methodology was done by Alea Wilbur-Mujtaba. Any errors with code or findings are the fault of the author, not the research institute. Data is originally from annual FOIA requests to the Illinois Office of the Comptroller.*</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>A summary file containing aggregated yearly expenditure and revenue values for categories used in the Fiscal Futures model can be found in the <span class="in">`summary_file_FY2023.xlsx`</span> excel file. This excel file also contains additional tabs for all CAGR values calculated as well as the yearly change between the most recent fiscal year and the previous fiscal year. All tables included in the Annual Report are in the summary file.</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>*The Annual Report is part of Fiscal Futures project associated with the University of Illinois System Institute of Government and Policy Affairs (IGPA). Creating the R code, Github folder, and website for methodology was done by Alea Wilbur-Mujtaba. Any errors with code or findings are the fault of the author, not the research institute. Data is originally from annual FOIA requests to the Illinois Office of the Comptroller.*</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
+
 
 
 
