@@ -1,4 +1,4 @@
-# Calculating the Fiscal Gap - Rounded Output {#sec-all-code}
+# Calculating the Fiscal Gap - Extra Decimals in tables {#sec-all-code}
 
 ```{r setup, warning=FALSE, message=FALSE}
 
@@ -44,7 +44,7 @@ tax_refund_long <- exp_temp %>%           # fund != "0401" # removes State Trust
                                  object=="9910"|object=="9921"|object=="9923"|object=="9925")) %>%
   # keeps these objects which represent revenue, insurance, treasurer,and financial and professional reg tax refunds
   mutate(refund = case_when(
-                        object == "9900" ~ "FY23Abatements",
+                        object == "9900" ~ "FY23_Rebates",
 
     fund=="0278" & sequence == "00" ~ "02", # for income tax refund
     fund=="0278" & sequence == "01" ~ "03", # tax administration and enforcement and tax operations become corporate income tax refund
@@ -69,7 +69,7 @@ tax_refund <- tax_refund_long %>%
   arrange(fy)
 
 tax_refund %>% 
-  pivot_longer( ref_02:ref_35, names_to = "Refund Type", values_to = "Amount") %>%
+  pivot_longer(c(ref_02:ref_35, ref_FY23_Rebates), names_to = "Refund Type", values_to = "Amount") %>%
   ggplot()+
   theme_classic()+
   geom_line(aes(x=fy,y=Amount, group = `Refund Type`, color = `Refund Type`))+
@@ -80,7 +80,7 @@ tax_refund %>%
        24=insurance taxes and fees, 35 = all other tax refunds." )
 
 # remove the items we recoded in tax_refund_long
-exp_temp <- exp_temp %>% filter(refund == "not refund")
+# exp_temp <- exp_temp %>% filter(refund == "not refund")
 
 
 ```
@@ -1393,7 +1393,7 @@ exp_long %>%
   scale_x_continuous(limits = c(0, 35), labels = comma)
 ```
 
-### Top 3 Revenues {#sec-top-3-revenues}
+### Top 3 Own Source Revenues {#sec-top-3-revenues}
 
 ```{r}
 #| label: fig-top3-revenues
@@ -1426,12 +1426,138 @@ top3
 
 ```
 
-**Sales Tax - online retailers**
+#### Income Taxes
+
+**\[\[ TO DO: merge fund names to fund codes for past years. Everything before 2014 is missing a fund name \]\]**
+
+Income taxes include Individual income taxes and corporate income taxes.
+
+```{r}
+#| label: fig-combined-incometaxes
+#| fig-cap: "Break down of ALL Income Tax"
+#| layout-ncol: 2
+#| column: page
+#| fig-height: 5
+
+rev_temp  %>% 
+  filter(rev_type == "03" | rev_type == "02") %>%
+  group_by(fy, source, source_name_AWM) %>% 
+  summarize(receipts = sum(receipts)) %>%
+  ggplot() + # aes(x=fy, y=receipts/1000, group = source))+
+     # geom_recessions(text = FALSE)+
+  geom_line(aes(x=fy, y=receipts/1000000000, color = source_name_AWM)) + 
+  #geom_text(data = annotation, aes(x=x, y=y, label=label)) +
+  theme_classic() +
+  scale_x_continuous(expand = c(0,0)) +
+  scale_y_continuous(labels = comma) +
+ # scale_linetype_manual(values = c("dotted", "dashed", "solid")) +
+  # theme(legend.position = "none") +
+  labs(title = "All Income Tax by Revenue Source", 
+       subtitle = "Income Taxes include money transfered straight to local governments and funds saved for tax refunds.",
+       y = "Billions of Nominal Dollars") 
+
+rev_temp  %>% 
+  filter(rev_type == "03" ## |Category == "03" | Category == "06"
+         ) %>%
+  group_by(fy, fund_name) %>% 
+  summarize(receipts = sum(receipts)) %>%
+  ggplot() + # aes(x=fy, y=receipts/1000, group = source))+
+     # geom_recessions(text = FALSE)+
+  geom_line(aes(x=fy, y=receipts/100000000, color = fund_name)) + 
+  #geom_text(data = annotation, aes(x=x, y=y, label=label)) +
+  theme_classic() +
+  scale_x_continuous(expand = c(0,0)) +
+  scale_y_continuous(labels = comma) +
+ # scale_linetype_manual(values = c("dotted", "dashed", "solid")) +
+  # theme(legend.position = "none") +
+  labs(title = "All Income Tax Money by Receiving Fund", 
+       subtitle = "Income Taxes include money transfered straight to local governments and funds saved for tax refunds.",
+       y = "Billions of Nominal Dollars")
+```
+
+```{r}
+#| label: fig-incometax-pprt
+#| fig-cap: "Break down of Individual Income Tax"
+#| layout-ncol: 2
+#| column: page
+#| fig-height: 5
+
+rev_temp  %>% 
+  filter(rev_type == "02"
+         ) %>%
+  group_by(fy, source, source_name_AWM) %>% 
+  summarize(receipts = sum(receipts)) %>%
+  ggplot() + 
+  geom_line(aes(x=fy, y=receipts/100000000, color = source_name_AWM)) + 
+  theme_classic() +
+  scale_x_continuous(expand = c(0,0)) +
+  scale_y_continuous(labels = comma) +
+  labs(title = "Income Tax  Breakdown", 
+       subtitle = "Individual Income Taxes include money transfered straight to local governments and funds saved for tax refunds.",
+       y = "Billions of Nominal Dollars") 
+
+rev_temp  %>% 
+  filter(rev_type == "02" ## |Category == "03" | Category == "06"
+         ) %>%
+  group_by(fy, fund_name) %>% 
+  summarize(receipts = sum(receipts)) %>%
+  ggplot() + # aes(x=fy, y=receipts/1000, group = source))+
+     # geom_recessions(text = FALSE)+
+  geom_line(aes(x=fy, y=receipts/100000000, color = fund_name)) + 
+  #geom_text(data = annotation, aes(x=x, y=y, label=label)) +
+  theme_classic() +
+  scale_x_continuous(expand = c(0,0)) +
+  scale_y_continuous(labels = comma) +
+  labs(title = "Individual Income Tax  Breakdown", 
+       subtitle = "Individual Income Taxes include money transfered straight to local governments and funds saved for tax refunds.",
+       y = "Billions of Nominal Dollars")
+  
+
+```
+
+```{r}
+#| label: fig-corpinctax
+#| fig-cap: "Break down of Corporte Income Tax"
+#| layout-ncol: 2
+#| fig-height: 5
+#| column: page
+
+rev_temp  %>% 
+  filter(rev_type == "03" ) %>%
+  group_by(fy, source, source_name_AWM) %>% 
+  summarize(receipts = sum(receipts)) %>%
+  ggplot() + # aes(x=fy, y=receipts/1000, group = source))+
+     # geom_recessions(text = FALSE)+
+  geom_line(aes(x=fy, y=receipts/100000000, color = source_name_AWM)) + 
+  theme_classic() +
+  scale_x_continuous(expand = c(0,0)) +
+  scale_y_continuous(labels = comma) +
+  labs(title = "Corporate Income Tax  Breakdown", 
+       subtitle = "Corporate Income Taxes include money transfered straight to local governments and funds saved for tax refunds.",
+       y = "Billions of Nominal Dollars") 
+
+rev_temp  %>% 
+  filter(rev_type == "03" ## |Category == "03" | Category == "06"
+         ) %>%
+  group_by(fy, fund_name) %>% 
+  summarize(receipts = sum(receipts)) %>%
+  ggplot() + 
+  geom_line(aes(x=fy, y=receipts/100000000, color = fund_name)) + 
+  theme_classic() +
+  scale_x_continuous(expand = c(0,0)) +
+  scale_y_continuous(labels = comma) +
+
+  labs(title = "Corporate Income Tax Breakdown", 
+       subtitle = "Corporate Income Taxes include money transfered straight to local governments and funds saved for tax refunds.",
+       y = "Billions of Nominal Dollars")
+```
+
+#### Sales Tax
 
 <div>
 
 ::: callout-warning
-## Online Retailer Warning
+**Online Retailer Warning**
 
 Not edited or double checked. Randomly looked into online retailers recently and didn't finish thoughts on it. Just general notes pulled together while looking into online sales tax.
 :::
@@ -1465,7 +1591,8 @@ Illinois' State sales tax rate is 6.25%, of which 5.0% of the sales tax revenue 
 [ILGA info](https://www.ilga.gov/legislation/ilcs/ilcs5.asp?ActID=3993&ChapterID=8) - leveling the playing field went into effect on July 1 2020 which is the beginning of FY21
 
 ```{r}
-#| label: online-retailers
+#| label: fig-online-retailers
+#| fig-cap: "Leveling the Playing Field went into effect for Amazon on January 1, 2020(mid-FY21) and for other remote retailers starting January 1, 2021 (mid-FY22)"
 
 ## State Retailers Occupation Tax. 
 rev_temp %>% filter(source == "0481") %>%
@@ -1489,10 +1616,20 @@ rev_temp %>%
   geom_vline(xintercept = 2021)+
   theme_classic()+
   scale_x_continuous(expand = c(0,0))
-  labs(title="State Retailers' Occupation Tax, Source 0481",
-       caption = "Leveling the Playing Field went into effect for Amazon on January 1, 2020(mid-FY21) 
-       and for other remote retailers starting January 1, 2021 (mid-FY22)")
+  labs(title="State Retailers' Occupation Tax, Source 0481")
 
+
+```
+
+```{r}
+
+```
+
+State tax began being collected for remote retailers based on destination beginning in Leveling the Playing Field went into effect for Amazon on January 1, 2020(mid-FY21) and for other remote retailers starting January 1, 2021 (mid-FY22).
+
+```{r}
+#| label: fig-stateROT
+#| fig-cap: "Large increases due to Leveling the Playing Field Act & Online shopping during pandemic. Leveling the Playing Field went into effect for Amazon on January 1, 2020(mid-FY21) and for other remote retailers starting January 1, 2021 (mid-FY22)" 
 
 ### Remote Occupation Tax
 # STATE ROT-2.2%
@@ -1519,12 +1656,10 @@ rev_temp %>%
   geom_line(aes(color=fund_name_ab))+
   geom_recessions()+
   geom_vline(xintercept = 2018)+
-
   geom_vline(xintercept = 2020)+
   theme_classic() +
   scale_x_continuous(expand = c(0,0)) +
-  labs(title="State Retailers' Occupation Tax",
-       subtitle = "Large increases due to Leveling the Playing Field Act & Online shopping during pandemic")
+  labs(title="State Retailers' Occupation Tax")
 
 rev_temp %>% 
   filter(source == "0482") %>%
@@ -1537,11 +1672,7 @@ rev_temp %>%
   #geom_recessions(aes(x=fy, y=receipts)+
   theme_classic()+
   scale_x_continuous(expand = c(0,0)) +
-  labs(title="State ROT - 2.2%",
-       subtitle = "Large increases due to Leveling the Playing Field Act & Online shopping during pandemic??",
-       caption = "State tax began being collected for remote retailers based on 
-       destination beginning in Leveling the Playing Field went into effect for Amazon on January 1, 2020(mid-FY21) and for other 
-       remote retailers starting January 1, 2021 (mid-FY22)")
+  labs(title="State ROT - 2.2%")
 
 rev_temp %>% 
   filter(source == "0482" | source == "0481") %>%
@@ -1556,12 +1687,55 @@ rev_temp %>%
   scale_x_continuous(expand = c(0,0)) + 
 
   labs(title="State ROT - 2.2% & ",
-       subtitle = "Large increases due to Leveling the Playing Field Act & Online shopping during pandemic??",
-       caption = "Leveling the Playing Field went into effect for Amazon on January 1, 2020(mid-FY21) 
-       and for other remote retailers starting January 1, 2021 (mid-FY22)")
+       subtitle = "Large increases due to Leveling the Playing Field Act & Online shopping during pandemic??")
 ```
 
 As of Feb. 6 2023, Source 481 Retailers Occupation Tax has collected \$9.3 billion already. FY22 had \$14.7 million. Around half goes to the General Revenue Fund.
+
+```{r}
+#| label: fig-salestax-pprt
+#| fig-cap: "Break down of Sales Tax. Sales Taxes include money transfered straight to local governments and funds saved for tax refunds."
+#| fig-subcap: ["", "", ""]
+#| layout-ncol: 3
+#| column: page
+#| fig-height: 5
+
+rev_temp  %>% 
+  filter(rev_type == "06" ) %>%
+  group_by(fy, source, source_name_AWM) %>% 
+  summarize(receipts = round(sum(receipts))) %>% 
+  pivot_wider(names_from = "fy", values_from = "receipts")
+
+rev_temp  %>% 
+  filter(rev_type == "06" ) %>%
+  group_by(fy, source, source_name_AWM) %>% 
+  summarize(receipts = sum(receipts)) %>%
+  ggplot() + 
+  geom_line(aes(x=fy, y=receipts/100000000, color = source_name_AWM)) + 
+  theme_classic() +
+  scale_x_continuous(expand = c(0,0)) +
+  scale_y_continuous(labels = comma) +
+  theme(legend.position = "bottom") +
+  labs(title = "Sales Tax Breakdown", 
+       y = "Billions of Nominal Dollars") 
+
+rev_temp  %>% 
+  filter(rev_type == "06" & fy > 2015) %>%
+  group_by(fy, fund_name) %>% 
+  summarize(receipts = sum(receipts)) %>%
+  ggplot() + # aes(x=fy, y=receipts/1000, group = source))+
+     # geom_recessions(text = FALSE)+
+  geom_line(aes(x=fy, y=receipts/100000000, color = fund_name)) + 
+  #geom_text(data = annotation, aes(x=x, y=y, label=label)) +
+  theme_classic() +
+  scale_x_continuous(expand = c(0,0)) +
+  scale_y_continuous(labels = comma) +
+ # scale_linetype_manual(values = c("dotted", "dashed", "solid")) +
+  theme(legend.position = "bottom") +
+  labs(title = "Sales Tax Breakdown", 
+       #subtitle = "Sales Taxes include money transfered straight to local governments and funds saved for tax refunds.",
+       y = "Billions of Nominal Dollars")
+```
 
 ### Own Source and Fed Transfers {#sec-own-source-and-fed-transfers}
 
