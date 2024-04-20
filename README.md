@@ -24,7 +24,7 @@ If you use code associated with this repository please cite the following work:
 
 The authors and IGPA believe that these novel datasets will be valuable to other researchers interested in Illinois' finances.
 
-Yearly files from the Illinois Comptroller are in the `data`/DATA_DTA/`revenue` and `expenditures` folders. These were acquired through a Freedom of Information Act (FOIA) request. The files within these folders are **before** cleaning or recoding the data. Most of the files for individual years are saved as .dta files due to using Stata before FY21. These individual yearly files are combined into larger files containing all revenues (`allrev_fy23_DATE.csv`) and expenditures (`allexp_fy2023_DATE.csv`) for all fiscal years.
+Yearly files from the Illinois Comptroller are in the `data/DATA_DTA/revenue` and `expenditures` folders. These were acquired through a Freedom of Information Act (FOIA) request. The files within these folders are **before** cleaning or recoding the data. Most of the files for individual years are saved as .dta files due to using Stata before FY21. These individual yearly files are combined into larger files containing all revenues (`allrev_fy23_DATE.csv`) and expenditures (`allexp_fy2023_DATE.csv`) for all fiscal years.
 
 Partially cleaned and recoded data can be found in the `exp_temp` and `rev_temp` files. Old or renamed agencies and new or reused funds have been recoded in these files but observations that are dropped in the analysis remain in these files.
 
