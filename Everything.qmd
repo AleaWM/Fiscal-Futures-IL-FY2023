@@ -38,9 +38,11 @@ Aggregate expenditures: Save tax refunds as negative revenue. Code refunds to ma
 #| fig-cap:  Tax Refunds
 
 tax_refund_long <- exp_temp %>%           # fund != "0401" # removes State Trust Funds
-  filter(fund != "0401" & (object=="9910"|object=="9921"|object=="9923"|object=="9925")) %>%
+  filter(fund != "0401" &
+           (object == "9900" | object=="9910"|object=="9921"|object=="9923"|object=="9925")) %>%
   # keeps these objects which represent revenue, insurance, treasurer,and financial and professional reg tax refunds
   mutate(refund = case_when(
+    object == "9900" ~ "FY23_Rebates",
     fund=="0278" & sequence == "00" ~ "02", # for income tax refund
     fund=="0278" & sequence == "01" ~ "03", # tax administration and enforcement and tax operations become corporate income tax refund
      fund == "0278" & sequence == "02" ~ "02",
@@ -64,7 +66,7 @@ tax_refund <- tax_refund_long %>%
   arrange(fy)
 
 tax_refund %>% 
-  pivot_longer( ref_02:ref_35, names_to = "Refund Type", values_to = "Amount") %>%
+  pivot_longer(c(ref_02:ref_35, ref_FY23_Rebates), names_to = "Refund Type", values_to = "Amount") %>%
   ggplot()+
   theme_classic()+
   geom_line(aes(x=fy,y=Amount, group = `Refund Type`, color = `Refund Type`))+
@@ -80,16 +82,12 @@ tax_refund %>%
 
 ```
 
-
-
-
 ```{r}
 # manually adds the abatements as expenditure item and keeps on expenditure side.
 # otherwise ignored since it is in fund 0278 and 
 exp_temp <- exp_temp %>%
   mutate(in_ff = ifelse(object == 9900, 1, in_ff))
 ```
-
 
 ### Pension Expenditures
 
@@ -102,7 +100,7 @@ State pension contributions are largely captured with object=4431. **(State paym
 -   Judges Retirement System (JRS)
 -   General Assembly Retirement System (GARS)
 
-Modify exp_temp and move all state pension contributions to their own group (901). For more information on the variables included or excluded, please see @sec-pensions.
+Modify exp_temp and move all state pension contributions to their own group (901).
 
 ```{r fig-pensions, fig.cap="Pensions"}
 
@@ -508,7 +506,7 @@ exp_temp <- exp_temp %>%
 
 exp_temp %>% filter(group_name == "Check name")
 
-#write_csv(exp_temp, "all_expenditures_recoded.csv")
+write_csv(exp_temp, "data/all_expenditures_recoded.csv")
 
 ```
 
@@ -717,10 +715,11 @@ rev_temp <- rev_temp %>%
 
 rm(rev_1998_2022)
 rm(exp_1998_2022)
+write_csv(rev_temp, "data/all_revenue_recoded.csv")
 
 
-#write.csv(exp_temp, "exp_fy22_recoded_12192022.csv")
-#write.csv(rev_temp, "rev_fy22_recoded_12192022.csv")
+write_csv(exp_temp, "data/exp_fy23_recoded_02April2024.csv")
+write_csv(rev_temp, "data/rev_fy23_recoded_02April2024.csv")
 
 ```
 
@@ -1164,7 +1163,7 @@ annotation <- data.frame(
 annotation_nums <- data.frame(
   x = c(2023, 2023, 2023),
   y = c(115, 95, -5),  
-  label = c("$110.6","$108.1", "-$2.5")
+  label = c("$112.0","$111.8", "-$0.2")
 )
 ## Dashed line versions for expenditures: 
 library(cmapplot)
