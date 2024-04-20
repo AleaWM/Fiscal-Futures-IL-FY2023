@@ -1058,8 +1058,8 @@ exp_long <- pivot_longer(ff_exp, exp_402:exp_970 , names_to = c("type", "Categor
            ) %>% 
   mutate(Category_name = str_to_title(Category_name))
 
-#write_csv(exp_long, "expenditures_recoded_long_FY23.csv")
-#write_csv(rev_long, "revenue_recoded_long_FY23.csv")
+write_csv(exp_long, "data/expenditures_recoded_long_FY23.csv")
+write_csv(rev_long, "data/revenue_recoded_long_FY23.csv")
 
 aggregated_totals_long <- rbind(rev_long, exp_long)
 aggregated_totals_long
@@ -1078,7 +1078,7 @@ year_totals <- aggregated_totals_long %>%
 
 year_totals %>% mutate_all(., ~round(., digits = 0))
 
-#write_csv(aggregated_totals_long, "aggregated_totals.csv")
+write_csv(aggregated_totals_long, "data/aggregated_totals.csv")
 
 ```
 
@@ -1175,15 +1175,18 @@ exp_long <- pivot_longer(ff_exp, exp_402:exp_970 , names_to = c("type", "Categor
            ) %>% 
   mutate(Category_name = str_to_title(Category_name))
 
-#write_csv(exp_long, "expenditures_recoded_long_FY23.csv")
-#write_csv(rev_long, "revenue_recoded_long_FY23.csv")
+#write_csv(exp_long, "data/expenditures_recoded_long_FY23.csv")
+#write_csv(rev_long, "data/revenue_recoded_long_FY23.csv")
 
 
 # combine revenue and expenditures into one data frame
 aggregated_totals_long <- rbind(rev_long, exp_long)
 
+
 aggregated_totals_long %>% mutate(`Dollars (Millions)` = round(Dollars, digits = 0)) %>% select(-Dollars) %>%
   select(Year, Category_name, `Dollars (Millions)`, type, Category)
+
+write_csv(aggregated_totals_long, "data/aggregated_totals.csv")
 
 ```
 
