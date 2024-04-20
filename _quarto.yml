@@ -7,21 +7,13 @@ book:
   subtitle: "Part of IGPA's Fiscal Futures Project"
   author: "Alea Wilbur-Mujtaba"
   date: last-modified
- # - part: "Methodology"
+
   chapters:
     - index.qmd
-    - FundsIncluded.qmd
-    - code-cleaning.qmd
-    - FedMoneyReceived.qmd
-    - LocalTransfers.qmd
-    - Debt.qmd
-    - Pensions.qmd
-    - Healthcare.qmd
-    - FederalRevenue.qmd
-    - Medicaid.qmd
-    - K12_Education.qmd
+    - Everything_notrounded.qmd
     - Everything.qmd 
-#    - FiscalGap.qmd
+    - exclude_stateCURE.qmd
+
 
   navbar: 
     right: 
@@ -30,26 +22,8 @@ book:
     left:
       - text: "About"
         file: index.qmd
-      - text: "Methodology"
-        menu:
-          - FundsIncluded.qmd
-          - code-cleaning.qmd
-          - FedMoneyReceived.qmd
-          - LocalTransfers.qmd
-          - Debt.qmd
-          - Pensions.qmd
-          - Healthcare.qmd
-          - FederalRevenue.qmd
-          - Medicaid.qmd
-          - K12-Spending.qmd
-          - Everything.qmd
       - text: "Data"
-        href: https://github.com/AleaWM/https://github.com/AleaWM/Fiscal-Futures-IL-FY2023/tree/main/data
-#      - text: "Reports"
-#        file: FiscalGap.qmd
- #     - text: "COVID-related Federal Revenue"
- #       file: FedMoneyReceived.qmd
-
+        href: https://github.com/AleaWM/Fiscal-Futures-IL-FY2023/tree/main/data
 
           
 
