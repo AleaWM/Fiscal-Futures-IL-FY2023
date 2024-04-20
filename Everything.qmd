@@ -640,7 +640,7 @@ rev_temp %>%
   group_by(fy, rev_type, rev_type_name) %>% 
   summarise(receipts = sum(receipts, na.rm = TRUE)/1000000) %>% 
   ggplot() +
-      geom_recessions(xformay = "numeric",text = FALSE)+
+      geom_recessions(xformay = "numeric",text = FALSE, update_recessions = recessions)+
   geom_line(aes(x=fy, y=receipts,color=rev_type_name)) +
       theme_classic() +
   scale_y_continuous(labels = comma)+
@@ -1270,7 +1270,7 @@ fiscal_gap
 
 
 fiscal_gap2 <-ggplot(data = year_totals, aes(x=Year, y = Revenue/1000)) +
-  # geom_recessions(text = FALSE)+
+  geom_recessions(text = FALSE, update_recessions = recessions)+
   geom_line(aes(x = Year, y = Revenue/1000), color = "Black", lwd = 1) +
   geom_line(aes(x = Year, y = Expenditures/1000), color = "red", linetype = "dotted", lwd = 1) +
   geom_line(aes(x = Year, y = (`Fiscal Gap`/1000)), color = "darkgray", lwd=1) +
@@ -1519,7 +1519,7 @@ top3 <- rev_long  %>%
   filter(Category == "02" | Category == "03" | Category == "06")
 
 top3 <- ggplot(data = top3, aes(x=Year, y=Dollars/1000))+
-      geom_recessions(text = FALSE)+
+      geom_recessions(text = FALSE, update = recessions)+
   geom_line(aes(x=Year, y=Dollars/1000, color = Category_name)) + 
   geom_text(data = annotation, aes(x=x, y=y, label=label)) +
   theme_classic() +
@@ -1592,7 +1592,7 @@ rev_temp %>%
   #group_by(fy, source_name_AWM, fund_name_ab) %>% 
 #  summarize(revenue=sum(receipts))  %>% 
   ggplot(aes(x=fy, y=receipts))+
-  geom_recessions()+
+  geom_recessions(text = FALSE, update_recessions = recessions)+
   geom_line(aes(color=fund_name_ab))+
   geom_vline(xintercept = 2018)+
   geom_vline(xintercept = 2021)+
@@ -1626,7 +1626,7 @@ rev_temp %>%
   #summarize(revenue=sum(receipts))  %>% 
   ggplot(aes(x=fy, y=receipts))+
   geom_line(aes(color=fund_name_ab))+
-  geom_recessions()+
+  geom_recessions(text = FALSE, update_recessions = recessions)+
   geom_vline(xintercept = 2018)+
 
   geom_vline(xintercept = 2020)+
@@ -1710,7 +1710,7 @@ annotation_nums <- data.frame(
 )
 
 ownsource_graph <- ggplot(ownsource_rev, aes(x=Year, y=Dollars/1000)) + 
-  geom_recessions( text = FALSE)+
+  geom_recessions(text = FALSE, update_recessions = recessions)+
   geom_line(data = ownsource_rev, aes(x=Year, y=Dollars/1000), color = "Red") + 
   geom_line(data = fed_rev, aes(x=fy, y=fed_total/1000), color = "Black") + 
     geom_text(data = annotation, aes(x=x, y=y, label=label))+
