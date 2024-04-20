@@ -27,6 +27,72 @@ exp_temp <- read_csv("./data/exp_temp.csv")
 rev_temp <- read_csv("./data/rev_temp.csv")
 ```
 
+```{r include=FALSE}
+library(cmapplot)
+
+update_recessions <- function(url = NULL, quietly = FALSE){
+
+  # Use default URL if user does not override
+  if (is_null(url) | missing(url)) {
+    url <- "https://data.nber.org/data/cycles/business_cycle_dates.json"
+  }
+  
+   # locally bind variable names
+  start_char <- end_char <- start_date <- end_date <- ongoing <- index <- peak <- trough <- NULL
+
+  return(
+    # attempt to download and format recessions table
+    tryCatch({
+      recessions <- jsonlite::fromJSON(url) %>%
+        # drop first row trough
+        dplyr::slice(-1) %>%
+        # convert peaks and troughs...
+        dplyr::mutate(
+          # ...to R dates
+          start_date = as.Date(peak),
+          end_date = as.Date(trough),
+          # ... and clean char strings
+          start_char = format(start_date, "%b %Y"),
+          end_char = format(end_date, "%b %Y")) %>%
+        # confirm ascending and create row number
+        dplyr::arrange(start_date) %>%
+        mutate(index = row_number()) %>%
+        mutate(
+          # Flag unfinished recessions
+          ongoing = case_when(
+            is.na(end_date) & index == max(.$index) ~ T,
+            TRUE ~ F),
+          # set ongoing recession to arbitrary future date
+          end_date = case_when(
+            ongoing ~ as.Date("2200-01-01"),
+            TRUE ~ end_date),
+          # mark ongoing recession in char field
+          end_char = case_when(
+            ongoing ~ "Ongoing",
+            TRUE ~ end_char)
+          ) %>%
+        # clean up
+        select(start_char, end_char, start_date, end_date, ongoing)
+
+      if (!quietly) {message("Successfully fetched from NBER")}
+
+      # Return recessions
+      recessions
+    },
+    error = function(cond){
+      if (!quietly) message("WARNING: Fetch or processing failed. `NULL` returned.")
+      return(NULL)
+    }
+    )
+  )
+}
+
+#recess_table <- list(build_recessions(update))
+recessions <- update_recessions()
+
+```
+
+
 ## Modify Expenditure File
 
 ### Tax refunds
@@ -1160,16 +1226,17 @@ annotation <- data.frame(
   label = c("Expenditures","Revenue", "Fiscal Gap")
 )
 
+
 annotation_nums <- data.frame(
-  x = c(2023, 2023, 2023),
-  y = c(115, 95, -5),  
-  label = c("$112.0","$111.8", "-$0.2")
+  x = c(2023, 2022, 2023),
+  y = c(95, 120, -5),  
+  label = c("Exp = $112.0","Rev = $111.8", "-$0.2")
 )
 ## Dashed line versions for expenditures: 
 library(cmapplot)
 fiscal_gap <-   
   ggplot(data = year_totals, aes(x=Year, y = Revenue/1000)) +
-  geom_recessions(text = FALSE)+
+  geom_recessions(text = FALSE, update = recessions)+
 
   # geom_smooth adds regression line, graphed first so it appears behind line graph
   geom_smooth(aes(x = Year, y = Revenue/1000), color = "gray", alpha = 0.7, method = "lm", se = FALSE) + 
@@ -1203,8 +1270,8 @@ fiscal_gap
 
 
 fiscal_gap2 <-ggplot(data = year_totals, aes(x=Year, y = Revenue/1000)) +
-  geom_recessions(text = FALSE)+
-  geom_line(aes(x = Year, y = Revenue/1000), color = "Black") +
+  # geom_recessions(text = FALSE)+
+  geom_line(aes(x = Year, y = Revenue/1000), color = "Black", lwd = 1) +
   geom_line(aes(x = Year, y = Expenditures/1000), color = "red", linetype = "dotted", lwd = 1) +
   geom_line(aes(x = Year, y = (`Fiscal Gap`/1000)), color = "darkgray", lwd=1) +
   
@@ -1225,12 +1292,44 @@ fiscal_gap2 <-ggplot(data = year_totals, aes(x=Year, y = Revenue/1000)) +
 
 fiscal_gap2
 
+```
 
 
-ggsave(plot = fiscal_gap2, filename= "Figure1-fiscalgap.eps")
 
+```{r FIGURE1-EXPORT}
+fiscal_gap2 <-ggplot(data = year_totals, aes(x=Year, y = Revenue/1000)) +
+  geom_recessions(text = FALSE, update = recessions)+
+  geom_line(aes(x = Year, y = Revenue/1000), color = "Black") +
+  geom_line(aes(x = Year, y = Expenditures/1000), color = "red", linetype = "dotted", lwd = 1) +
+  geom_line(aes(x = Year, y = (`Fiscal Gap`/1000)), color = "darkgray", lwd=1) +
+  
+  geom_text(data = annotation, aes(x=x, y=y, label=label))+
+  geom_text(data = annotation_nums, aes(x = x, y = y, label = label), size = 3) + 
+    theme_classic() +
+  theme(legend.position = "none",
+    panel.background = element_rect(fill='transparent'), #transparent panel bg
+    plot.background = element_rect(fill='transparent', color=NA), #transparent plot bg
+    panel.grid.major = element_blank(), #remove major gridlines
+    panel.grid.minor = element_blank(), #remove minor gridlines
+    legend.background = element_rect(fill='transparent'), #transparent legend bg
+  )+
+   # scale_linetype_manual(values = c("dashed", "dotted")) +
+  geom_hline(yintercept = 0) +
+  geom_hline(yintercept = 0) +
+
+  scale_y_continuous(labels = comma)+
+  scale_x_continuous(expand = c(0,0), 
+                     limits = c(1998, 2025), breaks = c(1998, 2000, 2005, 2010, 2015, 2020, 2023) ) +
+  xlab("Year") + 
+  ylab("Billions of Dollars")
+
+
+ggsave(plot = fiscal_gap2, filename= "./paper-figures/Figure1-fiscalgap.eps", width = 6, height = 4)
+ggsave(plot = fiscal_gap2, filename= "./paper-figures/Figure1-fiscalgap.png", width = 6, height = 4)
 
 ```
+
+
 
 **Expenditure and revenue amounts in billions of dollars:**
 
@@ -1369,9 +1468,11 @@ rev_dotplot <- rev_long %>%
 
 rev_dotplot
 
+ggsave("./paper-figures/Figure3-revenue-dotplot.png")
+
 ggsave("./paper-figures/Figure3-revenue-dotplot.eps")
 
-exp_long %>%
+exp_dotplot <- exp_long %>%
     filter(Year == "2023" | Year == "2022") %>%
   mutate(Year = as.character(Year)) %>%
   ggplot(aes(x = Dollars/1000, y = reorder(Category, Dollars))) +
@@ -1392,6 +1493,13 @@ exp_long %>%
   axis.ticks.y = element_blank(),
   axis.line.y.left  = element_blank() ) +
   scale_x_continuous(limits = c(0, 35), labels = comma)
+
+exp_dotplot
+
+ggsave("./paper-figures/Figure4-expenditure-dotplot.png")
+
+ggsave("./paper-figures/Figure4-expenditure-dotplot.eps")
+
 ```
 
 ### Top 3 Revenues {#sec-top-3-revenues}
@@ -1618,6 +1726,47 @@ ownsource_graph
 # ggsave(plot = ownsource_graph, file = "Figure4.eps")
 
 ```
+
+
+```{r FIGURE2-EXPORT, include = FALSE}
+
+# Same as above but doesn't have title. 
+# Made for fy23 report and design team.
+
+
+annotation_nums <- data.frame(
+  x = c(2022, 2022.5),
+  y = c(80, 30),  
+  label = c("$78.6", "$33.2")
+)
+
+
+ownsource_graph <- ggplot(ownsource_rev, aes(x=Year, y=Dollars/1000)) + 
+  geom_recessions(text = FALSE, update = recessions)+
+  geom_line(data = ownsource_rev, aes(x=Year, y=Dollars/1000), color = "Red") + 
+  geom_line(data = fed_rev, aes(x=fy, y=fed_total/1000), color = "Black") + 
+    geom_text(data = annotation, aes(x=x, y=y, label=label))+
+    geom_text(data = annotation_nums, aes(x=x, y=y, label=label))+
+    scale_y_continuous(labels = comma)+
+  scale_x_continuous(expand = c(0,0), limits = c(1998, 2024)) + 
+  theme_classic()+
+  theme(legend.position = "none",
+    panel.background = element_rect(fill='transparent'), #transparent panel bg
+    plot.background = element_rect(fill='transparent', color=NA), #transparent plot bg
+    panel.grid.major = element_blank(), #remove major gridlines
+    panel.grid.minor = element_blank(), #remove minor gridlines
+    legend.background = element_rect(fill='transparent'), #transparent legend bg
+  )+
+  labs(
+    #title = "Own Source Revenue and Federal Revenue, 1998-2023", 
+  y = "Billions of Dollars")
+ownsource_graph
+
+ggsave(plot = ownsource_graph, file = "./paper-figures/Figure2.eps", limitsize=FALSE)
+ggsave(plot = ownsource_graph, file = "./paper-figures/Figure2.png", limitsize = FALSE)
+
+```
+
 
 # Change from Previous Year
 
